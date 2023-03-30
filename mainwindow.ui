@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>1200</width>
     <height>768</height>
    </rect>
   </property>
@@ -14,70 +14,41 @@
    <string>HANTEK (x2)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_5">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <property name="handleWidth">
-       <number>6</number>
-      </property>
-      <widget class="QWidget" name="layoutWidget0">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QGridLayout" name="gLHantek">
         <property name="spacing">
          <number>0</number>
         </property>
-        <property name="sizeConstraint">
-         <enum>QLayout::SetMaximumSize</enum>
-        </property>
-        <item>
-         <layout class="QGridLayout" name="gLHantek0">
-          <property name="spacing">
-           <number>0</number>
+        <item row="0" column="0">
+         <widget class="QSlider" name="hSHantek0">
+          <property name="pageStep">
+           <number>1</number>
           </property>
-          <item row="0" column="0">
-           <widget class="QSlider" name="hSHantek0">
-            <property name="pageStep">
-             <number>1</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="invertedControls">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="invertedControls">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
-        <item>
-         <layout class="QGridLayout" name="gLHantek1">
-          <property name="spacing">
-           <number>0</number>
+        <item row="0" column="1">
+         <widget class="QSlider" name="horizontalSlider">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
-          <item row="0" column="0">
-           <widget class="QSlider" name="hSHantek1">
-            <property name="pageStep">
-             <number>1</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="layoutWidget1">
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="vLayout">
         <property name="spacing">
          <number>0</number>
         </property>
@@ -86,6 +57,9 @@
         </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QPushButton" name="pB0">
             <property name="text">
@@ -103,21 +77,19 @@
          </layout>
         </item>
         <item>
-         <widget class="QGroupBox" name="gBHantek0Config">
-          <property name="title">
-           <string>Hantek 1</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="gBHantek1Config">
-          <property name="title">
-           <string>Hantek 2</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QGroupBox" name="gBEstimate">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>200</height>
+           </size>
+          </property>
           <property name="title">
            <string>Estimation</string>
           </property>

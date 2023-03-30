@@ -3,11 +3,8 @@
 
 #include <QWidget>
 
-#include "entity.h"
 #include "display.h"
-
-struct HantConfig{
-};
+#include "config.h"
 
 class Hantek : public QWidget{
     Q_OBJECT
@@ -16,9 +13,12 @@ public:
     explicit Hantek(QWidget *parent = nullptr);
     ~Hantek();
 
-    HantConfig config;
+    RELAYCONTROL relayControl;
+    CONTROLDATA controlData;
+    EXTRACONFIG extraConfig;
 
-    Display* displays[HANTEK_DISPL_NUM];
+    Config* config;
+    Display* displays[MAX_CH_NUM];
 
 private:
 };

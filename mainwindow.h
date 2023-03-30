@@ -1,8 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-
 #include "hantek.h"
 
 QT_BEGIN_NAMESPACE
@@ -18,6 +16,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    QTcpServer* tcpServer;
+    QTcpSocket* tcpSocket;
 
     Hantek* hanteks[HANTEK_NUM];
 };

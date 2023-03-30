@@ -3,12 +3,13 @@
 
 #include <QMainWindow>
 
+#include "hantek.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow{
     Q_OBJECT
 
 public:
@@ -17,5 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    Hantek* hanteks[HANTEK_NUM];
 };
 #endif // MAINWINDOW_H

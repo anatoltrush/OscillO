@@ -42,6 +42,7 @@ const QString keyFPGAVersion    = "fPGAVersion";
 const QString keyCHEnable       = "cHEnable";
 const QString keyCHVoltDIV      = "cHVoltDIV";
 const QString keyCHCoupling     = "cHCoupling";
+const QString keyCHMult         = "cHMultiplier";
 const QString keyCHBWLimit      = "cHBWLimit";
 
 const QString keyTrigSource     = "trigSource";
@@ -115,10 +116,11 @@ typedef struct _HT_RELAY_CONTROL{
     bool bCHEnable[MAX_CH_NUM]      = {0, 0, 0, 0};
     ushort nCHVoltDIV[MAX_CH_NUM]   = {0};
     ushort nCHCoupling[MAX_CH_NUM]  = {0};
+    ushort nCHMult[MAX_CH_NUM]      = {0};
     bool bCHBWLimit[MAX_CH_NUM]     = {false};
-    ushort nTrigSource          = 0;
-    bool bTrigFilt              = false;
-    ushort nALT                 = 0;
+    ushort nTrigSource              = 0;
+    bool bTrigFilt                  = false;
+    ushort nALT                     = 0;
 
     // ---
     QJsonObject toJsonObject(){
@@ -127,17 +129,20 @@ typedef struct _HT_RELAY_CONTROL{
         QJsonArray arrCHEnable;
         QJsonArray arrCHVoltDIV;
         QJsonArray arrCHCoupling;
+        QJsonArray arrCHMult;
         QJsonArray arrCHBWLimit;
         for(uint8_t i = 0; i < MAX_CH_NUM; i++){
             arrCHEnable.push_back(bCHEnable[i]);
             arrCHVoltDIV.push_back(nCHVoltDIV[i]);
             arrCHCoupling.push_back(nCHCoupling[i]);
+            arrCHMult.push_back(nCHMult[i]);
             arrCHBWLimit.push_back(bCHBWLimit[i]);
         }
 
         jRelCntrl[keyCHEnable]      = arrCHEnable;
         jRelCntrl[keyCHVoltDIV]     = arrCHVoltDIV;
         jRelCntrl[keyCHCoupling]    = arrCHCoupling;
+        jRelCntrl[keyCHMult]        = arrCHMult;
         jRelCntrl[keyCHBWLimit]     = arrCHBWLimit;
 
         jRelCntrl[keyTrigSource]    = nTrigSource;

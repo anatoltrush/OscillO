@@ -23,3 +23,6 @@ private:
     Hantek* hanteks[HANTEK_NUM];
 };
 #endif // MAINWINDOW_H
+
+// TODO: load json + UI (displ+conf)
+// TODO: lines + positions

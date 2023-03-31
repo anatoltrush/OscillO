@@ -21,6 +21,9 @@ public:
     Display* displays[MAX_CH_NUM];
 
 private:
+
+private slots:
+    void slotUpdAllDisplays();
 };
 
 #endif // HANTEK_H

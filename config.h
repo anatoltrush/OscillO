@@ -14,8 +14,13 @@ public:
     explicit Config(QWidget *parent = nullptr);
     ~Config();
 
+    RELAYCONTROL* relayControl = nullptr;
+    CONTROLDATA* controlData = nullptr;
+    EXTRACONFIG* extraConfig = nullptr;
+
 private:
     Ui::Config *ui;
+
 };
 
 #endif // CONFIG_H

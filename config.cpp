@@ -9,6 +9,11 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
 
     for (uint8_t i = 0; i < MAX_CH_NUM; i++)
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
+
+    // --- final actions ---
+    static uint8_t hantNum = 1;
+    ui->gBHantek->setTitle(ui->gBHantek->title() + " " + QString::number(hantNum));
+    hantNum++;
 }
 
 Config::~Config(){

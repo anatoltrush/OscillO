@@ -4,9 +4,11 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
 
+    tcpServer = new QTcpServer;
+
     // --- UI ---
     int win_wid = this->geometry().width();
-    float aspRatPanels = 0.1f; // NOTE: config side panel width
+    float aspRatPanels = 0.02f; // NOTE: config side panel width
     ui->splitter->setSizes({(int)(win_wid * (1.0f - aspRatPanels)), (int)(win_wid * aspRatPanels)});
 
     for (uint8_t i = 0; i < HANTEK_NUM; i++){

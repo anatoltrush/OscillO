@@ -18,6 +18,8 @@ public:
     CONTROLDATA* controlData = nullptr;
     EXTRACONFIG* extraConfig = nullptr;
 
+    void setCount(uint8_t num);
+
 private:
     Ui::Config *ui;
 

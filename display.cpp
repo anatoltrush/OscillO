@@ -25,20 +25,28 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
 
     // --- connections ---
     connect(ui->cBOnOff, SIGNAL(clicked(bool)), this, SLOT(slotChannOnOff(bool)));
-    connect(ui->cBChannel, SIGNAL(currentIndexChanged(int)), this, SLOT(slotUpdateUiState()));
+    connect(ui->cBChannel, SIGNAL(currentIndexChanged(int)), this, SLOT(slotUpdateUiChannel()));
     connect(ui->cBVoltDiv, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChannTimDiv(int)));
     connect(ui->cBCoupling, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChannCoupl(int)));
     connect(ui->cBMult, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChannMult(int)));
 
     // --- final actions ---
     slotShowInChart(); // FIXME: delete later
+    ui->vSVertPos->setValue(ui->vSVertPos->maximum() / 2);
+    ui->vSTrigVert->setValue(ui->vSTrigVert->maximum() / 2);
+    ui->hSTrigHor->setValue(ui->hSTrigHor->maximum() / 2);
 }
 
 Display::~Display(){
     delete ui;
 }
 
-void Display::slotUpdateUiState(){
+void Display::chooseChannel(uint8_t ch){
+    if(ch < 0 || ch >= MAX_CH_NUM) return;
+    ui->cBChannel->setCurrentIndex(ch);
+}
+
+void Display::slotUpdateUiChannel(){
     uint8_t currChannInd = ui->cBChannel->currentIndex();
     // --- set curr ---
     ui->cBVoltDiv->setCurrentIndex(relayControl->nCHVoltDIV[currChannInd]);
@@ -59,6 +67,10 @@ void Display::slotUpdateUiState(){
         ui->cBMult->setEnabled(false);
         ui->dialVoltDiv->setEnabled(false);
     }
+}
+
+void Display::slotUpdateUiLinear(float perc){
+    linerPos = 1024 * perc; // TODO: Redo in future...
 }
 
 void Display::slotChannOnOff(bool isOn){
@@ -82,14 +94,16 @@ void Display::slotChannMult(int ind){
 }
 
 void Display::slotShowInChart(){
+    uint8_t maxVert = std::numeric_limits<uint8_t>::max();
     // --- axis X ---
     QValueAxis *axisX = new QValueAxis;
+    axisX->setRange(0, 1024);
     axisX->setLabelFormat("%d");
     axisX->setMinorTickCount(1);
     chart->setAxisX(axisX);
     // --- axis Y ---
     QValueAxis *axisY = new QValueAxis;
-    axisY->setRange(0, 256);
+    axisY->setRange(0, maxVert);
     axisY->setLabelFormat("%d");
     axisY->setMinorTickCount(1);
     chart->setAxisY(axisY);
@@ -99,6 +113,15 @@ void Display::slotShowInChart(){
     /*for (size_t j = 0; j < intermedFrame[i].payload.size(); j++)
         series->append(j, intermedFrame[i].payload[j]);*/
     chart->addSeries(series);
+    // ---
+    QLineSeries* serLine = new QLineSeries();
+
+    serLine->append(linerPos, 0);
+    serLine->append(linerPos, maxVert);
+
+    chart->addSeries(serLine);
+    serLine->attachAxis(axisX);
+    serLine->attachAxis(axisY);
     // ---
     series->attachAxis(axisX);
     series->attachAxis(axisY);

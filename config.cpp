@@ -11,11 +11,12 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
 
     // --- final actions ---
-    static uint8_t hantNum = 1;
-    ui->gBHantek->setTitle(ui->gBHantek->title() + " " + QString::number(hantNum));
-    hantNum++;
 }
 
 Config::~Config(){
     delete ui;
+}
+
+void Config::setCount(uint8_t num){
+    ui->gBHantek->setTitle(ui->gBHantek->title() + " " + QString::number(num));
 }

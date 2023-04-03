@@ -4,7 +4,9 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
 
-    tcpServer = new QTcpServer;
+    wInfo = new Info(this);
+    wrapJson = new WrapJson(this);
+    wrapServer = new WrapServer(this);
 
     // --- UI ---
     int win_wid = this->geometry().width();
@@ -16,13 +18,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->vLayout->insertWidget(ui->vLayout->count() - 1, hanteks[i]->config);
     }
 
-    for (uint8_t i = 0; i < HANTEK_NUM; i++)
+    for (uint8_t i = 0; i < HANTEK_NUM; i++){
+        ui->gLHantek->addWidget(hanteks[i]->slider, 0, i);
         for (uint8_t j = 0; j < MAX_CH_NUM; j++)
             ui->gLHantek->addWidget(hanteks[i]->displays[j], j + 1, i);
-    // ---
+    }
+
+    // --- connections ---
+    connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
 }
 
 MainWindow::~MainWindow(){
     delete ui;
 }
-

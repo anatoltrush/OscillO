@@ -4,8 +4,6 @@
 #include <QMainWindow>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QTcpServer>
-#include <QTcpSocket>
 
 #define HANTEK_NUM  2
 #define MAX_CH_NUM  4

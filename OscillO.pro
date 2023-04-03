@@ -6,19 +6,26 @@ SOURCES += \
     config.cpp \
     display.cpp \
     hantek.cpp \
+    info.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    wrapjson.cpp \
+    wrapserver.cpp
 
 HEADERS += \
     config.h \
     display.h \
     entity.h \
     hantek.h \
-    mainwindow.h
+    info.h \
+    mainwindow.h \
+    wrapjson.h \
+    wrapserver.h
 
 FORMS += \
     config.ui \
     display.ui \
+    info.ui \
     mainwindow.ui
 
 win32: {

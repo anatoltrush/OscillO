@@ -26,6 +26,10 @@ public:
     CONTROLDATA* controlData = nullptr;
     EXTRACONFIG* extraConfig = nullptr;
 
+    uint16_t linerPos = 0;
+
+    void chooseChannel(uint8_t ch);
+
 private:
     Ui::Display *ui;
 
@@ -36,7 +40,8 @@ signals:
     void signChannelStateChanged();
 
 public slots:
-    void slotUpdateUiState();
+    void slotUpdateUiChannel();
+    void slotUpdateUiLinear(float perc);
 
 private slots:
     void slotChannOnOff(bool isOn);

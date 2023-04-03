@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include "hantek.h"
+#include "info.h"
+#include "wrapserver.h"
+#include "wrapjson.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,13 +17,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+
 private:
     Ui::MainWindow *ui;
 
-    QTcpServer* tcpServer;
-    QTcpSocket* tcpSocket;
+    WrapServer* wrapServer = nullptr;
+    WrapJson* wrapJson = nullptr;
 
     Hantek* hanteks[HANTEK_NUM];
+    Info* wInfo = nullptr;
+
 };
 #endif // MAINWINDOW_H
 

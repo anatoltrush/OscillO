@@ -41,7 +41,7 @@
       <number>0</number>
      </property>
      <item row="1" column="0">
-      <widget class="QSlider" name="verticalSlider">
+      <widget class="QSlider" name="vSVertPos">
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
        </property>
@@ -58,9 +58,12 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QSlider" name="horizontalSlider">
+      <widget class="QSlider" name="hSTrigHor">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::NoTicks</enum>
        </property>
       </widget>
      </item>
@@ -72,7 +75,7 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QSlider" name="verticalSlider_2">
+      <widget class="QSlider" name="vSTrigVert">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>

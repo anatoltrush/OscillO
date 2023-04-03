@@ -1,7 +1,7 @@
 #ifndef HANTEK_H
 #define HANTEK_H
 
-#include <QWidget>
+#include <QSlider>
 
 #include "display.h"
 #include "config.h"
@@ -17,13 +17,16 @@ public:
     CONTROLDATA controlData;
     EXTRACONFIG extraConfig;
 
-    Config* config;
+    QSlider* slider = nullptr;
+    Config* config = nullptr;
     Display* displays[MAX_CH_NUM];
 
 private:
+    static uint8_t countNum;
 
 private slots:
-    void slotUpdAllDisplays();
+    void slotUpdAllChannels();
+    void slotUpdAllLinear(int pos);
 };
 
 #endif // HANTEK_H

@@ -1,10 +1,18 @@
 #include "hantek.h"
 
+uint8_t Hantek::countNum = 1;
+
 Hantek::Hantek(QWidget *parent) : QWidget(parent){
     setGeometry(0, 0, 5, 5);
 
     // --- create ---
+    slider = new QSlider(this);
+    slider->setOrientation(Qt::Horizontal);
+
     config = new Config(this);
+    config->setCount(countNum);
+    countNum++;
+
     for(uint8_t i = 0; i < MAX_CH_NUM; i++){
         displays[i] = new Display(this);
         displays[i]->show();
@@ -22,16 +30,27 @@ Hantek::Hantek(QWidget *parent) : QWidget(parent){
 
     // --- connections ---
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
-        connect(displays[i], SIGNAL(signChannelStateChanged()), this, SLOT(slotUpdAllDisplays()));
+        connect(displays[i], SIGNAL(signChannelStateChanged()), this, SLOT(slotUpdAllChannels()));
+
+    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotUpdAllLinear(int)));
 
     // --- final actions ---
-    slotUpdAllDisplays();
+    slotUpdAllChannels();
+
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+        displays[i]->chooseChannel(i);
 }
 
 Hantek::~Hantek(){
 }
 
-void Hantek::slotUpdAllDisplays(){
+void Hantek::slotUpdAllChannels(){
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
-        displays[i]->slotUpdateUiState();
+        displays[i]->slotUpdateUiChannel();
+}
+
+void Hantek::slotUpdAllLinear(int pos){
+    float perc = pos / (float)slider->maximum();
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+        displays[i]->slotUpdateUiLinear(perc);
 }

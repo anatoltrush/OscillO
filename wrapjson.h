@@ -6,6 +6,8 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QApplication>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 class WrapJson : public QWidget{
     Q_OBJECT
@@ -13,9 +15,14 @@ class WrapJson : public QWidget{
 public:
     explicit WrapJson(QWidget *parent = nullptr);
 
+    uint64_t getPort(){return jsonInpConnect["port"].toInt();}
+
 private:
     const QString strConn = "configuration_connection.json";
     const QString strMeas = "configuration_measurement.json";
+
+    QJsonObject jsonInpConnect;
+    QJsonObject jsonInpMeasure;
 
     void loadConnect();
     void loadMeasure();

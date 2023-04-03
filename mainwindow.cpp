@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     wrapJson = new WrapJson(this);
     wrapServer = new WrapServer(this);
 
+    connect(wrapServer, SIGNAL(signMessage(QString)), wInfo, SLOT(slotGetString(QString)));
+    wrapServer->start(wrapJson->getPort());
+
     // --- UI ---
     int win_wid = this->geometry().width();
     float aspRatPanels = 0.02f; // NOTE: config side panel width

@@ -5,6 +5,7 @@
 #include "info.h"
 #include "wrapserver.h"
 #include "wrapjson.h"
+#include "techlogger.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,6 +19,8 @@ public:
     ~MainWindow();
 
 private slots:
+    // --- write ---
+    void slotChooseDir();
 
 private:
     Ui::MainWindow *ui;
@@ -28,8 +31,12 @@ private:
     Hantek* hanteks[HANTEK_NUM];
     Info* wInfo = nullptr;
 
+    TechLogger tLogger;
+    std::thread thrLog;
+    QString commonDirPath;
+    std::mutex mutLoc;
+    std::condition_variable condVar;
 };
 #endif // MAINWINDOW_H
 
 // TODO: load json + UI (displ+conf)
-// TODO: lines + positions

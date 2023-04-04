@@ -29,8 +29,32 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // --- connections ---
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
+    connect(ui->pBDirSaveData, SIGNAL(clicked()), this, SLOT(slotChooseDir()));
+
+    // --- logger ---
+    tLogger.updFileName("/HANTEK_DATA_");
+    tLogger.strDirPath = QDir::currentPath();
+    ui->lPathSaveData->setText("Path: " + tLogger.getFullName());
+    // --- threads ---
+    thrLog = std::thread(&TechLogger::dropData, &tLogger, &condVar);
 }
 
 MainWindow::~MainWindow(){
+    tLogger.isRunning = false;
+    if(thrLog.joinable()) thrLog.join();
+
     delete ui;
+}
+
+void MainWindow::slotChooseDir(){
+    QString tempStr = QFileDialog::getExistingDirectory(this,
+                                                        tr("Save data to..."), commonDirPath,
+                                                        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    if(!tempStr.isEmpty()){
+        if(tempStr.back() == '/')
+            tempStr.chop(1);
+        commonDirPath = tempStr;
+        tLogger.strDirPath = tempStr;
+        ui->lPathSaveData->setText("Path: " + tLogger.getFullName());
+    }
 }

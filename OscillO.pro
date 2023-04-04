@@ -9,6 +9,7 @@ SOURCES += \
     info.cpp \
     main.cpp \
     mainwindow.cpp \
+    techlogger.cpp \
     wrapjson.cpp \
     wrapserver.cpp
 
@@ -19,6 +20,7 @@ HEADERS += \
     hantek.h \
     info.h \
     mainwindow.h \
+    techlogger.h \
     wrapjson.h \
     wrapserver.h
 

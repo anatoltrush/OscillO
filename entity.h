@@ -9,6 +9,29 @@
 #define MAX_CH_NUM  4
 #define IND_TO_NUM  1
 
+#define GET_CUR_TIME_MILLI (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
+#define GET_CUR_TIME_MICRO (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
+
+struct Frame{
+    uint8_t deviceIndex = 0;
+    uint8_t channelNum  = 0;
+    double timeStamp    = 0.0;
+    std::vector<uint16_t> payload;
+
+    // --- methods ---
+    static uint8_t getHeaderSize(){return 3;} // deviceIndex, channelNum, timeStamp
+    std::string getOneLine(){
+        std::string resLine;
+        // --- header ---
+        resLine += std::to_string(GET_CUR_TIME_MICRO) + "\t" + std::to_string(channelNum) + "\n";
+        // --- body ---
+        for (size_t i = 0; i < payload.size(); i++)
+            resLine += std::to_string(payload[i]) + "\t";
+        resLine += "\n";
+        return resLine;
+    }
+};
+
 const QString keyRelayControl   = "relayControl";
 const QString keyControlData    = "controlData";
 const QString keyExtraConfig    = "extraConfig";

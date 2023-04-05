@@ -15,8 +15,10 @@ public:
 private:
     Ui::Info *ui;
 
-private slots:
+public slots:
     void slotGetString(QString mess);
+
+private slots:
     void slotClearList();
 };
 

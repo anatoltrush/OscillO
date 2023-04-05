@@ -19,8 +19,8 @@ public:
     ~MainWindow();
 
 private slots:
-    // --- write ---
     void slotChooseDir();
+    void slotRcvFrame(std::vector<Frame> frames);
 
 private:
     Ui::MainWindow *ui;
@@ -36,7 +36,10 @@ private:
     QString commonDirPath;
     std::mutex mutLoc;
     std::condition_variable condVar;
+
+    void drawChart(const std::vector<Frame>& frames);
 };
 #endif // MAINWINDOW_H
 
 // TODO: load json + UI (displ+conf)
+// TODO: const Frame&

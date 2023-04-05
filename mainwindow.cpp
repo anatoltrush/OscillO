@@ -8,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     wrapJson = new WrapJson(this);
     wrapServer = new WrapServer(this);
 
-    connect(wrapServer, SIGNAL(signMessage(QString)), wInfo, SLOT(slotGetString(QString)));
+    connect(wrapServer, &WrapServer::signStringMessage, wInfo, &Info::slotGetString);
+    connect(wrapServer, &WrapServer::signFrameMessage, this, &MainWindow::slotRcvFrame);
     wrapServer->start(wrapJson->getPort());
 
     // --- UI ---
@@ -57,4 +58,14 @@ void MainWindow::slotChooseDir(){
         tLogger.strDirPath = tempStr;
         ui->lPathSaveData->setText("Path: " + tLogger.getFullName());
     }
+}
+
+void MainWindow::slotRcvFrame(std::vector<Frame> frames){
+    // T LOG ?
+    // ---
+    drawChart(frames);
+}
+
+void MainWindow::drawChart(const std::vector<Frame> &frames){
+    // hanteks...draw
 }

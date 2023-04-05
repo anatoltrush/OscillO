@@ -6,7 +6,7 @@
 #include <QMessageBox>
 #include <QTime>
 
-#define GET_CUR_TIME_MILLI (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
+#include "entity.h"
 
 class WrapServer : public QWidget{
     Q_OBJECT
@@ -25,8 +25,11 @@ private:
 
     QTime time;
 
+    void parseAndSendData(QByteArray &array);
+
 signals:
-    void signMessage(QString mess);
+    void signStringMessage(QString mess);
+    void signFrameMessage(std::vector<Frame> frames);
 
 private slots:
     void slotNewConnection();

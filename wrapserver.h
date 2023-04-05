@@ -29,7 +29,7 @@ private:
 
 signals:
     void signStringMessage(QString mess);
-    void signFrameMessage(std::vector<Frame> frames);
+    void signFrameMessage(const std::vector<Frame>& frames);
 
 private slots:
     void slotNewConnection();

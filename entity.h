@@ -5,9 +5,9 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-#define HANTEK_NUM  2
-#define MAX_CH_NUM  4
-#define IND_TO_NUM  1
+#define HANTEK_NUM  (2)
+#define MAX_CH_NUM  (4)
+#define IND_TO_NUM  (1)
 
 #define GET_CUR_TIME_MILLI (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 #define GET_CUR_TIME_MICRO (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
@@ -23,7 +23,10 @@ struct Frame{
     std::string getOneLine(){
         std::string resLine;
         // --- header ---
-        resLine += std::to_string(GET_CUR_TIME_MICRO) + "\t" + std::to_string(channelNum) + "\n";
+        resLine +=
+                std::to_string(GET_CUR_TIME_MICRO) + "\t" +
+                std::to_string(channelNum) + "\t" +
+                std::to_string(deviceIndex) + "\n";
         // --- body ---
         for (size_t i = 0; i < payload.size(); i++)
             resLine += std::to_string(payload[i]) + "\t";

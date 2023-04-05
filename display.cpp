@@ -31,10 +31,12 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     connect(ui->cBMult, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChannMult(int)));
 
     // --- final actions ---
-    slotShowInChart(); // FIXME: delete later
     ui->vSVertPos->setValue(ui->vSVertPos->maximum() / 2);
     ui->vSTrigVert->setValue(ui->vSTrigVert->maximum() / 2);
     ui->hSTrigHor->setValue(ui->hSTrigHor->maximum() / 2);
+
+    Frame frm;
+    showInChart(frm);
 }
 
 Display::~Display(){
@@ -42,12 +44,12 @@ Display::~Display(){
 }
 
 void Display::chooseChannel(uint8_t ch){
-    if(ch < 0 || ch >= MAX_CH_NUM) return;
+    if(ch >= MAX_CH_NUM) return;
     ui->cBChannel->setCurrentIndex(ch);
 }
 
 void Display::slotUpdateUiChannel(){
-    uint8_t currChannInd = ui->cBChannel->currentIndex();
+    currChannInd = ui->cBChannel->currentIndex();
     // --- set curr ---
     ui->cBVoltDiv->setCurrentIndex(relayControl->nCHVoltDIV[currChannInd]);
     ui->cBCoupling->setCurrentIndex(relayControl->nCHCoupling[currChannInd]);
@@ -93,7 +95,7 @@ void Display::slotChannMult(int ind){
     emit signChannelStateChanged();
 }
 
-void Display::slotShowInChart(){
+void Display::showInChart(const Frame &frame){
     uint8_t maxVert = std::numeric_limits<uint8_t>::max();
     // --- axis X ---
     QValueAxis *axisX = new QValueAxis;
@@ -110,8 +112,8 @@ void Display::slotShowInChart(){
 
     chart->removeAllSeries();
     QLineSeries* series = new QLineSeries();
-    /*for (size_t j = 0; j < intermedFrame[i].payload.size(); j++)
-        series->append(j, intermedFrame[i].payload[j]);*/
+    for (size_t j = 0; j < frame.payload.size(); j++)
+        series->append(j, frame.payload[j]);
     chart->addSeries(series);
     // ---
     QLineSeries* serLine = new QLineSeries();

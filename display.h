@@ -26,9 +26,11 @@ public:
     CONTROLDATA* controlData = nullptr;
     EXTRACONFIG* extraConfig = nullptr;
 
+    uint8_t currChannInd = 0;
     uint16_t linerPos = 0;
 
     void chooseChannel(uint8_t ch);
+    void showInChart(const Frame& frame);
 
 private:
     Ui::Display *ui;
@@ -48,8 +50,6 @@ private slots:
     void slotChannTimDiv(int ind);
     void slotChannCoupl(int ind);
     void slotChannMult(int ind);
-
-    void slotShowInChart();
 };
 
 #endif // DISPLAY_H

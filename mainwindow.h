@@ -20,7 +20,7 @@ public:
 
 private slots:
     void slotChooseDir();
-    void slotRcvFrame(std::vector<Frame> frames);
+    void slotRcvFrame(const std::vector<Frame>& frames);
 
 private:
     Ui::MainWindow *ui;
@@ -42,4 +42,3 @@ private:
 #endif // MAINWINDOW_H
 
 // TODO: load json + UI (displ+conf)
-// TODO: const Frame&

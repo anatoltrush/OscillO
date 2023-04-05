@@ -41,7 +41,12 @@ Hantek::Hantek(QWidget *parent) : QWidget(parent){
         displays[i]->chooseChannel(i);
 }
 
-Hantek::~Hantek(){
+Hantek::~Hantek(){}
+
+void Hantek::rcvAndDraw(const Frame &frame){
+    for(const auto& displ : displays)
+        if(displ->currChannInd == frame.channelNum)
+            displ->showInChart(frame);
 }
 
 void Hantek::slotUpdAllChannels(){

@@ -60,12 +60,15 @@ void MainWindow::slotChooseDir(){
     }
 }
 
-void MainWindow::slotRcvFrame(std::vector<Frame> frames){
-    // T LOG ?
+void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
+    // TODO: send to logger
     // ---
     drawChart(frames);
 }
 
 void MainWindow::drawChart(const std::vector<Frame> &frames){
-    // hanteks...draw
+    for(const auto& frame : frames)
+        for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+            if(frame.deviceIndex == i)
+                hanteks[i]->rcvAndDraw(frame);
 }

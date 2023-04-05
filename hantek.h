@@ -21,6 +21,8 @@ public:
     Config* config = nullptr;
     Display* displays[MAX_CH_NUM];
 
+    void rcvAndDraw(const Frame& frame);
+
 private:
     static uint8_t countNum;
 

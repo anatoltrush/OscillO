@@ -44,9 +44,9 @@ Hantek::Hantek(QWidget *parent) : QWidget(parent){
 Hantek::~Hantek(){}
 
 void Hantek::rcvAndDraw(const Frame &frame){
-    for(const auto& displ : displays)
-        if(displ->currChannInd == frame.channelNum)
-            displ->showInChart(frame);
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+        if(displays[i]->currChannInd == frame.channelNum && relayControl.bCHEnable[frame.channelNum])
+            displays[i]->showInChart(frame);
 }
 
 void Hantek::slotUpdAllChannels(){
@@ -57,5 +57,5 @@ void Hantek::slotUpdAllChannels(){
 void Hantek::slotUpdAllLinear(int pos){
     float perc = pos / (float)slider->maximum();
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
-        displays[i]->slotUpdateUiLinear(perc);
+        displays[i]->updateUiLinear(perc);
 }

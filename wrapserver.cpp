@@ -72,7 +72,7 @@ void WrapServer::slotReadyRead(){
     // --- UI ---
     time = QTime::currentTime();
     emit signStringMessage("[" + QString::number(rcvCounter) + "] " +
-                           socket->localAddress().toString() +
+                           socket->localAddress().toString() + " | " +
                            time.toString() + " | Received data size: " +
                            QString::number(readAll.size()) + "bytes | " +
                            QString::number(diffMs) + "ms");

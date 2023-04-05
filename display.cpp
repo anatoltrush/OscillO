@@ -35,8 +35,8 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     ui->vSTrigVert->setValue(ui->vSTrigVert->maximum() / 2);
     ui->hSTrigHor->setValue(ui->hSTrigHor->maximum() / 2);
 
-    Frame frm;
-    showInChart(frm);
+    Frame locFrm;
+    showInChart(locFrm);
 }
 
 Display::~Display(){
@@ -68,11 +68,12 @@ void Display::slotUpdateUiChannel(){
         ui->cBCoupling->setEnabled(false);
         ui->cBMult->setEnabled(false);
         ui->dialVoltDiv->setEnabled(false);
+        chart->removeAllSeries();
     }
 }
 
-void Display::slotUpdateUiLinear(float perc){
-    linerPos = 1024 * perc; // TODO: Redo in future...
+void Display::updateUiLinear(float perc){
+    linerPos = payLoadSize * perc;
 }
 
 void Display::slotChannOnOff(bool isOn){
@@ -97,9 +98,10 @@ void Display::slotChannMult(int ind){
 
 void Display::showInChart(const Frame &frame){
     uint8_t maxVert = std::numeric_limits<uint8_t>::max();
+    payLoadSize = frame.payload.size() - IND_TO_NUM;
     // --- axis X ---
     QValueAxis *axisX = new QValueAxis;
-    axisX->setRange(0, 1024);
+    axisX->setRange(0, frame.payload.size() - IND_TO_NUM);
     axisX->setLabelFormat("%d");
     axisX->setMinorTickCount(1);
     chart->setAxisX(axisX);

@@ -49,7 +49,7 @@ MainWindow::~MainWindow(){
 
 void MainWindow::slotChooseDir(){
     QString tempStr = QFileDialog::getExistingDirectory(this,
-                                                        tr("Save data to..."), commonDirPath,
+                                                        tr("Save log to..."), commonDirPath,
                                                         QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
     if(!tempStr.isEmpty()){
         if(tempStr.back() == '/')

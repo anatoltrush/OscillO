@@ -42,3 +42,4 @@ private:
 #endif // MAINWINDOW_H
 
 // TODO: load json + UI (displ+conf)
+// TODO: linear shorter

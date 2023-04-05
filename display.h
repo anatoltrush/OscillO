@@ -1,7 +1,6 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#include <QWidget>
 #include <QLineSeries>
 #include <QChartView>
 #include <QGraphicsLayout>
@@ -28,7 +27,9 @@ public:
 
     uint8_t currChannInd = 0;
     uint16_t linerPos = 0;
+    uint16_t payLoadSize = 0;
 
+    void updateUiLinear(float perc);
     void chooseChannel(uint8_t ch);
     void showInChart(const Frame& frame);
 
@@ -42,8 +43,7 @@ signals:
     void signChannelStateChanged();
 
 public slots:
-    void slotUpdateUiChannel();
-    void slotUpdateUiLinear(float perc);
+    void slotUpdateUiChannel();    
 
 private slots:
     void slotChannOnOff(bool isOn);

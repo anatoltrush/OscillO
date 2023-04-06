@@ -3,11 +3,14 @@
 uint8_t Hantek::countNum = 1;
 
 Hantek::Hantek(QWidget *parent) : QWidget(parent){
-    setGeometry(0, 0, 5, 5);
+    setGeometry(0, 0, 1, 1);
 
     // --- create ---
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
+
+    lLinPerc = new QLabel(this);
+    lLinPerc->setText("   percent: 0%   ");
 
     config = new Config(this);
     config->setCount(countNum);
@@ -58,4 +61,5 @@ void Hantek::slotUpdAllLinear(int pos){
     float perc = pos / (float)slider->maximum();
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         displays[i]->updateUiLinear(perc);
+    lLinPerc->setText("   percent: " + QString::number((uint8_t)(perc * 100)) + "%   ");
 }

@@ -17,13 +17,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     float aspRatPanels = 0.02f; // NOTE: config side panel width
     ui->splitter->setSizes({(int)(win_wid * (1.0f - aspRatPanels)), (int)(win_wid * aspRatPanels)});
 
-    for (uint8_t i = 0; i < HANTEK_NUM; i++){
+    for (uint8_t i = 0; i < HANTEK_NUM; i++){ // Insert configs
         hanteks[i] = new Hantek(this);
         ui->vLayout->insertWidget(ui->vLayout->count() - 1, hanteks[i]->config);
     }
 
-    for (uint8_t i = 0; i < HANTEK_NUM; i++){
-        ui->gLHantek->addWidget(hanteks[i]->slider, 0, i);
+    for (uint8_t i = 0; i < HANTEK_NUM; i++){ // Insert slider, displays
+        QHBoxLayout *hHantekLayout = new QHBoxLayout;
+        hHantekLayout->addWidget(hanteks[i]->slider);
+        hHantekLayout->addWidget(hanteks[i]->lLinPerc);
+        ui->gLHantek->addLayout(hHantekLayout, 0, i);
+        // ---
+        //ui->gLHantek->addWidget(hanteks[i]->slider, 0, i);
         for (uint8_t j = 0; j < MAX_CH_NUM; j++)
             ui->gLHantek->addWidget(hanteks[i]->displays[j], j + 1, i);
     }

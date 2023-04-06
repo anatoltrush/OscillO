@@ -2,6 +2,7 @@
 #define HANTEK_H
 
 #include <QSlider>
+#include <QLabel>
 
 #include "display.h"
 #include "config.h"
@@ -18,6 +19,8 @@ public:
     EXTRACONFIG extraConfig;
 
     QSlider* slider = nullptr;
+    QLabel* lLinPerc = nullptr;
+
     Config* config = nullptr;
     Display* displays[MAX_CH_NUM];
 

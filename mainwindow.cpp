@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
 
     wInfo = new Info(this);
+    wLogger = new Logger(this);
     wrapJson = new WrapJson(this);
     wrapServer = new WrapServer(this);
 
@@ -35,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // --- connections ---
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
+    connect(ui->pBLogger, SIGNAL(clicked()), wLogger, SLOT(show()));
     connect(ui->pBDirSaveData, SIGNAL(clicked()), this, SLOT(slotChooseDir()));
 
     // --- logger ---

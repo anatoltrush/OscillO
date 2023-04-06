@@ -2,10 +2,12 @@
 #define MAINWINDOW_H
 
 #include "hantek.h"
-#include "info.h"
 #include "wrapserver.h"
 #include "wrapjson.h"
 #include "techlogger.h"
+// --- windows ---
+#include "info.h"
+#include "logger.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +32,7 @@ private:
 
     Hantek* hanteks[HANTEK_NUM];
     Info* wInfo = nullptr;
+    Logger* wLogger = nullptr;
 
     TechLogger tLogger;
     std::thread thrLog;

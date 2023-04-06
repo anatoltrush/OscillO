@@ -7,6 +7,7 @@ SOURCES += \
     display.cpp \
     hantek.cpp \
     info.cpp \
+    logger.cpp \
     main.cpp \
     mainwindow.cpp \
     techlogger.cpp \
@@ -19,6 +20,7 @@ HEADERS += \
     entity.h \
     hantek.h \
     info.h \
+    logger.h \
     mainwindow.h \
     techlogger.h \
     wrapjson.h \
@@ -28,6 +30,7 @@ FORMS += \
     config.ui \
     display.ui \
     info.ui \
+    logger.ui \
     mainwindow.ui
 
 win32: {

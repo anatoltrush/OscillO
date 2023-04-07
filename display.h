@@ -7,6 +7,7 @@
 #include <QValueAxis>
 
 #include "entity.h"
+#include "estim.h"
 
 namespace Ui {class Display;}
 
@@ -25,6 +26,8 @@ public:
     CONTROLDATA* controlData = nullptr;
     EXTRACONFIG* extraConfig = nullptr;
 
+    Estim* estims[ESTIM_NUM];
+
     uint8_t currChannInd = 0;
     uint16_t linerPos = 0;
     uint16_t payLoadSize = 0;
@@ -38,6 +41,8 @@ private:
 
     QChart *chart           = nullptr;
     QChartView *chartView   = nullptr;
+
+    QColor estimColor;
 
 signals:
     void signChannelStateChanged();

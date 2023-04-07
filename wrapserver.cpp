@@ -28,8 +28,10 @@ void WrapServer::parseAndSendData(QByteArray &array){
     uint32_t partLen = array.size() / parts;
     // ---
     uint32_t tempLen = partLen - 1;
-    if(tempLen % DATA_SIZE_STEP != 0)
+    if(tempLen % DATA_SIZE_STEP != 0){
+        emit signStringMessage(">>>--- WARNING: Bad size of data detected ---<<<");
         return;
+    }
     // ---
     std::vector<Frame> locFrames;
     for(uint8_t j = 0; j < parts; j++){

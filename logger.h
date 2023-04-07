@@ -2,6 +2,7 @@
 #define LOGGER_H
 
 #include <QDialog>
+#include <QTimer>
 
 namespace Ui {class Logger;}
 
@@ -14,6 +15,14 @@ public:
 
 private:
     Ui::Logger *ui;
+
+    QTimer* timer = nullptr;
+    uint8_t indicCount = 9;
+
+private slots:
+    void slotTimerTick();
+    void slotAddSymb();
+    void slotChooseDir();
 };
 
 #endif // LOGGER_H

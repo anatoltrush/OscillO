@@ -13,6 +13,13 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     for (uint8_t i = 0; i < MAX_CH_NUM; i++)
         ui->cBChannel->addItem("CH" + QString::number(i + IND_TO_NUM));
 
+    // --- estim panels ---
+    for(uint8_t i = 0; i < ESTIM_NUM; i++){
+        estims[i] = new Estim(this);
+        estims[i]->setParamNum(i);
+        ui->vLEstim->addWidget(estims[i]);
+    }
+
     // --- chart ---
     chart = new QChart();
     chart->legend()->hide();

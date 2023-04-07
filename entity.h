@@ -7,6 +7,7 @@
 
 #define HANTEK_NUM      (2)
 #define MAX_CH_NUM      (4)
+#define ESTIM_NUM       (3)
 #define IND_TO_NUM      (1)
 #define DATA_SIZE_STEP  (1024)
 

@@ -20,8 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void slotChooseDir();
+private slots:    
     void slotRcvFrame(const std::vector<Frame>& frames);
 
 private:
@@ -44,4 +43,7 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// TODO: load json + UI (displ+conf)
+// TODO: load json
+// TODO: Validators
+// TODO: Logger
+// TODO: UI estim

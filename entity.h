@@ -5,9 +5,10 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-#define HANTEK_NUM  (2)
-#define MAX_CH_NUM  (4)
-#define IND_TO_NUM  (1)
+#define HANTEK_NUM      (2)
+#define MAX_CH_NUM      (4)
+#define IND_TO_NUM      (1)
+#define DATA_SIZE_STEP  (1024)
 
 #define GET_CUR_TIME_MILLI (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 #define GET_CUR_TIME_MICRO (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count())

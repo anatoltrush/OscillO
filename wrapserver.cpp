@@ -21,10 +21,15 @@ void WrapServer::parseAndSendData(QByteArray &array){
     array.chop(1);
     // --- nof channels ---
     uint8_t parts = array.back();
-    if (parts == 0) return;
+    if (parts == 0 || parts > MAX_CH_NUM) return;
     array.chop(1);
+    // --- parts ---
     if(array.size() % 2 != 0) return;
-    uint16_t partLen = array.size() / parts;
+    uint32_t partLen = array.size() / parts;
+    // ---
+    uint32_t tempLen = partLen - 1;
+    if(tempLen % DATA_SIZE_STEP != 0)
+        return;
     // ---
     std::vector<Frame> locFrames;
     for(uint8_t j = 0; j < parts; j++){
@@ -71,11 +76,12 @@ void WrapServer::slotReadyRead(){
 
     // --- UI ---
     time = QTime::currentTime();
-    emit signStringMessage("[" + QString::number(rcvCounter) + "] " +
-                           socket->localAddress().toString() + " | " +
-                           time.toString() + " | Received data size: " +
-                           QString::number(readAll.size()) + "bytes | " +
-                           QString::number(diffMs) + "ms");
+    QString gotStr = "[" + QString::number(rcvCounter) + "] " +
+            socket->localAddress().toString() + " | " +
+            time.toString() + " | Received data size: " +
+            QString::number(readAll.size()) + "bytes | " +
+            QString::number(diffMs) + "ms";
+    emit signStringMessage(gotStr);
     rcvCounter++;
     // ---
     parseAndSendData(readAll);
@@ -86,7 +92,7 @@ void WrapServer::slotClientDisconnected(){
     if(!socket) return;
     socket->close();
     socket->deleteLater();
-    emit signStringMessage("Disconnected: " + tcpSocket->objectName() + " | " + tcpSocket->localAddress().toString());
+    emit signStringMessage("Disconnected: " + socket->objectName() + " | " + tcpSocket->localAddress().toString());
 }
 
 void WrapServer::slotError(QAbstractSocket::SocketError err){

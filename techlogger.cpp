@@ -43,3 +43,7 @@ void TechLogger::updFileName(const QString &name){
     fileName += "_";
     fileName += _time;
 }
+
+void TechLogger::addSymb(const QString &symb){
+    fileName += "_" + symb;
+}

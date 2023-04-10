@@ -3,7 +3,7 @@
 uint8_t Hantek::countNum = 1;
 
 Hantek::Hantek(QWidget *parent) : QWidget(parent){
-    setGeometry(0, 0, 1, 1);
+    //setGeometry(0, 0, 1, 1);
 
     // --- create ---
     slider = new QSlider(this);

@@ -4,10 +4,10 @@
 #include "hantek.h"
 #include "wrapserver.h"
 #include "wrapjson.h"
-#include "techlogger.h"
 // --- windows ---
 #include "info.h"
 #include "logger.h"
+#include "player.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,18 +32,13 @@ private:
     Hantek* hanteks[HANTEK_NUM];
     Info* wInfo = nullptr;
     Logger* wLogger = nullptr;
-
-    TechLogger tLogger;
-    std::thread thrLog;
-    QString commonDirPath;
-    std::mutex mutLoc;
-    std::condition_variable condVar;
+    Player* wPlayer = nullptr;
 
     void drawChart(const std::vector<Frame>& frames);
 };
 #endif // MAINWINDOW_H
 
-// TODO: load json
-// TODO: Validators
+// TODO: load json + UI
 // TODO: Logger
 // TODO: UI estim
+// BUG: overlap

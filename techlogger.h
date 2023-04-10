@@ -29,6 +29,7 @@ public:
 
     void dropData(std::condition_variable* cond);
     void updFileName(const QString& name);
+    void addSymb(const QString& symb);
 
     QString getFullName(){return strDirPath + fileName + ".log";}
 };

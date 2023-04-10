@@ -11,6 +11,7 @@ SOURCES += \
     logger.cpp \
     main.cpp \
     mainwindow.cpp \
+    player.cpp \
     techlogger.cpp \
     wrapjson.cpp \
     wrapserver.cpp
@@ -24,6 +25,7 @@ HEADERS += \
     info.h \
     logger.h \
     mainwindow.h \
+    player.h \
     techlogger.h \
     wrapjson.h \
     wrapserver.h
@@ -34,7 +36,8 @@ FORMS += \
     estim.ui \
     info.ui \
     logger.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    player.ui
 
 win32: {
 RC_FILE = myapp.rc

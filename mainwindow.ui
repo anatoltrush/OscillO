@@ -30,7 +30,7 @@
     <property name="spacing">
      <number>3</number>
     </property>
-    <item row="1" column="0">
+    <item row="0" column="0">
      <widget class="QSplitter" name="splitter">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -62,7 +62,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pB0">
+           <widget class="QPushButton" name="pBPlayer">
             <property name="font">
              <font>
               <weight>75</weight>
@@ -70,7 +70,7 @@
              </font>
             </property>
             <property name="text">
-             <string>reserv</string>
+             <string>Play</string>
             </property>
            </widget>
           </item>
@@ -96,7 +96,7 @@
              </font>
             </property>
             <property name="text">
-             <string>(?)</string>
+             <string>Info</string>
             </property>
            </widget>
           </item>
@@ -124,36 +124,6 @@
        </layout>
       </widget>
      </widget>
-    </item>
-    <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
-      </property>
-      <item>
-       <widget class="QPushButton" name="pBDirSaveData">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Save to...</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="lPathSaveData">
-        <property name="text">
-         <string> Path: ...</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </item>
    </layout>
   </widget>

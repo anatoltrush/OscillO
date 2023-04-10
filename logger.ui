@@ -6,13 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>521</width>
+    <width>542</width>
     <height>400</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>9999</width>
+    <width>600</width>
     <height>16777215</height>
    </size>
   </property>
@@ -25,8 +31,17 @@
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="lLogPath">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Path: ---</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -45,6 +60,18 @@
       </item>
       <item row="0" column="1">
        <widget class="QLineEdit" name="lELogTempRoom">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>0</string>
         </property>
@@ -59,6 +86,18 @@
       </item>
       <item row="1" column="1">
        <widget class="QLineEdit" name="lELogHumid">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>0</string>
         </property>
@@ -73,6 +112,18 @@
       </item>
       <item row="2" column="1">
        <widget class="QLineEdit" name="lELogTempEnv">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>0</string>
         </property>
@@ -87,6 +138,18 @@
       </item>
       <item row="3" column="1">
        <widget class="QLineEdit" name="lELogCondEnv">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>80</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>0</string>
         </property>
@@ -194,6 +257,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="text">
+           <string>A</string>
+          </property>
          </widget>
         </item>
         <item row="0" column="1">
@@ -213,6 +279,17 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pBLogAddSymb</tabstop>
+  <tabstop>lELogHumid</tabstop>
+  <tabstop>lELogTempEnv</tabstop>
+  <tabstop>lELogCondEnv</tabstop>
+  <tabstop>pTELogComment</tabstop>
+  <tabstop>cBLogOnOff</tabstop>
+  <tabstop>lELogSymb</tabstop>
+  <tabstop>lELogTempRoom</tabstop>
+  <tabstop>pBLogDir</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

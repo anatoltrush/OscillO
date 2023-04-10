@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     wInfo = new Info(this);
     wLogger = new Logger(this);
+    wPlayer = new Player(this);
     wrapJson = new WrapJson(this);
     wrapServer = new WrapServer(this);
 
@@ -29,33 +30,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         hHantekLayout->addWidget(hanteks[i]->lLinPerc);
         ui->gLHantek->addLayout(hHantekLayout, 0, i);
         // ---
-        //ui->gLHantek->addWidget(hanteks[i]->slider, 0, i);
         for (uint8_t j = 0; j < MAX_CH_NUM; j++)
             ui->gLHantek->addWidget(hanteks[i]->displays[j], j + 1, i);
     }
 
-    // --- connections ---
+    // --- connections ---    
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
-    connect(ui->pBLogger, SIGNAL(clicked()), wLogger, SLOT(show()));    
-
-    // --- logger ---
-    tLogger.updFileName("/HANTEK_DATA_");
-    tLogger.strDirPath = QDir::currentPath();
-    ui->lPathSaveData->setText("Path: " + tLogger.getFullName());
-    // --- threads ---
-    thrLog = std::thread(&TechLogger::dropData, &tLogger, &condVar);
+    connect(ui->pBLogger, SIGNAL(clicked()), wLogger, SLOT(show()));
+    connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show()));
 }
 
 MainWindow::~MainWindow(){
-    tLogger.isRunning = false;
-    if(thrLog.joinable()) thrLog.join();
-
     delete ui;
 }
 
 void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
-    // TODO: send to logger
-    // ---
+    if(wLogger->isLogging){
+        // TODO: send to logger
+    }
     drawChart(frames);
 }
 

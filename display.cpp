@@ -137,3 +137,8 @@ void Display::showInChart(const Frame &frame){
     series->attachAxis(axisX);
     series->attachAxis(axisY);
 }
+
+QJsonObject Display::toJsonObject(){
+    QJsonObject jDisplay;
+    return jDisplay;
+}

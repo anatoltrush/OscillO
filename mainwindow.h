@@ -29,11 +29,15 @@ private:
     WrapServer* wrapServer = nullptr;
     WrapJson* wrapJson = nullptr;
 
-    Hantek* hanteks[HANTEK_NUM];
+    const QString keyHanteks = "HANTEKS";
+    Hantek* hanteks[HANTEK_NUM];    
+
     Info* wInfo = nullptr;
     Logger* wLogger = nullptr;
     Player* wPlayer = nullptr;
 
+    void loadUiState(const QJsonObject jMeas);
+    void saveUiState();
     void drawChart(const std::vector<Frame>& frames);
 };
 #endif // MAINWINDOW_H

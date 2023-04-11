@@ -19,6 +19,11 @@ void Estim::setParamNum(uint8_t num){
     ui->gBEstim->setTitle(ui->gBEstim->title() + " " + QString::number(num + 1));
 }
 
+QJsonObject Estim::toJsonObject(){
+    QJsonObject jEstim;
+    return jEstim;
+}
+
 void Estim::slotIsActive(bool isAct){
     ui->cBEstType->setEnabled(isAct);
     ui->gLEstText->setEnabled(isAct);

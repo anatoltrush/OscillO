@@ -35,6 +35,7 @@ public:
     void updateUiLinear(float perc);
     void chooseChannel(uint8_t ch);
     void showInChart(const Frame& frame);
+    QJsonObject toJsonObject();
 
 private:
     Ui::Display *ui;

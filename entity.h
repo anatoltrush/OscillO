@@ -37,10 +37,6 @@ struct Frame{
     }
 };
 
-const QString keyRelayControl   = "relayControl";
-const QString keyControlData    = "controlData";
-const QString keyExtraConfig    = "extraConfig";
-
 // --- extra ---
 const QString keyDeviceIndex    = "deviceIndex";
 const QString keyDeviceNum      = "deviceNum";
@@ -49,7 +45,7 @@ const QString keyTriggerMode    = "triggerMode";
 const QString keyTriggerSweep   = "triggerSweep";
 const QString keyLeverPos       = "leverPos";
 
-// --- control ---
+// --- control data ---
 const QString keyCHSet          = "cHSet";
 const QString keyTimeDIV        = "timeDIV";
 const QString keyHTriggerPos    = "hTriggerPos";
@@ -64,7 +60,7 @@ const QString keyDriverCode     = "driverCode";
 const QString keyLastAddress    = "lastAddress";
 const QString keyFPGAVersion    = "fPGAVersion";
 
-// --- relay ---
+// --- relay control ---
 const QString keyCHEnable       = "cHEnable";
 const QString keyCHVoltDIV      = "cHVoltDIV";
 const QString keyCHCoupling     = "cHCoupling";

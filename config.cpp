@@ -20,3 +20,8 @@ Config::~Config(){
 void Config::setCount(uint8_t num){
     ui->gBHantek->setTitle(ui->gBHantek->title() + " " + QString::number(num));
 }
+
+QJsonObject Config::toJsonObject(){
+    QJsonObject jConfig;
+    return jConfig;
+}

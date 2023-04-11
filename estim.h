@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QComboBox>
+#include <QJsonObject>
 
 namespace Ui {
 class Estim;
@@ -17,6 +18,7 @@ public:
     ~Estim();
 
     void setParamNum(uint8_t num);
+    QJsonObject toJsonObject();
 
 private:
     Ui::Estim *ui;

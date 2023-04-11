@@ -4,7 +4,6 @@
 #include <QDir>
 #include <QFile>
 #include <QFileDialog>
-#include <QString>
 #include <QDateTime>
 
 #include <chrono>

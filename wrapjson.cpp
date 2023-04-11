@@ -5,6 +5,18 @@ WrapJson::WrapJson(QWidget *parent) : QWidget(parent){
     loadMeasure();
 }
 
+void WrapJson::saveMeasConfig(const QJsonObject &jMeas){
+    QFile jsonFile(strMeas);
+    if (!jsonFile.open(QIODevice::WriteOnly)){
+        QMessageBox::critical(this, "Error", "Can't save output json file");
+        return;
+    }
+    // ---
+
+    jsonFile.write(QJsonDocument(jMeas).toJson(QJsonDocument::Indented));
+    jsonFile.close();
+}
+
 void WrapJson::loadConnect(){
     QFile jsonFile(strConn);
     if (!jsonFile.open(QIODevice::ReadOnly)){

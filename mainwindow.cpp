@@ -38,9 +38,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
     connect(ui->pBLogger, SIGNAL(clicked()), wLogger, SLOT(show()));
     connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show()));
+
+    // --- load state ---
+    loadUiState(wrapJson->getMeasConfig());
 }
 
 MainWindow::~MainWindow(){
+    saveUiState();
+
+    delete wInfo;
+    delete wLogger;
+    delete wPlayer;
     delete ui;
 }
 
@@ -49,6 +57,20 @@ void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
         // TODO: send to logger
     }
     drawChart(frames);
+}
+
+void MainWindow::loadUiState(const QJsonObject jMeas){
+
+}
+
+void MainWindow::saveUiState(){
+    QJsonObject jMeas;
+    QJsonArray jHanteks;
+    for (uint8_t i = 0; i < HANTEK_NUM; i++)
+        jHanteks.push_back(hanteks[i]->toJsonObject());
+    jMeas[keyHanteks] = jHanteks;
+
+    wrapJson->saveMeasConfig(jMeas);
 }
 
 void MainWindow::drawChart(const std::vector<Frame> &frames){

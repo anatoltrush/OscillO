@@ -52,6 +52,16 @@ void Hantek::rcvAndDraw(const Frame &frame){
             displays[i]->showInChart(frame);
 }
 
+QJsonObject Hantek::toJsonObject(){
+    QJsonObject jHantek;
+
+    jHantek[keyRelayControl] = relayControl.toJsonObject();
+    jHantek[keyControlData] = controlData.toJsonObject();
+    jHantek[keyExtraConfig] = extraConfig.toJsonObject();
+
+    return jHantek;
+}
+
 void Hantek::slotUpdAllChannels(){
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         displays[i]->slotUpdateUiChannel();

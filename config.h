@@ -19,6 +19,7 @@ public:
     EXTRACONFIG* extraConfig = nullptr;
 
     void setCount(uint8_t num);
+    QJsonObject toJsonObject();
 
 private:
     Ui::Config *ui;

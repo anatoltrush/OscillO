@@ -1,7 +1,6 @@
 #ifndef WRAPJSON_H
 #define WRAPJSON_H
 
-#include <QString>
 #include <QFile>
 #include <QMessageBox>
 #include <QTimer>
@@ -16,6 +15,9 @@ public:
     explicit WrapJson(QWidget *parent = nullptr);
 
     uint64_t getPort(){return jsonInpConnect["port"].toInt();}
+
+    void saveMeasConfig(const QJsonObject& jMeas);
+    QJsonObject getMeasConfig(){return jsonInpMeasure;}
 
 private:
     const QString strConn = "configuration_connection.json";

@@ -8,6 +8,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include "entity.h"
+
 class WrapJson : public QWidget{
     Q_OBJECT
 

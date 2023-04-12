@@ -59,7 +59,40 @@ QJsonObject Hantek::toJsonObject(){
     jHantek[keyControlData] = controlData.toJsonObject();
     jHantek[keyExtraConfig] = extraConfig.toJsonObject();
 
+    QJsonArray jDisplays;
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+        jDisplays.push_back(displays[i]->toJsonObject());
+    jHantek[keyDisplays] = jDisplays;
+
     return jHantek;
+}
+
+void Hantek::uiFromJson(const QJsonObject &jUi){
+    if(jUi.isEmpty()){
+        QMessageBox::critical(this, "Error", "Bad json input (Hantek data)");
+        return;
+    }
+    // ---
+    QJsonArray jArrDisps = jUi[keyDisplays].toArray();
+    if(jArrDisps.size() != MAX_CH_NUM){
+        QMessageBox::critical(this, "Error", "Bad json input data. NofChnnls != 4");
+        return;
+    }
+    // --- load model ---
+    loadModel(jUi);
+    // --- load UI ---
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++){
+        displays[i]->uiFromJson(jArrDisps[i].toObject());
+    }
+    // TODO: uiFromJson(const QJsonObject &jUi)
+}
+
+void Hantek::uiLockUnLock(bool isLogging){
+    // TODO: uiLockUnLock(bool isLogging)
+}
+
+void Hantek::loadModel(const QJsonObject &model){
+    // TODO: loadModel(const QJsonObject &model)
 }
 
 void Hantek::slotUpdAllChannels(){

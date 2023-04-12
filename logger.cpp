@@ -46,6 +46,11 @@ Logger::~Logger(){
     tLogger.isRunning = false;
     if(thrLog.joinable()) thrLog.join();
 
+    delete valTroom;
+    delete valHum;
+    delete valTenv;
+    delete valCond;
+
     delete ui;
 }
 
@@ -117,6 +122,8 @@ void Logger::slotOnOff(bool isChecked){
         ui->pBLogDir->setEnabled(true);
         ui->pTELogComment->setEnabled(true);
     }
+
+    emit signLoggerWork(isChecked);
 }
 
 void Logger::slotCondChanged(const QString& newTxt){
@@ -124,7 +131,10 @@ void Logger::slotCondChanged(const QString& newTxt){
     QString tmpLEdit = LEdit->text();
 
     int pos = 0;
-    QValidator::State st = LEdit->validator()->validate(tmpLEdit, pos);
-    tmpLEdit.chop(1);
-    st == QValidator::Acceptable ? LEdit->setText(newTxt) : LEdit->setText(tmpLEdit);
+    const QValidator* locValid = LEdit->validator();
+    if(locValid){
+        QValidator::State st = locValid->validate(tmpLEdit, pos);
+        tmpLEdit.chop(1);
+        st == QValidator::Acceptable ? LEdit->setText(newTxt) : LEdit->setText(tmpLEdit);
+    }
 }

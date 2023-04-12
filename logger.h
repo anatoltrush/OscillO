@@ -35,6 +35,9 @@ private:
     QDoubleValidator* valTenv   = nullptr;
     QDoubleValidator* valCond   = nullptr;
 
+signals:
+    void signLoggerWork(bool isOn);
+
 private slots:
     void slotTimerTick();
     void slotAddSymb();

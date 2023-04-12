@@ -17,6 +17,112 @@
                 "triggerSlope": 0,
                 "vTriggerPos": 0
             },
+            "displays": [
+                {
+                    "channel_show": 3,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                },
+                {
+                    "channel_show": 1,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                },
+                {
+                    "channel_show": 2,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                },
+                {
+                    "channel_show": 3,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                }
+            ],
             "extraConfig": {
                 "deviceIndex": 255,
                 "deviceNum": 0,
@@ -83,6 +189,112 @@
                 "triggerSlope": 0,
                 "vTriggerPos": 0
             },
+            "displays": [
+                {
+                    "channel_show": 0,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                },
+                {
+                    "channel_show": 1,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                },
+                {
+                    "channel_show": 2,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                },
+                {
+                    "channel_show": 3,
+                    "estimations": [
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        },
+                        {
+                            "is_active": false,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 0
+                        }
+                    ]
+                }
+            ],
             "extraConfig": {
                 "deviceIndex": 255,
                 "deviceNum": 0,

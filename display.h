@@ -35,7 +35,9 @@ public:
     void updateUiLinear(float perc);
     void chooseChannel(uint8_t ch);
     void showInChart(const Frame& frame);
+
     QJsonObject toJsonObject();
+    void uiFromJson(const QJsonObject& jUi);
 
 private:
     Ui::Display *ui;
@@ -44,6 +46,8 @@ private:
     QChartView *chartView   = nullptr;
 
     QColor estimColor;
+    const QString keyCurrCh = "channel_show";
+    const QString keyEstims = "estimations";
 
 signals:
     void signChannelStateChanged();
@@ -59,3 +63,5 @@ private slots:
 };
 
 #endif // DISPLAY_H
+
+ // TODO: progress bar (color + other)

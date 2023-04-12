@@ -23,9 +23,20 @@ public:
 private:
     Ui::Estim *ui;
 
+    const QString keyIsAct  = "is_active";
+    const QString keyType   = "type";
+    const QString keyMult   = "mult";
+    const QString keyRef    = "ref";
+    const QString keySuff   = "suffix";
+
+    QDoubleValidator* valMult = nullptr;
+    QDoubleValidator* valRef = nullptr;
+
 private slots:
     void slotIsActive(bool isAct);
     void slotParamChanged(int ind);
+
+    void slotCondChanged(const QString &newTxt);
 
 };
 

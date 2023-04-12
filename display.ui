@@ -87,7 +87,7 @@
     <widget class="QTabWidget" name="tWChannel">
      <property name="maximumSize">
       <size>
-       <width>220</width>
+       <width>240</width>
        <height>16777215</height>
       </size>
      </property>
@@ -95,7 +95,7 @@
       <enum>QTabWidget::East</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabMeas">
       <attribute name="title">
@@ -133,6 +133,11 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>50%</string>
            </property>
@@ -145,6 +150,12 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16</width>
+             <height>16777215</height>
+            </size>
            </property>
            <property name="value">
             <number>50</number>

@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // --- connections ---    
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
     connect(ui->pBLogger, SIGNAL(clicked()), wLogger, SLOT(show()));
+    connect(wLogger, SIGNAL(signLoggerWork(bool)), this, SLOT(slotUiLockUnLock(bool)));
     connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show()));
 
     // --- load state ---
@@ -59,8 +60,26 @@ void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
     drawChart(frames);
 }
 
-void MainWindow::loadUiState(const QJsonObject jMeas){
+void MainWindow::slotUiLockUnLock(bool isLogging){
+    ui->pBPlayer->setEnabled(!isLogging);
+    for (uint8_t i = 0; i < HANTEK_NUM; i++)
+            hanteks[i]->uiLockUnLock(!isLogging);
+}
 
+void MainWindow::loadUiState(const QJsonObject jMeas){
+    if(jMeas.isEmpty()){
+        QMessageBox::critical(this, "Error", "Bad json input data");
+        return;
+    }
+    // ---
+    QJsonArray hants = jMeas[keyHanteks].toArray();
+    if(hants.size() != HANTEK_NUM){
+        QMessageBox::critical(this, "Error", "Bad json input data. NofHntks != 2");
+        return;
+    }
+    // ---
+    for (uint8_t i = 0; i < HANTEK_NUM; i++)
+        hanteks[i]->uiFromJson(hants[i].toObject());
 }
 
 void MainWindow::saveUiState(){

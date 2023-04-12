@@ -14,9 +14,6 @@ public:
     explicit Hantek(QWidget *parent = nullptr);
     ~Hantek();
 
-    const QString keyRelayControl   = "relayControl";
-    const QString keyControlData    = "controlData";
-    const QString keyExtraConfig    = "extraConfig";
     RELAYCONTROL relayControl;
     CONTROLDATA controlData;
     EXTRACONFIG extraConfig;
@@ -28,10 +25,21 @@ public:
     Display* displays[MAX_CH_NUM];
 
     void rcvAndDraw(const Frame& frame);
+
     QJsonObject toJsonObject();
+    void uiFromJson(const QJsonObject& jUi);
+
+    void uiLockUnLock(bool isLogging);
 
 private:
     static uint8_t countNum;
+
+    const QString keyRelayControl   = "relayControl";
+    const QString keyControlData    = "controlData";
+    const QString keyExtraConfig    = "extraConfig";
+    const QString keyDisplays       = "displays";
+
+    void loadModel(const QJsonObject& model);
 
 private slots:
     void slotUpdAllChannels();

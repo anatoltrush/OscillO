@@ -140,5 +140,34 @@ void Display::showInChart(const Frame &frame){
 
 QJsonObject Display::toJsonObject(){
     QJsonObject jDisplay;
+
+    jDisplay[keyCurrCh] = ui->cBChannel->currentIndex();
+
+    QJsonArray jEstims;
+    for(uint8_t i = 0; i < ESTIM_NUM; i++)
+        jEstims.push_back(estims[i]->toJsonObject());
+    jDisplay[keyEstims] = jEstims;
+
     return jDisplay;
 }
+
+void Display::uiFromJson(const QJsonObject &jUi){
+    if(jUi.isEmpty()){
+        QMessageBox::critical(this, "Error", "Bad json input (Display data)");
+        return;
+    }
+    // ---
+    QJsonArray jArrEstims = jUi[keyEstims].toArray();
+    if(jArrEstims.size() != ESTIM_NUM){
+        QMessageBox::critical(this, "Error", "Bad json input data. NofEstims != 3");
+        return;
+    }
+    // ---
+    ui->cBChannel->setCurrentIndex(jUi[keyCurrCh].toInt());
+    for(uint8_t i = 0; i < ESTIM_NUM; i++){
+
+    }
+    // TODO: uiFromJson(const QJsonObject &jUi)
+}
+
+// TODO:  - ? - CHECK NUM channel when loaded

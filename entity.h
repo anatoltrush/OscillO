@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QMessageBox>
 
 #define HANTEK_NUM      (2)
 #define MAX_CH_NUM      (4)

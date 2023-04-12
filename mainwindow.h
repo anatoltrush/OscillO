@@ -22,6 +22,7 @@ public:
 
 private slots:    
     void slotRcvFrame(const std::vector<Frame>& frames);
+    void slotUiLockUnLock(bool isLogging);
 
 private:
     Ui::MainWindow *ui;
@@ -43,6 +44,5 @@ private:
 #endif // MAINWINDOW_H
 
 // TODO: load json + UI
-// TODO: Logger
-// TODO: UI estim
+// TODO: BLOCK UI when logging
 // BUG: overlap

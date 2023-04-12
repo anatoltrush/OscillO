@@ -5,6 +5,7 @@ CONFIG += c++17
 SOURCES += \
     config.cpp \
     display.cpp \
+    entity.cpp \
     estim.cpp \
     hantek.cpp \
     info.cpp \

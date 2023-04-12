@@ -27,7 +27,7 @@ public:
     void rcvAndDraw(const Frame& frame);
 
     QJsonObject toJsonObject();
-    void uiFromJson(const QJsonObject& jUi);
+    void uiFromJson(const QJsonObject& jHantek);
 
     void uiLockUnLock(bool isLogging);
 
@@ -39,7 +39,7 @@ private:
     const QString keyExtraConfig    = "extraConfig";
     const QString keyDisplays       = "displays";
 
-    void loadModel(const QJsonObject& model);
+    void loadModel(const QJsonObject& jHantek);
 
 private slots:
     void slotUpdAllChannels();

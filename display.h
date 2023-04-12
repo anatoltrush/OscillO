@@ -39,6 +39,8 @@ public:
     QJsonObject toJsonObject();
     void uiFromJson(const QJsonObject& jUi);
 
+    void uiLockUnLock(bool isLogging);
+
 private:
     Ui::Display *ui;
 

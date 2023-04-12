@@ -12,10 +12,10 @@ Logger::Logger(QWidget *parent) : QDialog(parent), ui(new Ui::Logger){
     connect(ui->pBLogDir, SIGNAL(clicked()), this, SLOT(slotChooseDir()));
     connect(ui->cBLogOnOff, SIGNAL(toggled(bool)), this, SLOT(slotOnOff(bool)));
 
-    connect(ui->lELogTempRoom, SIGNAL(textChanged(QString)), this, SLOT(slotCondChanged(QString)));
-    connect(ui->lELogHumid, SIGNAL(textChanged(QString)), this, SLOT(slotCondChanged(QString)));
-    connect(ui->lELogTempEnv, SIGNAL(textChanged(QString)), this, SLOT(slotCondChanged(QString)));
-    connect(ui->lELogCondEnv, SIGNAL(textChanged(QString)), this, SLOT(slotCondChanged(QString)));
+    connect(ui->lELogTempRoom, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
+    connect(ui->lELogHumid, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
+    connect(ui->lELogTempEnv, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
+    connect(ui->lELogCondEnv, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
 
     // --- logger ---
     tLogger.strDirPath = QDir::currentPath();
@@ -126,7 +126,7 @@ void Logger::slotOnOff(bool isChecked){
     emit signLoggerWork(isChecked);
 }
 
-void Logger::slotCondChanged(const QString& newTxt){
+void Logger::slotInputChanged(const QString& newTxt){
     QLineEdit *LEdit = qobject_cast<QLineEdit*>(sender());
     QString tmpLEdit = LEdit->text();
 

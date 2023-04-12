@@ -55,7 +55,7 @@ MainWindow::~MainWindow(){
 
 void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
     if(wLogger->isLogging){
-        // TODO: send to logger
+        // TODO: send to logger + collect message
     }
     drawChart(frames);
 }
@@ -63,7 +63,7 @@ void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
 void MainWindow::slotUiLockUnLock(bool isLogging){
     ui->pBPlayer->setEnabled(!isLogging);
     for (uint8_t i = 0; i < HANTEK_NUM; i++)
-            hanteks[i]->uiLockUnLock(!isLogging);
+            hanteks[i]->uiLockUnLock(isLogging);
 }
 
 void MainWindow::loadUiState(const QJsonObject jMeas){
@@ -82,14 +82,14 @@ void MainWindow::loadUiState(const QJsonObject jMeas){
         hanteks[i]->uiFromJson(hants[i].toObject());
 }
 
-void MainWindow::saveUiState(){
+QJsonObject MainWindow::collectJson(){
     QJsonObject jMeas;
     QJsonArray jHanteks;
     for (uint8_t i = 0; i < HANTEK_NUM; i++)
         jHanteks.push_back(hanteks[i]->toJsonObject());
     jMeas[keyHanteks] = jHanteks;
 
-    wrapJson->saveMeasConfig(jMeas);
+    return jMeas;
 }
 
 void MainWindow::drawChart(const std::vector<Frame> &frames){

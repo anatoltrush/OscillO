@@ -7,8 +7,8 @@ Estim::Estim(QWidget *parent) : QWidget(parent), ui(new Ui::Estim){
     connect(ui->cBEstActiv, &QCheckBox::clicked, this, &Estim::slotIsActive);
     connect(ui->cBEstType, SIGNAL(currentIndexChanged(int)), this, SLOT(slotParamChanged(int)));
     // --- ledits ---
-    connect(ui->lEMult, SIGNAL(textChanged(QString)), this, SLOT(slotCondChanged(QString)));
-    connect(ui->lERef, SIGNAL(textChanged(QString)), this, SLOT(slotCondChanged(QString)));
+    connect(ui->lEMult, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
+    connect(ui->lERef, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
 
     valMult = new QDoubleValidator(1, 5, 2, this);
     valMult->setRange(0, 99999.999, 2);
@@ -36,14 +36,32 @@ void Estim::setParamNum(uint8_t num){
 
 QJsonObject Estim::toJsonObject(){
     QJsonObject jEstim;
-
-    jEstim[keyIsAct] = ui->cBEstActiv->isChecked();
     jEstim[keyType] = ui->cBEstType->currentIndex();
     jEstim[keyMult] = ui->lEMult->text();
     jEstim[keyRef] = ui->lERef->text();
     jEstim[keySuff] = ui->cBSuff->currentIndex();
-
+    jEstim[keyIsAct] = ui->cBEstActiv->isChecked();
     return jEstim;
+}
+
+void Estim::uiFromJson(const QJsonObject &jUi){
+    ui->cBEstType->setCurrentIndex(jUi[keyType].toInt());
+    ui->lEMult->setText(jUi[keyMult].toString());
+    ui->lERef->setText(jUi[keyRef].toString());
+    ui->cBSuff->setCurrentIndex(jUi[keySuff].toInt());
+    ui->cBEstActiv->setChecked(jUi[keyIsAct].toBool());
+    emit ui->cBEstActiv->clicked(jUi[keyIsAct].toBool());
+}
+
+void Estim::uiLockUnLock(bool isLogging){
+    if(isLogging){
+        slotIsActive(false);
+        ui->cBEstActiv->setEnabled(false);
+    }
+    else{
+        ui->cBEstActiv->setEnabled(true);
+        slotIsActive(ui->cBEstActiv->isChecked());
+    }
 }
 
 void Estim::slotIsActive(bool isAct){
@@ -51,8 +69,11 @@ void Estim::slotIsActive(bool isAct){
     ui->lEMult->setEnabled(isAct);
     for(int i = 0; i < ui->gLEstText->columnCount(); i++){
         for(int j = 0; j < ui->gLEstText->rowCount(); j++){
-            QWidget *w = static_cast<QWidget*>(ui->gLEstText->itemAtPosition(j, i)->widget());
-            w->setEnabled(isAct);
+            QLayoutItem *loutWidget = ui->gLEstText->itemAtPosition(j, i);
+            if(loutWidget){
+                QWidget *w = static_cast<QWidget*>(loutWidget->widget());
+                w->setEnabled(isAct);
+            }
         }
     }
 }
@@ -75,7 +96,7 @@ void Estim::slotParamChanged(int ind){
     }
 }
 
-void Estim::slotCondChanged(const QString &newTxt){
+void Estim::slotInputChanged(const QString &newTxt){
     QLineEdit *LEdit = qobject_cast<QLineEdit*>(sender());
     QString tmpLEdit = LEdit->text();
 

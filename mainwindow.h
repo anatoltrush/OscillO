@@ -38,11 +38,11 @@ private:
     Player* wPlayer = nullptr;
 
     void loadUiState(const QJsonObject jMeas);
-    void saveUiState();
+    QJsonObject collectJson();
+    void saveUiState(){wrapJson->saveMeasConfig(collectJson());}
     void drawChart(const std::vector<Frame>& frames);
 };
 #endif // MAINWINDOW_H
 
 // TODO: load json + UI
-// TODO: BLOCK UI when logging
 // BUG: overlap

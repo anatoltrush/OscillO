@@ -21,6 +21,8 @@ public:
     void setCount(uint8_t num);
     void updUIAfterModel();
 
+    void uiLockUnLock(bool isLogging);
+
 private:
     Ui::Config *ui;
 

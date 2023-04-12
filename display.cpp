@@ -163,11 +163,16 @@ void Display::uiFromJson(const QJsonObject &jUi){
         return;
     }
     // ---
+    ui->cBChannel->setCurrentIndex(0);
+    ui->cBChannel->setCurrentIndex(1);
     ui->cBChannel->setCurrentIndex(jUi[keyCurrCh].toInt());
-    for(uint8_t i = 0; i < ESTIM_NUM; i++){
-
-    }
-    // TODO: uiFromJson(const QJsonObject &jUi)
+    // ---
+    for(uint8_t i = 0; i < ESTIM_NUM; i++)
+        estims[i]->uiFromJson(jArrEstims[i].toObject());
 }
 
-// TODO:  - ? - CHECK NUM channel when loaded
+void Display::uiLockUnLock(bool isLogging){
+    for(uint8_t i = 0; i < ESTIM_NUM; i++)
+        estims[i]->uiLockUnLock(isLogging);
+    // TODO: ...other tab & sliders...
+}

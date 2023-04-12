@@ -22,5 +22,9 @@ void Config::setCount(uint8_t num){
 }
 
 void Config::updUIAfterModel(){
+    // TODO: void Config::updUIAfterModel()
+}
 
+void Config::uiLockUnLock(bool isLogging){
+    // TODO: void Config::uiLockUnLock(bool isLogging)
 }

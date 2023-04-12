@@ -3,9 +3,6 @@
 uint8_t Hantek::countNum = 1;
 
 Hantek::Hantek(QWidget *parent) : QWidget(parent){
-    //setGeometry(0, 0, 1, 1);
-
-    // --- create ---
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
 
@@ -67,32 +64,40 @@ QJsonObject Hantek::toJsonObject(){
     return jHantek;
 }
 
-void Hantek::uiFromJson(const QJsonObject &jUi){
-    if(jUi.isEmpty()){
+void Hantek::uiFromJson(const QJsonObject &jHantek){
+    if(jHantek.isEmpty()){
         QMessageBox::critical(this, "Error", "Bad json input (Hantek data)");
         return;
     }
     // ---
-    QJsonArray jArrDisps = jUi[keyDisplays].toArray();
+    QJsonArray jArrDisps = jHantek[keyDisplays].toArray();
     if(jArrDisps.size() != MAX_CH_NUM){
         QMessageBox::critical(this, "Error", "Bad json input data. NofChnnls != 4");
         return;
     }
     // --- load model ---
-    loadModel(jUi);
+    loadModel(jHantek);
     // --- load UI ---
-    for(uint8_t i = 0; i < MAX_CH_NUM; i++){
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         displays[i]->uiFromJson(jArrDisps[i].toObject());
-    }
-    // TODO: uiFromJson(const QJsonObject &jUi)
+    config->updUIAfterModel();
 }
 
 void Hantek::uiLockUnLock(bool isLogging){
-    // TODO: uiLockUnLock(bool isLogging)
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+        displays[i]->uiLockUnLock(isLogging);
+    config->uiLockUnLock(isLogging);
 }
 
-void Hantek::loadModel(const QJsonObject &model){
-    // TODO: loadModel(const QJsonObject &model)
+void Hantek::loadModel(const QJsonObject &jHantek){
+    QJsonObject jRelCntrl = jHantek[keyRelayControl].toObject();
+    relayControl.fromJson(jRelCntrl);
+
+    QJsonObject jCntrlData = jHantek[keyControlData].toObject();
+    controlData.fromJson(jCntrlData);
+
+    QJsonObject jExtra = jHantek[keyExtraConfig].toObject();
+    extraConfig.fromJson(jExtra);
 }
 
 void Hantek::slotUpdAllChannels(){

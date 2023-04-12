@@ -44,7 +44,7 @@ private slots:
     void slotChooseDir();
     void slotOnOff(bool isChecked);
 
-    void slotCondChanged(const QString &newTxt);
+    void slotInputChanged(const QString &newTxt);
 };
 
 #endif // LOGGER_H

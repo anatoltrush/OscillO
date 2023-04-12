@@ -18,7 +18,11 @@ public:
     ~Estim();
 
     void setParamNum(uint8_t num);
+
     QJsonObject toJsonObject();
+    void uiFromJson(const QJsonObject& jUi);
+
+    void uiLockUnLock(bool isLogging);
 
 private:
     Ui::Estim *ui;
@@ -36,7 +40,7 @@ private slots:
     void slotIsActive(bool isAct);
     void slotParamChanged(int ind);
 
-    void slotCondChanged(const QString &newTxt);
+    void slotInputChanged(const QString &newTxt);
 
 };
 

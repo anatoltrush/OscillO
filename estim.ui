@@ -128,13 +128,6 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>units</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1">
          <widget class="QLabel" name="label_5">
           <property name="sizePolicy">
@@ -177,7 +170,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>60</width>
+            <width>80</width>
             <height>20</height>
            </size>
           </property>
@@ -226,6 +219,13 @@
             <string>pico(10^-12)</string>
            </property>
           </item>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>multiplier</string>
+          </property>
          </widget>
         </item>
        </layout>

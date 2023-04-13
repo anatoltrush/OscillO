@@ -114,23 +114,3 @@ void MainWindow::drawChart(const std::vector<Frame> &frames){
             if(frame.deviceIndex == i)
                 hanteks[i]->rcvAndDraw(frame);
 }
-
-void MainWindow::on_pushButton_clicked(){ // FIXME: delete later
-    wLogger->isLogging = true;
-    std::vector<Frame> frames;
-
-    Frame locFrm0;
-    locFrm0.deviceIndex = 1;
-    locFrm0.channelNum = 0;
-    locFrm0.payload = {192, 255, 163};
-
-    Frame locFrm1;
-    locFrm1.deviceIndex = 0;
-    locFrm1.channelNum = 3;
-    locFrm1.payload = {128, 128, 128};
-
-    frames.push_back(locFrm0);
-    frames.push_back(locFrm1);
-
-    slotRcvFrame(frames);
-}

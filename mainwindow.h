@@ -24,8 +24,6 @@ private slots:
     void slotRcvFrame(const std::vector<Frame>& frames);
     void slotUiLockUnLock(bool isLogging);
 
-    void on_pushButton_clicked();
-
 private:
     Ui::MainWindow *ui;
 

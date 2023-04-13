@@ -174,5 +174,24 @@ void Display::uiFromJson(const QJsonObject &jUi){
 void Display::uiLockUnLock(bool isLogging){
     for(uint8_t i = 0; i < ESTIM_NUM; i++)
         estims[i]->uiLockUnLock(isLogging);
-    // TODO: ...other tab & sliders...
+    // --- sliders ---
+    ui->hSTrigHor->setEnabled(!isLogging);
+    ui->vSTrigVert->setEnabled(!isLogging);
+    ui->vSVertPos->setEnabled(!isLogging);
+    // --- config tab ---
+    if(isLogging){ // lock
+        ui->dialVoltDiv->setEnabled(false);
+        for(int i = 0; i < ui->vLChannConf->count(); i++){
+            QLayoutItem *loutWidget = ui->vLChannConf->itemAt(i);
+            if(loutWidget){
+                QWidget *w = static_cast<QWidget*>(loutWidget->widget());
+                w->setEnabled(false);
+            }
+        }
+    }
+    else{ // unlock
+        ui->cBChannel->setEnabled(true);
+        ui->cBOnOff->setEnabled(true);
+        emit signChannelStateChanged();
+    }
 }

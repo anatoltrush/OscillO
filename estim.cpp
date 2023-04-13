@@ -6,9 +6,10 @@ Estim::Estim(QWidget *parent) : QWidget(parent), ui(new Ui::Estim){
 
     connect(ui->cBEstActiv, &QCheckBox::clicked, this, &Estim::slotIsActive);
     connect(ui->cBEstType, SIGNAL(currentIndexChanged(int)), this, SLOT(slotParamChanged(int)));
-    // --- ledits ---
+    // --- lineEdits ---
     connect(ui->lEMult, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
     connect(ui->lERef, SIGNAL(textChanged(QString)), this, SLOT(slotInputChanged(QString)));
+    connect(ui->cBSuff, SIGNAL(currentIndexChanged(int)), this, SLOT(slotSuffChanged(int)));
 
     valMult = new QDoubleValidator(1, 5, 2, this);
     valMult->setRange(0, 99999.999, 2);
@@ -54,13 +55,15 @@ void Estim::uiFromJson(const QJsonObject &jUi){
 }
 
 void Estim::uiLockUnLock(bool isLogging){
-    if(isLogging){
+    if(isLogging){ // lock
         slotIsActive(false);
         ui->cBEstActiv->setEnabled(false);
+        ui->gBEstim->setEnabled(false);
     }
-    else{
+    else{ // unlock
+        ui->gBEstim->setEnabled(true);
         ui->cBEstActiv->setEnabled(true);
-        slotIsActive(ui->cBEstActiv->isChecked());
+        slotIsActive(ui->cBEstActiv->isChecked());        
     }
 }
 
@@ -94,6 +97,10 @@ void Estim::slotParamChanged(int ind){
     else if(ind == 4){
         ui->lEMult->hide();
     }
+}
+
+void Estim::slotSuffChanged(int ind){
+    // TODO: void Estim::slotSuffChanged(int ind)
 }
 
 void Estim::slotInputChanged(const QString &newTxt){

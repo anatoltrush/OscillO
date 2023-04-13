@@ -26,5 +26,26 @@ void Config::updUIAfterModel(){
 }
 
 void Config::uiLockUnLock(bool isLogging){
-    // TODO: void Config::uiLockUnLock(bool isLogging)
+    ui->gBTrigger->setEnabled(!isLogging);
+    ui->gBHorizontal->setEnabled(!isLogging);
+    // ---
+    ui->dialTimDiv->setEnabled(!isLogging);
+    // ---
+    for(int i = 0; i < ui->vLTDiv->count(); i++){
+        QLayoutItem *loutWidget = ui->vLTDiv->itemAt(i);
+        if(loutWidget){
+            QWidget *w = static_cast<QWidget*>(loutWidget->widget());
+            w->setEnabled(!isLogging);
+        }
+    }
+    // ---
+    for(int i = 0; i < ui->gLTrigger->columnCount(); i++){
+        for(int j = 0; j < ui->gLTrigger->rowCount(); j++){
+            QLayoutItem *loutWidget = ui->gLTrigger->itemAtPosition(j, i);
+            if(loutWidget){
+                QWidget *w = static_cast<QWidget*>(loutWidget->widget());
+                w->setEnabled(!isLogging);
+            }
+        }
+    }
 }

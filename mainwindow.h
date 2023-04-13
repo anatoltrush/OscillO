@@ -45,4 +45,5 @@ private:
 #endif // MAINWINDOW_H
 
 // TODO: load json + UI
+// TODO: Timer to save configs online
 // BUG: overlap

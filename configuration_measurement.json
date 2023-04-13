@@ -83,8 +83,8 @@
                         {
                             "is_active": true,
                             "mult": "0",
-                            "ref": "6,54",
-                            "suffix": 7,
+                            "ref": "6",
+                            "suffix": 2,
                             "type": 2
                         },
                         {
@@ -261,7 +261,7 @@
                         },
                         {
                             "is_active": false,
-                            "mult": "32,42",
+                            "mult": "32",
                             "ref": "0",
                             "suffix": 4,
                             "type": 0

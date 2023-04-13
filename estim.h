@@ -39,7 +39,7 @@ private:
 private slots:
     void slotIsActive(bool isAct);
     void slotParamChanged(int ind);
-
+    void slotSuffChanged(int ind);
     void slotInputChanged(const QString &newTxt);
 
 };

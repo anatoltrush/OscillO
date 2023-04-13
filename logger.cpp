@@ -59,6 +59,20 @@ void Logger::receiveAndSaveLine(const QString &logLine){
     tLogger.data.push_back(logLine.toStdString());
 }
 
+QJsonObject Logger::toJsonObject(){
+    QJsonObject jParams;
+    jParams[keyTroom] = ui->lELogTempRoom->text();
+    jParams[keyHumid] = ui->lELogHumid->text();
+    jParams[keyTEnv] = ui->lELogTempEnv->text();
+    jParams[keyCond] = ui->lELogCondEnv->text();
+    jParams[keyComm] = ui->pTELogComment->toPlainText();
+    return jParams;
+}
+
+void Logger::uiFromJson(const QJsonObject &jUi){
+    // TODO: void Logger::uiFromJson(const QJsonObject &jUi)
+}
+
 void Logger::slotTimerTick(){
     if(ui->cBLogOnOff->isChecked()){
         uint8_t len = 10;

@@ -82,30 +82,36 @@ void MainWindow::slotUiLockUnLock(bool isLogging){
             hanteks[i]->uiLockUnLock(isLogging);
 }
 
-void MainWindow::loadUiState(const QJsonObject jMeas){
-    if(jMeas.isEmpty()){
+void MainWindow::loadUiState(const QJsonObject jFull){
+    if(jFull.isEmpty()){
         QMessageBox::critical(this, "Error", "Bad json input data");
         return;
     }
     // ---
-    QJsonArray hants = jMeas[keyHanteks].toArray();
+    QJsonArray hants = jFull[keyHanteks].toArray();
     if(hants.size() != HANTEK_NUM){
         QMessageBox::critical(this, "Error", "Bad json input data. NofHntks != 2");
         return;
     }
-    // ---
+    // --- hanteks ---
     for (uint8_t i = 0; i < HANTEK_NUM; i++)
         hanteks[i]->uiFromJson(hants[i].toObject());
+    // --- logger ---
+    QJsonObject jLog = jFull[keyLogger].toObject();
+    wLogger->uiFromJson(jLog);
 }
 
 QJsonObject MainWindow::collectJson(){
-    QJsonObject jMeas;
+    QJsonObject jFull;
+
     QJsonArray jHanteks;
     for (uint8_t i = 0; i < HANTEK_NUM; i++)
         jHanteks.push_back(hanteks[i]->toJsonObject());
-    jMeas[keyHanteks] = jHanteks;
+    jFull[keyHanteks] = jHanteks;
 
-    return jMeas; // TODO: add sensors...
+    jFull[keyLogger] = wLogger->toJsonObject();
+
+    return jFull; // TODO: add sensors (read)
 }
 
 void MainWindow::drawChart(const std::vector<Frame> &frames){

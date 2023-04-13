@@ -31,6 +31,7 @@ private:
     WrapJson* wrapJson = nullptr;
 
     const QString keyHanteks = "HANTEKS";
+    const QString keyLogger = "Logger";
     Hantek* hanteks[HANTEK_NUM];    
 
     Info* wInfo = nullptr;
@@ -38,16 +39,18 @@ private:
     Player* wPlayer = nullptr;
 
     bool isCollectedJson = false;
-    void loadUiState(const QJsonObject jMeas);
+    void loadUiState(const QJsonObject jFull);
     QJsonObject collectJson();
     void saveUiState(){wrapJson->saveMeasConfig(collectJson());}
     void drawChart(const std::vector<Frame>& frames);
 };
 #endif // MAINWINDOW_H
 
+// TODO: !!! MSVC Hantek
 // TODO: load json + UI
 // TODO: Timer to save configs online
 // TODO: Add temp, comm...(sensors) -> save&load
 // TODO: Add path to json connection file
 // TODO: Add sensor name on display
+// BUG: !!! Bad data receive
 // BUG: overlap

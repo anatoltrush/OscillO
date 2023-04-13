@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QTimer>
 #include <QDoubleValidator>
+#include <QJsonObject>
 
 #include "techlogger.h"
 
@@ -20,6 +21,9 @@ public:
     bool isLogging = false;
     void receiveAndSaveLine(const QString& logLine);
 
+    QJsonObject toJsonObject();
+    void uiFromJson(const QJsonObject& jUi);
+
 private:
     Ui::Logger *ui;
 
@@ -35,7 +39,13 @@ private:
     QDoubleValidator* valTroom  = nullptr;
     QDoubleValidator* valHum    = nullptr;
     QDoubleValidator* valTenv   = nullptr;
-    QDoubleValidator* valCond   = nullptr;    
+    QDoubleValidator* valCond   = nullptr;
+
+    const QString keyTroom  = "temp_room";
+    const QString keyHumid  = "humid";
+    const QString keyTEnv   = "temp_env";
+    const QString keyCond   = "conduct";
+    const QString keyComm   = "comment";
 
 signals:
     void signLoggerWork(bool isOn);

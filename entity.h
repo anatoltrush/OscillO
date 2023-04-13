@@ -22,7 +22,8 @@ struct Frame{
     std::vector<uint16_t> payload;
     // --- methods ---
     static uint8_t getHeaderSize(){return 3;} // deviceIndex, channelNum, timeStamp
-    std::string getOneLine();
+    std::string getOneStdLine() const;
+    QString getOneQstrLine() const;
 };
 
 struct EXTRACONFIG{

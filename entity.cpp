@@ -1,6 +1,6 @@
 #include "entity.h"
 
-std::string Frame::getOneLine(){
+std::string Frame::getOneStdLine() const{
     std::string resLine;
     // --- header ---
     resLine +=
@@ -10,6 +10,20 @@ std::string Frame::getOneLine(){
     // --- body ---
     for (size_t i = 0; i < payload.size(); i++)
         resLine += std::to_string(payload[i]) + "\t";
+    resLine += "\n";
+    return resLine;
+}
+
+QString Frame::getOneQstrLine() const{
+    QString resLine;
+    // --- header ---
+    resLine +=
+            QString::number(GET_CUR_TIME_MICRO) + "\t" +
+            QString::number(channelNum) + "\t" +
+            QString::number(deviceIndex) + "\n";
+    // --- body ---
+    for (size_t i = 0; i < payload.size(); i++)
+        resLine += QString::number(payload[i]) + "\t";
     resLine += "\n";
     return resLine;
 }

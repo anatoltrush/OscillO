@@ -55,8 +55,24 @@ MainWindow::~MainWindow(){
 
 void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
     if(wLogger->isLogging){
-        // TODO: send to logger + collect message
+        if(!isCollectedJson){
+            QJsonObject jHeader = collectJson();
+            isCollectedJson = true;
+            // ---
+            QJsonDocument docHead(jHeader);
+            QString oneLineHead(docHead.toJson(QJsonDocument::Compact));
+            oneLineHead.append(wLogger->separ);
+            wLogger->receiveAndSaveLine(oneLineHead);
+        }
+        QString bigOneLine;
+        for(const auto& fr : frames)
+            bigOneLine.push_back(fr.getOneQstrLine());
+        wLogger->receiveAndSaveLine(bigOneLine);
     }
+    else{
+        isCollectedJson = false;
+    }
+    // ---
     drawChart(frames);
 }
 
@@ -89,7 +105,7 @@ QJsonObject MainWindow::collectJson(){
         jHanteks.push_back(hanteks[i]->toJsonObject());
     jMeas[keyHanteks] = jHanteks;
 
-    return jMeas;
+    return jMeas; // TODO: add sensors...
 }
 
 void MainWindow::drawChart(const std::vector<Frame> &frames){
@@ -97,4 +113,24 @@ void MainWindow::drawChart(const std::vector<Frame> &frames){
         for(uint8_t i = 0; i < MAX_CH_NUM; i++)
             if(frame.deviceIndex == i)
                 hanteks[i]->rcvAndDraw(frame);
+}
+
+void MainWindow::on_pushButton_clicked(){ // FIXME: delete later
+    wLogger->isLogging = true;
+    std::vector<Frame> frames;
+
+    Frame locFrm0;
+    locFrm0.deviceIndex = 1;
+    locFrm0.channelNum = 0;
+    locFrm0.payload = {192, 255, 163};
+
+    Frame locFrm1;
+    locFrm1.deviceIndex = 0;
+    locFrm1.channelNum = 3;
+    locFrm1.payload = {128, 128, 128};
+
+    frames.push_back(locFrm0);
+    frames.push_back(locFrm1);
+
+    slotRcvFrame(frames);
 }

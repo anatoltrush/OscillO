@@ -24,6 +24,8 @@ private slots:
     void slotRcvFrame(const std::vector<Frame>& frames);
     void slotUiLockUnLock(bool isLogging);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -37,6 +39,7 @@ private:
     Logger* wLogger = nullptr;
     Player* wPlayer = nullptr;
 
+    bool isCollectedJson = false;
     void loadUiState(const QJsonObject jMeas);
     QJsonObject collectJson();
     void saveUiState(){wrapJson->saveMeasConfig(collectJson());}
@@ -46,4 +49,7 @@ private:
 
 // TODO: load json + UI
 // TODO: Timer to save configs online
+// TODO: Add temp, comm...(sensors) -> save&load
+// TODO: Add path to json connection file
+// TODO: Add sensor name on display
 // BUG: overlap

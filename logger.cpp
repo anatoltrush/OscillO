@@ -54,6 +54,11 @@ Logger::~Logger(){
     delete ui;
 }
 
+void Logger::receiveAndSaveLine(const QString &logLine){
+    std::unique_lock<std::mutex> lockRadRaw(mutLoc);
+    tLogger.data.push_back(logLine.toStdString());
+}
+
 void Logger::slotTimerTick(){
     if(ui->cBLogOnOff->isChecked()){
         uint8_t len = 10;

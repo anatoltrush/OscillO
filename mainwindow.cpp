@@ -111,7 +111,7 @@ QJsonObject MainWindow::collectJson(){
 
     jFull[keyLogger] = wLogger->toJsonObject();
 
-    return jFull; // TODO: add sensors (read)
+    return jFull;
 }
 
 void MainWindow::drawChart(const std::vector<Frame> &frames){

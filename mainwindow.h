@@ -46,11 +46,11 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// TODO: !!! MSVC Hantek
-// TODO: load json + UI
-// TODO: Timer to save configs online
-// TODO: Add temp, comm...(sensors) -> save&load
-// TODO: Add path to json connection file
-// TODO: Add sensor name on display
-// BUG: !!! Bad data receive
+// TODO: 1) MSVC Hantek read .json
+// TODO: (HOME) load json + UI (...+sliders)
+// TODO: (HOME) Timer to save configs online
+// TODO: 1) Add to Hantek path to json connection file
+// TODO: (HOME) Add sensor name on display
+// TODO: ? Player
+// BUG: 1) Bad data receive
 // BUG: overlap

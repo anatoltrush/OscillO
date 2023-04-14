@@ -41,7 +41,7 @@ private:
     QDoubleValidator* valTenv   = nullptr;
     QDoubleValidator* valCond   = nullptr;
 
-    const QString keyTroom  = "temp_room";
+    const QString keyTRoom  = "temp_room";
     const QString keyHumid  = "humid";
     const QString keyTEnv   = "temp_env";
     const QString keyCond   = "conduct";

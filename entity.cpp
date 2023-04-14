@@ -51,7 +51,7 @@ void EXTRACONFIG::fromJson(const QJsonObject &obj){
         return;
     }
     // ---
-    // TODO: void EXTRACONFIG::fromJson(const QJsonObject &obj)
+    // TODO: (HOME) void EXTRACONFIG::fromJson(const QJsonObject &obj)
 }
 
 QJsonObject _HT_CONTROL_DATA::toJsonObject(){
@@ -79,7 +79,7 @@ void _HT_CONTROL_DATA::fromJson(const QJsonObject &obj){
         return;
     }
     // ---
-    // TODO: void _HT_CONTROL_DATA::fromJson(const QJsonObject &obj)
+    // TODO: (HOME) void _HT_CONTROL_DATA::fromJson(const QJsonObject &obj)
 }
 
 QJsonObject _HT_RELAY_CONTROL::toJsonObject(){
@@ -117,5 +117,5 @@ void _HT_RELAY_CONTROL::fromJson(const QJsonObject &obj){
         return;
     }
     // ---
-    // TODO: void _HT_RELAY_CONTROL::fromJson(const QJsonObject &obj)
+    // TODO: (HOME) void _HT_RELAY_CONTROL::fromJson(const QJsonObject &obj)
 }

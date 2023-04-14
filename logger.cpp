@@ -61,7 +61,7 @@ void Logger::receiveAndSaveLine(const QString &logLine){
 
 QJsonObject Logger::toJsonObject(){
     QJsonObject jParams;
-    jParams[keyTroom] = ui->lELogTempRoom->text();
+    jParams[keyTRoom] = ui->lELogTempRoom->text();
     jParams[keyHumid] = ui->lELogHumid->text();
     jParams[keyTEnv] = ui->lELogTempEnv->text();
     jParams[keyCond] = ui->lELogCondEnv->text();
@@ -70,7 +70,20 @@ QJsonObject Logger::toJsonObject(){
 }
 
 void Logger::uiFromJson(const QJsonObject &jUi){
-    // TODO: void Logger::uiFromJson(const QJsonObject &jUi)
+    double tRoom = jUi[keyTRoom].toVariant().toDouble();
+    ui->lELogTempRoom->setText(QString::number(tRoom));
+
+    double humid = jUi[keyHumid].toVariant().toDouble();
+    ui->lELogHumid->setText(QString::number(humid));
+
+    double tEnv = jUi[keyTEnv].toVariant().toDouble();
+    ui->lELogTempEnv->setText(QString::number(tEnv));
+
+    double tCond = jUi[keyCond].toVariant().toDouble();
+    ui->lELogCondEnv->setText(QString::number(tCond));
+
+    QString comment = jUi[keyComm].toString();
+    ui->pTELogComment->setPlainText(comment);
 }
 
 void Logger::slotTimerTick(){

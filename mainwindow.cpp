@@ -4,6 +4,10 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
 
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MainWindow::slotTimerTick);
+    timer->start(1000);
+
     wInfo = new Info(this);
     wLogger = new Logger(this);
     wPlayer = new Player(this);
@@ -51,6 +55,10 @@ MainWindow::~MainWindow(){
     delete wLogger;
     delete wPlayer;
     delete ui;
+}
+
+void MainWindow::slotTimerTick(){
+    saveUiState();
 }
 
 void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){

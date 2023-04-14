@@ -20,12 +20,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:    
+private slots:
+    void slotTimerTick();
     void slotRcvFrame(const std::vector<Frame>& frames);
     void slotUiLockUnLock(bool isLogging);
 
 private:
     Ui::MainWindow *ui;
+    QTimer* timer = nullptr;
 
     WrapServer* wrapServer = nullptr;
     WrapJson* wrapJson = nullptr;
@@ -47,8 +49,7 @@ private:
 #endif // MAINWINDOW_H
 
 // TODO: 1) MSVC Hantek read .json
-// TODO: (HOME) load json + UI (...+sliders)
-// TODO: (HOME) Timer to save configs online
+// TODO: (HOME) load/save json + UI (...+sliders)
 // TODO: 1) Add to Hantek path to json connection file
 // TODO: (HOME) Add sensor name on display
 // TODO: ? Player

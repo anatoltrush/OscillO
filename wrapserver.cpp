@@ -30,6 +30,7 @@ void WrapServer::parseAndSendData(QByteArray &array){
     uint32_t tempLen = partLen - 1;
     if(tempLen % DATA_SIZE_STEP != 0){
         emit signStringMessage(">>>--- WARNING: Bad size of data detected ---<<<");
+        //tcpSocket->skip(array.size());
         return;
     }
     // ---
@@ -74,26 +75,31 @@ void WrapServer::slotReadyRead(){
     QTcpSocket *socket = qobject_cast<QTcpSocket*>(sender());
     if(!socket) return;
 
-    QByteArray readAll = socket->readAll();
+    uint32_t packets = 0;
+    while(socket->bytesAvailable()){
+        //QByteArray readAll = socket->readAll();
+        QByteArray readAll = socket->read(16390);
+        packets++;
 
-    // --- UI ---
-    time = QTime::currentTime();
-    QString gotStr = "[" + QString::number(rcvCounter) + "] " +
-            socket->localAddress().toString() + " | " +
-            time.toString() + " | Received data size: " +
-            QString::number(readAll.size()) + "bytes | " +
-            QString::number(diffMs) + "ms";
-    emit signStringMessage(gotStr);
-    rcvCounter++;
-    // ---
-    parseAndSendData(readAll);
+        // --- UI ---
+        time = QTime::currentTime();
+        QString gotStr = "[" + QString::number(rcvCounter) + "] " +
+                socket->localAddress().toString() + " | " +
+                time.toString() + " | Received data size: " +
+                QString::number(readAll.size()) + "bytes | " +
+                QString::number(diffMs) + "ms";
+        emit signStringMessage(gotStr);
+        rcvCounter++;
+        // ---
+        //parseAndSendData(readAll);
+    }
+    qDebug() << "Avl After:" << socket->bytesAvailable() << " | p: " << packets;
 }
 
 void WrapServer::slotClientDisconnected(){
     QTcpSocket *socket = qobject_cast<QTcpSocket*>(sender());
     if(!socket) return;
     socket->close();
-    socket->deleteLater();
     emit signStringMessage("Disconnected: " + socket->objectName() + " | " + tcpSocket->localAddress().toString());
 }
 

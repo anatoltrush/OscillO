@@ -19,7 +19,7 @@
             },
             "displays": [
                 {
-                    "channel_show": 3,
+                    "channel_show": 0,
                     "estimations": [
                         {
                             "is_active": false,
@@ -97,7 +97,7 @@
                     ]
                 },
                 {
-                    "channel_show": 0,
+                    "channel_show": 3,
                     "estimations": [
                         {
                             "is_active": false,
@@ -151,7 +151,7 @@
                     0
                 ],
                 "cHEnable": [
-                    false,
+                    true,
                     false,
                     false,
                     false
@@ -191,7 +191,7 @@
             },
             "displays": [
                 {
-                    "channel_show": 3,
+                    "channel_show": 0,
                     "estimations": [
                         {
                             "is_active": false,
@@ -201,14 +201,14 @@
                             "type": 0
                         },
                         {
-                            "is_active": false,
+                            "is_active": true,
                             "mult": "0",
                             "ref": "0",
-                            "suffix": 4,
-                            "type": 0
+                            "suffix": 6,
+                            "type": 3
                         },
                         {
-                            "is_active": false,
+                            "is_active": true,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -220,17 +220,17 @@
                     "channel_show": 1,
                     "estimations": [
                         {
-                            "is_active": false,
+                            "is_active": true,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
                             "type": 0
                         },
                         {
-                            "is_active": false,
+                            "is_active": true,
                             "mult": "0",
                             "ref": "0",
-                            "suffix": 4,
+                            "suffix": 0,
                             "type": 0
                         },
                         {
@@ -246,14 +246,14 @@
                     "channel_show": 2,
                     "estimations": [
                         {
-                            "is_active": true,
+                            "is_active": false,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
                             "type": 1
                         },
                         {
-                            "is_active": false,
+                            "is_active": true,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -347,9 +347,9 @@
     ],
     "Logger": {
         "comment": "test2_ !@#$%^&*( ыважывоапжывпо",
-        "conduct": "333.54",
-        "humid": "91.9",
-        "temp_env": "78.3",
-        "temp_room": "7.7"
+        "conduct": "333",
+        "humid": "91",
+        "temp_env": "78",
+        "temp_room": "7"
     }
 }

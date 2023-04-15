@@ -51,7 +51,14 @@ void EXTRACONFIG::fromJson(const QJsonObject &obj){
         return;
     }
     // ---
-    // TODO: (HOME) void EXTRACONFIG::fromJson(const QJsonObject &obj)
+    QJsonArray arrLeverPos = obj[keyLeverPos].toArray();
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+        m_nLeverPos[i] = arrLeverPos[i].toInt();
+    m_nDeviceIndex  = obj[keyDeviceIndex].toInt();
+    m_nDeviceNum    = obj[keyDeviceNum].toInt();
+    m_nYTFormat     = obj[keyYTFormat].toInt();
+    m_nTriggerMode  = obj[keyTriggerMode].toInt();
+    m_nTriggerSweep = obj[keyTriggerSweep].toInt();
 }
 
 QJsonObject _HT_CONTROL_DATA::toJsonObject(){
@@ -79,7 +86,20 @@ void _HT_CONTROL_DATA::fromJson(const QJsonObject &obj){
         return;
     }
     // ---
-    // TODO: (HOME) void _HT_CONTROL_DATA::fromJson(const QJsonObject &obj)
+    nCHSet          = obj[keyCHSet].toInt();
+    nTimeDIV        = obj[keyTimeDIV].toInt();
+    nTriggerSource  = obj[keyTrigSource].toInt();
+    nHTriggerPos    = obj[keyHTriggerPos].toInt();
+    nVTriggerPos    = obj[keyVTriggerPos].toInt();
+    nTriggerSlope   = obj[keyTriggerSlope].toInt();
+    nBufferLen      = obj[keyBufferLen].toInteger();
+    nReadDataLen    = obj[keyReadDataLen].toInteger();
+    nAlreadyReadLen = obj[keyAlreadyReadLen].toInteger();
+    nALT            = obj[keyALT].toInt();
+    nETSOpen        = obj[keyETSOpen].toInt();
+    nDriverCode     = obj[keyDriverCode].toInt();
+    nLastAddress    = obj[keyLastAddress].toInteger();
+    nFPGAVersion    = obj[keyFPGAVersion].toInt();
 }
 
 QJsonObject _HT_RELAY_CONTROL::toJsonObject(){
@@ -117,5 +137,19 @@ void _HT_RELAY_CONTROL::fromJson(const QJsonObject &obj){
         return;
     }
     // ---
-    // TODO: (HOME) void _HT_RELAY_CONTROL::fromJson(const QJsonObject &obj)
+    QJsonArray arrCHEnable  = obj[keyCHEnable].toArray();
+    QJsonArray arrCHVoltDIV = obj[keyCHVoltDIV].toArray();
+    QJsonArray arrCHCoupling = obj[keyCHCoupling].toArray();
+    QJsonArray arrCHMult    = obj[keyCHMult].toArray();
+    QJsonArray arrCHBWLimit = obj[keyCHBWLimit].toArray();
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++){
+        bCHEnable[i]    = arrCHEnable[i].toBool();
+        nCHVoltDIV[i]   = arrCHVoltDIV[i].toInt();
+        nCHCoupling[i]  = arrCHCoupling[i].toInt();
+        nCHMult[i]      = arrCHMult[i].toInt();
+        bCHBWLimit[i]   = arrCHBWLimit[i].toBool();
+    }
+    nALT = obj[keyALT].toInt();
+    nTrigSource = obj[keyTrigSource].toInt();
+    bTrigFilt = obj[keyTrigFilt].toBool();
 }

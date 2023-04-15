@@ -27,6 +27,7 @@ struct Frame{
 };
 
 struct EXTRACONFIG{
+private:
     const QString keyDeviceIndex    = "deviceIndex";
     const QString keyDeviceNum      = "deviceNum";
     const QString keyYTFormat       = "yTFormat";
@@ -34,6 +35,7 @@ struct EXTRACONFIG{
     const QString keyTriggerSweep   = "triggerSweep";
     const QString keyLeverPos       = "leverPos";
 
+public:
     ushort m_nDeviceIndex   = 255;
     ushort m_nDeviceNum     = 0;
     ushort m_nYTFormat      = 0;
@@ -46,6 +48,7 @@ struct EXTRACONFIG{
 };
 
 typedef struct _HT_CONTROL_DATA{
+private:
     const QString keyCHSet          = "cHSet";
     const QString keyTimeDIV        = "timeDIV";
     const QString keyHTriggerPos    = "hTriggerPos";
@@ -62,6 +65,7 @@ typedef struct _HT_CONTROL_DATA{
 
     const QString keyTrigSource     = "trigSource";
 
+public:
     ushort nCHSet           = 0;
     ushort nTimeDIV         = 0;
     ushort nTriggerSource   = 0;
@@ -83,6 +87,7 @@ typedef struct _HT_CONTROL_DATA{
 } CONTROLDATA, *PCONTROLDATA;
 
 typedef struct _HT_RELAY_CONTROL{
+private:
     const QString keyCHEnable       = "cHEnable";
     const QString keyCHVoltDIV      = "cHVoltDIV";
     const QString keyCHCoupling     = "cHCoupling";
@@ -93,11 +98,12 @@ typedef struct _HT_RELAY_CONTROL{
     const QString keyALT            = "aLT";
     const QString keyTrigSource     = "trigSource";
 
+public:
     bool bCHEnable[MAX_CH_NUM]      = {0, 0, 0, 0};
-    ushort nCHVoltDIV[MAX_CH_NUM]   = {0};
-    ushort nCHCoupling[MAX_CH_NUM]  = {0};
-    ushort nCHMult[MAX_CH_NUM]      = {0};
-    bool bCHBWLimit[MAX_CH_NUM]     = {false};
+    ushort nCHVoltDIV[MAX_CH_NUM]   = {0, 0, 0, 0};
+    ushort nCHCoupling[MAX_CH_NUM]  = {0, 0, 0, 0};
+    ushort nCHMult[MAX_CH_NUM]      = {0, 0, 0, 0};
+    bool bCHBWLimit[MAX_CH_NUM]     = {0, 0, 0, 0};
     ushort nTrigSource              = 0;
     bool bTrigFilt                  = false;
     ushort nALT                     = 0;

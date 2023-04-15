@@ -48,10 +48,11 @@ private:
 };
 #endif // MAINWINDOW_H
 
+// TODO: (HOME) equal/isEqual
 // TODO: 1) MSVC Hantek read .json
 // TODO: (HOME) load/save json + UI (...+sliders)
 // TODO: 1) Add to Hantek path to json connection file
-// TODO: (HOME) Add sensor name on display
+// TODO: ? (HOME) Add sensor name on display
 // TODO: ? Player
 // BUG: 1) Bad data receive
 // BUG: overlap

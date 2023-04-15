@@ -137,7 +137,7 @@
                 "yTFormat": 0
             },
             "relayControl": {
-                "aLT": 0,
+                "aLT": 1,
                 "cHBWLimit": [
                     false,
                     false,
@@ -145,31 +145,31 @@
                     false
                 ],
                 "cHCoupling": [
-                    0,
-                    0,
+                    1,
+                    2,
                     0,
                     0
                 ],
                 "cHEnable": [
                     true,
-                    false,
-                    false,
-                    false
+                    true,
+                    true,
+                    true
                 ],
                 "cHMultiplier": [
-                    0,
-                    0,
+                    1,
+                    2,
                     0,
                     0
                 ],
                 "cHVoltDIV": [
-                    0,
-                    0,
-                    0,
-                    0
+                    3,
+                    4,
+                    6,
+                    7
                 ],
-                "trigFilt": false,
-                "trigSource": 0
+                "trigFilt": true,
+                "trigSource": 2
             }
         },
         {
@@ -323,22 +323,22 @@
                     0
                 ],
                 "cHEnable": [
-                    false,
-                    false,
-                    false,
-                    false
+                    true,
+                    true,
+                    true,
+                    true
                 ],
                 "cHMultiplier": [
                     0,
                     0,
                     0,
-                    0
+                    4
                 ],
                 "cHVoltDIV": [
-                    0,
-                    0,
-                    0,
-                    0
+                    8,
+                    9,
+                    10,
+                    11
                 ],
                 "trigFilt": false,
                 "trigSource": 0

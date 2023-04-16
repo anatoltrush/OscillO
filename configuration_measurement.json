@@ -9,13 +9,13 @@
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 0,
+                "hTriggerPos": 39047,
                 "lastAddress": "0",
                 "readDataLen": "0",
                 "timeDIV": 0,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 0
+                "vTriggerPos": 134
             },
             "displays": [
                 {
@@ -71,7 +71,7 @@
                     ]
                 },
                 {
-                    "channel_show": 2,
+                    "channel_show": 0,
                     "estimations": [
                         {
                             "is_active": false,
@@ -127,10 +127,10 @@
                 "deviceIndex": 255,
                 "deviceNum": 0,
                 "leverPos": [
+                    108,
+                    47,
                     0,
-                    0,
-                    0,
-                    0
+                    239
                 ],
                 "triggerMode": 0,
                 "triggerSweep": 0,
@@ -181,13 +181,13 @@
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 0,
+                "hTriggerPos": 100,
                 "lastAddress": "0",
                 "readDataLen": "0",
                 "timeDIV": 0,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 0
+                "vTriggerPos": 129
             },
             "displays": [
                 {
@@ -346,7 +346,7 @@
         }
     ],
     "Logger": {
-        "comment": "test2_ !@#$%^&*( ыважывоапжывпо",
+        "comment": "test2_ !@#$%^&*() ыважывоапжывпо",
         "conduct": "333",
         "humid": "91",
         "temp_env": "78",

@@ -27,7 +27,7 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     chart->setMargins(QMargins(0, 0, 0, 0));
 
     chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setRenderHint(QPainter::Antialiasing); // NOTE: Antialiasing on/off
     ui->gLChart->addWidget(chartView, 1, 1);
 
     // --- connections ---
@@ -36,12 +36,12 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     connect(ui->cBVoltDiv, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChannTimDiv(int)));
     connect(ui->cBCoupling, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChannCoupl(int)));
     connect(ui->cBMult, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChannMult(int)));
+    // --- sliders ---
+    connect(ui->vSVertPos, &QSlider::valueChanged, this, &Display::slotLevelPos);
+    connect(ui->vSTrigVert, &QSlider::valueChanged, this, &Display::slotTrigVert);
+    connect(ui->hSTrigHor, &QSlider::valueChanged, this, &Display::slotTrigHor);
 
     // --- final actions ---
-    ui->vSVertPos->setValue(ui->vSVertPos->maximum() / 2);
-    ui->vSTrigVert->setValue(ui->vSTrigVert->maximum() / 2);
-    ui->hSTrigHor->setValue(ui->hSTrigHor->maximum() / 2);
-
     Frame locFrm;
     showInChart(locFrm);
 }
@@ -57,7 +57,7 @@ void Display::chooseChannel(uint8_t ch){
 
 void Display::slotUpdateUiChannel(){
     currChannInd = ui->cBChannel->currentIndex();
-    // --- set curr ---
+    // --- relay control ---
     ui->cBVoltDiv->setCurrentIndex(relayControl->nCHVoltDIV[currChannInd]);
     ui->cBCoupling->setCurrentIndex(relayControl->nCHCoupling[currChannInd]);
     ui->cBMult->setCurrentIndex(relayControl->nCHMult[currChannInd]);
@@ -77,6 +77,11 @@ void Display::slotUpdateUiChannel(){
         ui->dialVoltDiv->setEnabled(false);
         chart->removeAllSeries();
     }
+    // --- control data ---
+    ui->vSTrigVert->setValue(controlData->nVTriggerPos);
+    ui->hSTrigHor->setValue(controlData->nHTriggerPos);
+    // --- extra config ---
+    ui->vSVertPos->setValue(extraConfig->m_nLeverPos[currChannInd]);
 }
 
 void Display::updateUiLinear(float perc){
@@ -103,9 +108,27 @@ void Display::slotChannMult(int ind){
     emit signChannelStateChanged();
 }
 
+void Display::slotLevelPos(int val){
+    extraConfig->m_nLeverPos[ui->cBChannel->currentIndex()] = val;
+    emit signChannelStateChanged();
+}
+
+void Display::slotTrigVert(int val){
+    if(!controlData) return;
+    controlData->nVTriggerPos = val;
+    emit signChannelStateChanged();
+}
+
+void Display::slotTrigHor(int val){
+    if(!controlData) return;
+    controlData->nHTriggerPos = val;
+    emit signChannelStateChanged();
+}
+
 void Display::showInChart(const Frame &frame){
-    uint8_t maxVert = std::numeric_limits<uint8_t>::max();
     payLoadSize = frame.payload.size() - IND_TO_NUM;
+    ui->hSTrigHor->setMaximum(payLoadSize);
+
     // --- axis X ---
     QValueAxis *axisX = new QValueAxis;
     axisX->setRange(0, frame.payload.size() - IND_TO_NUM);
@@ -114,28 +137,59 @@ void Display::showInChart(const Frame &frame){
     chart->setAxisX(axisX);
     // --- axis Y ---
     QValueAxis *axisY = new QValueAxis;
-    axisY->setRange(0, maxVert);
+    axisY->setRange(0, MAX_VERT_AXIS);
     axisY->setLabelFormat("%d");
     axisY->setMinorTickCount(1);
     chart->setAxisY(axisY);
 
     chart->removeAllSeries();
-    QLineSeries* series = new QLineSeries();
+    // --- main data ---
+    QLineSeries* serData = new QLineSeries();
     for (size_t j = 0; j < frame.payload.size(); j++)
-        series->append(j, frame.payload[j]);
-    chart->addSeries(series);
-    // ---
-    QLineSeries* serLine = new QLineSeries();
+        serData->append(j, frame.payload[j]);
+    chart->addSeries(serData);
+    // --- ruler ---
+    QLineSeries* serRuler = new QLineSeries();
+    serRuler->append(linerPos, 0);
+    serRuler->append(linerPos, MAX_VERT_AXIS);
+    chart->addSeries(serRuler);
+    // --- lev pos ---
+    QLineSeries* serLevPos = new QLineSeries();
+    if(extraConfig){
+        serLevPos->append(0, extraConfig->m_nLeverPos[currChannInd]);
+        serLevPos->append(payLoadSize, extraConfig->m_nLeverPos[currChannInd]);
+    }
+    chart->addSeries(serLevPos);
+    // --- vert trig ---
+    QLineSeries* serVertTrig = new QLineSeries();
+    if(controlData){
+        serRuler->append(controlData->nVTriggerPos, 0);
+        serRuler->append(controlData->nVTriggerPos, MAX_VERT_AXIS);
+    }
+    chart->addSeries(serVertTrig);
+    // --- hor trig ---
+    QLineSeries* serHorTrig = new QLineSeries();
+    if(controlData){
+        serHorTrig->append(0, controlData->nHTriggerPos);
+        serHorTrig->append(payLoadSize, controlData->nHTriggerPos);
+    }
+    chart->addSeries(serHorTrig);
 
-    serLine->append(linerPos, 0);
-    serLine->append(linerPos, maxVert);
-
-    chart->addSeries(serLine);
-    serLine->attachAxis(axisX);
-    serLine->attachAxis(axisY);
+    // --- axes ---
+    serData->attachAxis(axisX);
+    serData->attachAxis(axisY);
     // ---
-    series->attachAxis(axisX);
-    series->attachAxis(axisY);
+    serRuler->attachAxis(axisX);
+    serRuler->attachAxis(axisY);
+    // ---
+    serLevPos->attachAxis(axisX);
+    serLevPos->attachAxis(axisY);
+    // ---
+    serVertTrig->attachAxis(axisX);
+    serVertTrig->attachAxis(axisY);
+    // ---
+    serHorTrig->attachAxis(axisX);
+    serHorTrig->attachAxis(axisY);
 }
 
 QJsonObject Display::toJsonObject(){

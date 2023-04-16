@@ -62,6 +62,10 @@ private slots:
     void slotChannTimDiv(int ind);
     void slotChannCoupl(int ind);
     void slotChannMult(int ind);
+
+    void slotLevelPos(int val);
+    void slotTrigVert(int val);
+    void slotTrigHor(int val);
 };
 
 #endif // DISPLAY_H

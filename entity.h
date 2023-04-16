@@ -10,6 +10,7 @@
 #define MAX_CH_NUM      (4)
 #define ESTIM_NUM       (3)
 #define IND_TO_NUM      (1)
+#define MAX_VERT_AXIS   (std::numeric_limits<uint8_t>::max())
 #define DATA_SIZE_STEP  (1024)
 
 #define GET_CUR_TIME_MILLI (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())

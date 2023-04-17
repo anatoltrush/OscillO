@@ -10,7 +10,10 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
     for (uint8_t i = 0; i < MAX_CH_NUM; i++)
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
 
-    // --- final actions ---
+    // --- connections ---
+    connect(ui->cBTimDiv, &QComboBox::currentIndexChanged, this, &Config::slotTimDiv);
+    connect(ui->cBTrigSrc, &QComboBox::currentIndexChanged, this, &Config::slotTrigSrc);
+    connect(ui->cBPulsePolar, &QComboBox::currentIndexChanged, this, &Config::slotTrigSlope);
 }
 
 Config::~Config(){
@@ -22,6 +25,9 @@ void Config::setCount(uint8_t num){
 }
 
 void Config::updUIAfterModel(){
+    ui->cBTrigSrc->setCurrentIndex(controlData->nTriggerSource);
+    ui->cBTimDiv->setCurrentIndex(controlData->nTimeDIV);
+    ui->cBPulsePolar->setCurrentIndex(controlData->nTriggerSlope);
     // TODO: (HOME) void Config::updUIAfterModel()
 }
 

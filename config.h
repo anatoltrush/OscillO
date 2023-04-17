@@ -25,8 +25,12 @@ public:
 private:
     Ui::Config *ui;
 
+private slots:
+    void slotTimDiv(int ind){controlData->nTimeDIV = ind;}
+    void slotTrigSrc(int ind){controlData->nTriggerSource = ind;}
+    void slotTrigSlope(int ind){controlData->nTriggerSlope = ind;}
 };
 
 #endif // CONFIG_H
 
-// TODO: (HOME) class Config -> Connect UI with model
+// TODO: write all combos

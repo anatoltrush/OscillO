@@ -12,8 +12,8 @@
                 "hTriggerPos": 1605,
                 "lastAddress": "0",
                 "readDataLen": "0",
-                "timeDIV": 0,
-                "trigSource": 0,
+                "timeDIV": 2,
+                "trigSource": 1,
                 "triggerSlope": 0,
                 "vTriggerPos": 204
             },
@@ -184,8 +184,8 @@
                 "hTriggerPos": 0,
                 "lastAddress": "0",
                 "readDataLen": "0",
-                "timeDIV": 0,
-                "trigSource": 0,
+                "timeDIV": 5,
+                "trigSource": 2,
                 "triggerSlope": 0,
                 "vTriggerPos": 0
             },

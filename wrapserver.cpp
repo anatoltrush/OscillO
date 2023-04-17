@@ -91,7 +91,7 @@ void WrapServer::slotReadyRead(){
         emit signStringMessage(gotStr);
         rcvCounter++;
         // ---
-        //parseAndSendData(readAll);
+        parseAndSendData(readAll);
     }
     qDebug() << "Avl After:" << socket->bytesAvailable() << " | p: " << packets;
 }

@@ -14,7 +14,6 @@ public:
     explicit Config(QWidget *parent = nullptr);
     ~Config();
 
-    RELAYCONTROL* relayControl = nullptr;
     CONTROLDATA* controlData = nullptr;
     EXTRACONFIG* extraConfig = nullptr;
 
@@ -29,3 +28,5 @@ private:
 };
 
 #endif // CONFIG_H
+
+// TODO: (HOME) class Config -> Connect UI with model

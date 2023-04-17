@@ -19,7 +19,6 @@ Hantek::Hantek(QWidget *parent) : QWidget(parent){
     }
 
     // --- bindings ---
-    config->relayControl = &relayControl;
     config->controlData = &controlData;
     config->extraConfig = &extraConfig;
     for(uint8_t i = 0; i < MAX_CH_NUM; i++){

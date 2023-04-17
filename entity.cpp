@@ -153,3 +153,37 @@ void _HT_RELAY_CONTROL::fromJson(const QJsonObject &obj){
     nTrigSource = obj[keyTrigSource].toInt();
     bTrigFilt = obj[keyTrigFilt].toBool();
 }
+
+bool _HT_RELAY_CONTROL::operator ==(const _HT_RELAY_CONTROL &rlc){
+    bool isAlt          = nALT == rlc.nALT;
+    bool isTrigFilt     = bTrigFilt == rlc.bTrigFilt;
+    bool isTrigSrc      = nTrigSource == rlc.nTrigSource;
+    bool isCHEnable     = true;
+    bool isCHVoltDIV    = true;
+    bool isCHCoupling   = true;
+    bool isCHLimit      = true;
+    bool isCHMult      = true;
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++){
+        if(bCHEnable[i] != rlc.bCHEnable[i]) isCHEnable = false;
+        if(nCHVoltDIV[i] != rlc.nCHVoltDIV[i]) isCHVoltDIV = false;
+        if(nCHCoupling[i] != rlc.nCHCoupling[i]) isCHCoupling = false;
+        if(bCHBWLimit[i] != rlc.bCHBWLimit[i]) isCHLimit = false;
+        if(nCHMult[i] != rlc.nCHMult[i]) isCHMult = false;
+    }
+    return isAlt && isTrigFilt && isTrigSrc &&
+            isCHEnable && isCHVoltDIV && isCHCoupling && isCHLimit && isCHMult;
+}
+
+_HT_RELAY_CONTROL &_HT_RELAY_CONTROL::operator =(const _HT_RELAY_CONTROL &rlc){
+    nTrigSource = rlc.nTrigSource;
+    bTrigFilt   = rlc.bTrigFilt;
+    nALT        = rlc.nALT;
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++){
+        bCHEnable[i] = rlc.bCHEnable[i];
+        nCHVoltDIV[i] = rlc.nCHVoltDIV[i];
+        nCHCoupling[i] = rlc.nCHCoupling[i];
+        nCHMult[i] = rlc.nCHMult[i];
+        bCHBWLimit[i] = rlc.bCHBWLimit[i];
+    }
+    return *this;
+}

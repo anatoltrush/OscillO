@@ -27,7 +27,6 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     chart->setMargins(QMargins(0, 0, 0, 0));
 
     chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing); // NOTE: Antialiasing on/off
     ui->gLChart->addWidget(chartView, 1, 1);
 
     // --- connections ---
@@ -163,15 +162,15 @@ void Display::showInChart(const Frame &frame){
     // --- vert trig ---
     QLineSeries* serVertTrig = new QLineSeries();
     if(controlData){
-        serRuler->append(controlData->nVTriggerPos, 0);
-        serRuler->append(controlData->nVTriggerPos, MAX_VERT_AXIS);
+        serVertTrig->append(0, controlData->nVTriggerPos);
+        serVertTrig->append(payLoadSize, controlData->nVTriggerPos);
     }
     chart->addSeries(serVertTrig);
     // --- hor trig ---
     QLineSeries* serHorTrig = new QLineSeries();
     if(controlData){
-        serHorTrig->append(0, controlData->nHTriggerPos);
-        serHorTrig->append(payLoadSize, controlData->nHTriggerPos);
+        serHorTrig->append(controlData->nHTriggerPos, 0);
+        serHorTrig->append(controlData->nHTriggerPos, MAX_VERT_AXIS);
     }
     chart->addSeries(serHorTrig);
 

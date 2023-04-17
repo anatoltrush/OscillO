@@ -108,9 +108,14 @@ public:
     ushort nTrigSource              = 0;
     bool bTrigFilt                  = false;
     ushort nALT                     = 0;
+
     // ---
     QJsonObject toJsonObject();
     void fromJson(const QJsonObject& obj);
+
+    // ---
+    bool operator == (const _HT_RELAY_CONTROL& rlc);
+    _HT_RELAY_CONTROL& operator = (const _HT_RELAY_CONTROL& rlc);
 
 } RELAYCONTROL, *PRELAYCONTROL;
 

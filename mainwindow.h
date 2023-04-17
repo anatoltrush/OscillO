@@ -51,7 +51,7 @@ private:
 // TODO: (HOME) equal/isEqual
 // TODO: 1) MSVC Hantek read .json
 // TODO: 1) Add to Hantek path to json connection file
-// TODO: ? (HOME) Add sensor name on display
-// TODO: ? Player
+// FIXME: ? (HOME) Add sensor name on display
+// FIXME: ? Player
 // BUG: 1) Bad data receive
-// BUG: overlap
+// FIXME: overlap

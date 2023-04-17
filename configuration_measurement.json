@@ -9,13 +9,13 @@
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 39047,
+                "hTriggerPos": 37057,
                 "lastAddress": "0",
                 "readDataLen": "0",
                 "timeDIV": 0,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 134
+                "vTriggerPos": 162
             },
             "displays": [
                 {
@@ -71,14 +71,14 @@
                     ]
                 },
                 {
-                    "channel_show": 0,
+                    "channel_show": 2,
                     "estimations": [
                         {
-                            "is_active": false,
+                            "is_active": true,
                             "mult": "0",
                             "ref": "0",
-                            "suffix": 4,
-                            "type": 0
+                            "suffix": 7,
+                            "type": 4
                         },
                         {
                             "is_active": true,
@@ -127,17 +127,17 @@
                 "deviceIndex": 255,
                 "deviceNum": 0,
                 "leverPos": [
-                    108,
-                    47,
+                    89,
+                    88,
                     0,
-                    239
+                    0
                 ],
                 "triggerMode": 0,
                 "triggerSweep": 0,
                 "yTFormat": 0
             },
             "relayControl": {
-                "aLT": 1,
+                "aLT": 0,
                 "cHBWLimit": [
                     false,
                     false,
@@ -145,8 +145,8 @@
                     false
                 ],
                 "cHCoupling": [
-                    1,
-                    2,
+                    0,
+                    0,
                     0,
                     0
                 ],
@@ -157,19 +157,19 @@
                     true
                 ],
                 "cHMultiplier": [
-                    1,
-                    2,
+                    0,
+                    0,
                     0,
                     0
                 ],
                 "cHVoltDIV": [
+                    1,
+                    2,
                     3,
-                    4,
-                    6,
-                    7
+                    4
                 ],
-                "trigFilt": true,
-                "trigSource": 2
+                "trigFilt": false,
+                "trigSource": 0
             }
         },
         {
@@ -181,13 +181,13 @@
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 100,
+                "hTriggerPos": 0,
                 "lastAddress": "0",
                 "readDataLen": "0",
                 "timeDIV": 0,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 129
+                "vTriggerPos": 0
             },
             "displays": [
                 {
@@ -332,13 +332,13 @@
                     0,
                     0,
                     0,
-                    4
+                    0
                 ],
                 "cHVoltDIV": [
-                    8,
-                    9,
-                    10,
-                    11
+                    5,
+                    6,
+                    7,
+                    8
                 ],
                 "trigFilt": false,
                 "trigSource": 0

@@ -70,4 +70,4 @@ private slots:
 
 #endif // DISPLAY_H
 
- // TODO: ? progress bar (color + other)
+ // FIXME: ? progress bar (color + other)

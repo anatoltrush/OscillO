@@ -181,13 +181,13 @@
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 0,
+                "hTriggerPos": 721,
                 "lastAddress": "0",
                 "readDataLen": "0",
                 "timeDIV": 5,
-                "trigSource": 2,
-                "triggerSlope": 0,
-                "vTriggerPos": 0
+                "trigSource": 3,
+                "triggerSlope": 1,
+                "vTriggerPos": 160
             },
             "displays": [
                 {
@@ -299,13 +299,13 @@
                 "deviceIndex": 1,
                 "deviceNum": 0,
                 "leverPos": [
-                    0,
+                    79,
                     0,
                     0,
                     0
                 ],
-                "triggerMode": 0,
-                "triggerSweep": 0,
+                "triggerMode": 6,
+                "triggerSweep": 1,
                 "yTFormat": 0
             },
             "relayControl": {
@@ -324,9 +324,9 @@
                 ],
                 "cHEnable": [
                     true,
-                    false,
-                    false,
-                    false
+                    true,
+                    true,
+                    true
                 ],
                 "cHMultiplier": [
                     0,

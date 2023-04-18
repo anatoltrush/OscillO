@@ -12,6 +12,8 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
 
     // --- connections ---
     connect(ui->cBTimDiv, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTimDiv(int)));
+    connect(ui->cBTrigMode, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigMode(int)));
+    connect(ui->cBTrigSweep, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSweep(int)));
     connect(ui->cBTrigSrc, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSrc(int)));
     connect(ui->cBPulsePolar, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSlope(int)));
 }
@@ -25,10 +27,11 @@ void Config::setCount(uint8_t num){
 }
 
 void Config::updUIAfterModel(){
-    ui->cBTrigSrc->setCurrentIndex(controlData->nTriggerSource);
     ui->cBTimDiv->setCurrentIndex(controlData->nTimeDIV);
+    ui->cBTrigMode->setCurrentIndex(extraConfig->m_nTriggerMode);
+    ui->cBTrigSweep->setCurrentIndex(extraConfig->m_nTriggerSweep);
+    ui->cBTrigSrc->setCurrentIndex(controlData->nTriggerSource);        
     ui->cBPulsePolar->setCurrentIndex(controlData->nTriggerSlope);
-    // TODO: (HOME) void Config::updUIAfterModel()
 }
 
 void Config::uiLockUnLock(bool isLogging){

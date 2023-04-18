@@ -50,5 +50,4 @@ private:
 
 // FIXME: ? (HOME) Add sensor name on display
 // FIXME: ? Player
-// BUG: 1) Bad data receive
-// FIXME: overlap
+// BUG: overlap

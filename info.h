@@ -15,6 +15,8 @@ public:
 private:
     Ui::Info *ui;
 
+    const uint8_t lineLimit = 100;
+
 public slots:
     void slotGetString(QString mess);
 

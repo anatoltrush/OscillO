@@ -30,7 +30,6 @@ void WrapServer::parseAndSendData(QByteArray &array){
     uint32_t tempLen = partLen - 1;
     if(tempLen % DATA_SIZE_STEP != 0){
         emit signStringMessage(">>>--- WARNING: Bad size of data detected ---<<<");
-        //tcpSocket->skip(array.size());
         return;
     }
     // ---

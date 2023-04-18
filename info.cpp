@@ -16,6 +16,9 @@ void Info::slotGetString(QString mess){
     // ---
     if(ui->cBScroll->isChecked())
         ui->lWEvents->scrollToBottom();
+    // ---
+    if(ui->lWEvents->count() > lineLimit)
+        ui->lWEvents->takeItem(0);
 }
 
 void Info::slotClearList(){

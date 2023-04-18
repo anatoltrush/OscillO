@@ -27,6 +27,8 @@ private:
 
 private slots:
     void slotTimDiv(int ind){controlData->nTimeDIV = ind;}
+    void slotTrigMode(int ind){extraConfig->m_nTriggerMode = ind;}
+    void slotTrigSweep(int ind){extraConfig->m_nTriggerSweep = ind;}
     void slotTrigSrc(int ind){controlData->nTriggerSource = ind;}
     void slotTrigSlope(int ind){controlData->nTriggerSlope = ind;}
 };

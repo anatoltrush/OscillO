@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>222</width>
+    <width>264</width>
     <height>358</height>
    </rect>
   </property>
@@ -33,6 +33,7 @@
     <widget class="QGroupBox" name="gBHantek">
      <property name="font">
       <font>
+       <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
@@ -59,6 +60,7 @@
        <widget class="QGroupBox" name="gBHorizontal">
         <property name="font">
          <font>
+          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -319,6 +321,7 @@
        <widget class="QGroupBox" name="gBTrigger">
         <property name="font">
          <font>
+          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -374,7 +377,53 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="cBTrigMode"/>
+            <widget class="QComboBox" name="cBTrigMode">
+             <item>
+              <property name="text">
+               <string>Edge</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Pulse</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Video</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CAN</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>LIN</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>UART</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>SPI</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>IIC</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ALT</string>
+              </property>
+             </item>
+            </widget>
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label_4">
@@ -398,7 +447,18 @@
             </widget>
            </item>
            <item row="3" column="1">
-            <widget class="QComboBox" name="cBPulsePolar"/>
+            <widget class="QComboBox" name="cBPulsePolar">
+             <item>
+              <property name="text">
+               <string>+</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>-</string>
+              </property>
+             </item>
+            </widget>
            </item>
            <item row="4" column="1">
             <widget class="QComboBox" name="cBPwCond"/>

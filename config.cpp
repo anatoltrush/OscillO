@@ -11,9 +11,9 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
 
     // --- connections ---
-    connect(ui->cBTimDiv, &QComboBox::currentIndexChanged, this, &Config::slotTimDiv);
-    connect(ui->cBTrigSrc, &QComboBox::currentIndexChanged, this, &Config::slotTrigSrc);
-    connect(ui->cBPulsePolar, &QComboBox::currentIndexChanged, this, &Config::slotTrigSlope);
+    connect(ui->cBTimDiv, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTimDiv(int)));
+    connect(ui->cBTrigSrc, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSrc(int)));
+    connect(ui->cBPulsePolar, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSlope(int)));
 }
 
 Config::~Config(){

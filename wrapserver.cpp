@@ -75,25 +75,18 @@ void WrapServer::slotReadyRead(){
     QTcpSocket *socket = qobject_cast<QTcpSocket*>(sender());
     if(!socket) return;
 
-    uint32_t packets = 0;
-    while(socket->bytesAvailable()){
-        //QByteArray readAll = socket->readAll();
-        QByteArray readAll = socket->read(16390);
-        packets++;
-
-        // --- UI ---
-        time = QTime::currentTime();
-        QString gotStr = "[" + QString::number(rcvCounter) + "] " +
-                socket->localAddress().toString() + " | " +
-                time.toString() + " | Received data size: " +
-                QString::number(readAll.size()) + "bytes | " +
-                QString::number(diffMs) + "ms";
-        emit signStringMessage(gotStr);
-        rcvCounter++;
-        // ---
-        parseAndSendData(readAll);
-    }
-    qDebug() << "Avl After:" << socket->bytesAvailable() << " | p: " << packets;
+    QByteArray readAll = socket->readAll();
+    // --- UI ---
+    time = QTime::currentTime();
+    QString gotStr = "[" + QString::number(rcvCounter) + "] " +
+            socket->localAddress().toString() + " | " +
+            time.toString() + " | Received data size: " +
+            QString::number(readAll.size()) + "bytes | " +
+            QString::number(diffMs) + "ms";
+    emit signStringMessage(gotStr);
+    rcvCounter++;
+    // ---
+    parseAndSendData(readAll);
 }
 
 void WrapServer::slotClientDisconnected(){

@@ -27,7 +27,7 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     chart->setMargins(QMargins(0, 0, 0, 0));
 
     chartView = new QChartView(chart);
-    ui->gLChart->addWidget(chartView, 1, 1);
+    ui->gLChart->addWidget(chartView, 2, 1);
 
     // --- connections ---
     connect(ui->cBOnOff, SIGNAL(clicked(bool)), this, SLOT(slotChannOnOff(bool)));

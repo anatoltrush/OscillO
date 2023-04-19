@@ -26,6 +26,7 @@ private:
     Ui::Config *ui;
 
 private slots:
+    void slotFormat(int ind){extraConfig->m_nYTFormat = ind;}
     void slotTimDiv(int ind){controlData->nTimeDIV = ind;}
     void slotTrigMode(int ind){extraConfig->m_nTriggerMode = ind;}
     void slotTrigSweep(int ind){extraConfig->m_nTriggerSweep = ind;}

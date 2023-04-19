@@ -11,6 +11,7 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
 
     // --- connections ---
+    connect(ui->cBFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(slotFormat(int)));
     connect(ui->cBTimDiv, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTimDiv(int)));
     connect(ui->cBTrigMode, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigMode(int)));
     connect(ui->cBTrigSweep, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSweep(int)));

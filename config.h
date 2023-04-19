@@ -37,3 +37,4 @@ private slots:
 #endif // CONFIG_H
 
 // TODO: write all combos
+// BUG: 1) load HTrig, work VTrig

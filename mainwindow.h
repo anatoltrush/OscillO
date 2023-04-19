@@ -48,6 +48,5 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// FIXME: ? (HOME) Add sensor name on display
 // FIXME: ? Player
 // BUG: overlap

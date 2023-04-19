@@ -28,6 +28,7 @@ void Config::setCount(uint8_t num){
 }
 
 void Config::updUIAfterModel(){
+    ui->cBFormat->setCurrentIndex(extraConfig->m_nYTFormat);
     ui->cBTimDiv->setCurrentIndex(controlData->nTimeDIV);
     ui->cBTrigMode->setCurrentIndex(extraConfig->m_nTriggerMode);
     ui->cBTrigSweep->setCurrentIndex(extraConfig->m_nTriggerSweep);

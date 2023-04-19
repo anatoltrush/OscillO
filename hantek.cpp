@@ -34,8 +34,6 @@ Hantek::Hantek(QWidget *parent) : QWidget(parent){
     connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotUpdAllLinear(int)));
 
     // --- final actions ---
-    slotUpdAllChannels();
-
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         displays[i]->chooseChannel(i);
 }

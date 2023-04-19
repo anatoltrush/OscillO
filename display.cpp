@@ -1,6 +1,8 @@
 #include "display.h"
 #include "ui_display.h"
 
+int Display::pseudoHTPos = 0.0;
+
 Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
     ui->setupUi(this);
 
@@ -78,7 +80,7 @@ void Display::slotUpdateUiChannel(){
     }
     // --- control data ---
     ui->vSTrigVert->setValue(controlData->nVTriggerPos);
-    ui->hSTrigHor->setValue(controlData->nHTriggerPos);
+    ui->hSTrigHor->setValue(pseudoHTPos);
     // --- extra config ---
     ui->vSVertPos->setValue(extraConfig->m_nLeverPos[currChannInd]);
 }
@@ -120,7 +122,8 @@ void Display::slotTrigVert(int val){
 
 void Display::slotTrigHor(int val){
     if(!controlData) return;
-    controlData->nHTriggerPos = val;
+    pseudoHTPos = val;
+    controlData->nHTriggerPos = (uint8_t)((val / (float)payLoadSize) * 100);
     emit signChannelStateChanged();
 }
 
@@ -169,8 +172,8 @@ void Display::showInChart(const Frame &frame){
     // --- hor trig ---
     QLineSeries* serHorTrig = new QLineSeries();
     if(controlData){
-        serHorTrig->append(controlData->nHTriggerPos, 0);
-        serHorTrig->append(controlData->nHTriggerPos, MAX_VERT_AXIS);
+        serHorTrig->append(pseudoHTPos, 0);
+        serHorTrig->append(pseudoHTPos, MAX_VERT_AXIS);
     }
     chart->addSeries(serHorTrig);
 

@@ -9,6 +9,8 @@
 #include "entity.h"
 #include "estim.h"
 
+#include <qmath.h>
+
 namespace Ui {class Display;}
 
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -46,6 +48,8 @@ private:
 
     QChart *chart           = nullptr;
     QChartView *chartView   = nullptr;
+
+    static int pseudoHTPos;
 
     QColor estimColor;
     const QString keyCurrCh = "channel_show";

@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #include <QWidget>
+#include <QIntValidator>
 
 #include "entity.h"
 
@@ -25,10 +26,12 @@ public:
 private:
     Ui::Config *ui;
 
+    QIntValidator* valPulseWid = nullptr;
+
 private slots:
     void slotFormat(int ind){extraConfig->m_nYTFormat = ind;}
     void slotTimDiv(int ind){controlData->nTimeDIV = ind;}
-    void slotTrigMode(int ind){extraConfig->m_nTriggerMode = ind;}
+    void slotTrigMode(int ind);
     void slotTrigSweep(int ind){extraConfig->m_nTriggerSweep = ind;}
     void slotTrigSrc(int ind){controlData->nTriggerSource = ind;}
     void slotTrigSlope(int ind){controlData->nTriggerSlope = ind;}
@@ -36,5 +39,6 @@ private slots:
 
 #endif // CONFIG_H
 
-// TODO: write all combos
+// TODO: PW cond & Pulse where to store
+// TODO: us + ...
 // BUG: 1) load HTrig, work VTrig

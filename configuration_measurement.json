@@ -78,7 +78,7 @@
                             "mult": "0",
                             "ref": "0",
                             "suffix": 7,
-                            "type": 4
+                            "type": 0
                         },
                         {
                             "is_active": true,
@@ -304,7 +304,7 @@
                     0,
                     0
                 ],
-                "triggerMode": 0,
+                "triggerMode": 1,
                 "triggerSweep": 0,
                 "yTFormat": 1
             },

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>180</width>
-    <height>330</height>
+    <width>184</width>
+    <height>356</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -46,21 +46,6 @@
       <string>HANTEK</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <property name="spacing">
-       <number>0</number>
-      </property>
       <item row="0" column="0">
        <widget class="QGroupBox" name="gBHorizontal">
         <property name="maximumSize">
@@ -403,29 +388,22 @@
              </item>
             </widget>
            </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>PW condition</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Trigger sweep</string>
-             </property>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="cBPulsePolar">
+             <item>
+              <property name="text">
+               <string>+</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>-</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item row="2" column="1">
             <widget class="QComboBox" name="cBTrigSrc"/>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Trigger source</string>
-             </property>
-            </widget>
            </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="cBTrigMode">
@@ -476,13 +454,6 @@
              </item>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Pulse polarity</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label">
              <property name="text">
@@ -490,32 +461,112 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Trigger sweep</string>
+             </property>
+            </widget>
+           </item>
            <item row="5" column="0">
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="lPulseWid">
              <property name="text">
               <string>Pulse width</string>
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="cBPulsePolar">
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Pulse polarity</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="cBPwCond">
              <item>
               <property name="text">
-               <string>+</string>
+               <string>Equals</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>-</string>
+               <string>Not equals</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Above</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Below</string>
               </property>
              </item>
             </widget>
            </item>
-           <item row="4" column="1">
-            <widget class="QComboBox" name="cBPwCond"/>
+           <item row="4" column="0">
+            <widget class="QLabel" name="lPWCond">
+             <property name="text">
+              <string>PW condition</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Trigger source</string>
+             </property>
+            </widget>
            </item>
            <item row="5" column="1">
-            <widget class="QComboBox" name="cBPulseWid"/>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="lEPulseWid">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>40</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cBPulseUnit">
+               <property name="maximumSize">
+                <size>
+                 <width>40</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>us</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>

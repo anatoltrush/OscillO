@@ -36,13 +36,20 @@ private:
     const QString keyTriggerSweep   = "triggerSweep";
     const QString keyLeverPos       = "leverPos";
 
+    const QString keyPWCond         = "PWCondition";
+    const QString keyPulseWidVal    = "pulseWValue";
+    const QString keyPulseWidUn     = "pulseWUnit";
+
 public:
     ushort m_nDeviceIndex   = 255;
     ushort m_nDeviceNum     = 0;
     ushort m_nYTFormat      = 0;
     ushort m_nTriggerMode   = 0;
     ushort m_nTriggerSweep  = 0;
-    ushort m_nLeverPos[MAX_CH_NUM] = {0};
+    ushort m_nLeverPos[MAX_CH_NUM] = {0, 0, 0, 0};
+    ushort pwCondInd        = 0;
+    ushort pulseWidUnit     = 0;
+    int pulseWidVal       = 0;
     // ---
     QJsonObject toJsonObject();
     void fromJson(const QJsonObject& obj);

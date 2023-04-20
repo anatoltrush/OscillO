@@ -241,7 +241,7 @@ void Display::uiLockUnLock(bool isLogging){
             QLayoutItem *loutWidget = ui->vLChannConf->itemAt(i);
             if(loutWidget){
                 QWidget *w = static_cast<QWidget*>(loutWidget->widget());
-                w->setEnabled(false);
+                if(w) w->setEnabled(false);
             }
         }
     }

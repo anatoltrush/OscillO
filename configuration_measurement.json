@@ -124,6 +124,7 @@
                 }
             ],
             "extraConfig": {
+                "PWCondition": 0,
                 "deviceIndex": 0,
                 "deviceNum": 0,
                 "leverPos": [
@@ -132,6 +133,8 @@
                     80,
                     95
                 ],
+                "pulseWUnit": 0,
+                "pulseWValue": 0,
                 "triggerMode": 0,
                 "triggerSweep": 0,
                 "yTFormat": 0
@@ -296,6 +299,7 @@
                 }
             ],
             "extraConfig": {
+                "PWCondition": 0,
                 "deviceIndex": 1,
                 "deviceNum": 0,
                 "leverPos": [
@@ -304,7 +308,9 @@
                     0,
                     0
                 ],
-                "triggerMode": 1,
+                "pulseWUnit": 0,
+                "pulseWValue": 987654,
+                "triggerMode": 0,
                 "triggerSweep": 0,
                 "yTFormat": 1
             },

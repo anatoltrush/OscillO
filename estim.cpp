@@ -75,7 +75,7 @@ void Estim::slotIsActive(bool isAct){
             QLayoutItem *loutWidget = ui->gLEstText->itemAtPosition(j, i);
             if(loutWidget){
                 QWidget *w = static_cast<QWidget*>(loutWidget->widget());
-                w->setEnabled(isAct);
+                if(w) w->setEnabled(isAct);
             }
         }
     }

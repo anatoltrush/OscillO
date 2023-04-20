@@ -42,6 +42,10 @@ QJsonObject EXTRACONFIG::toJsonObject(){
     extraConfig[keyTriggerSweep] = m_nTriggerSweep;
     extraConfig[keyLeverPos]    = arrLeverPos;
 
+    extraConfig[keyPWCond]      = pwCondInd;
+    extraConfig[keyPulseWidUn]  = pulseWidUnit;
+    extraConfig[keyPulseWidVal] = pulseWidVal;
+
     return extraConfig;
 }
 
@@ -59,6 +63,10 @@ void EXTRACONFIG::fromJson(const QJsonObject &obj){
     m_nYTFormat     = obj[keyYTFormat].toInt();
     m_nTriggerMode  = obj[keyTriggerMode].toInt();
     m_nTriggerSweep = obj[keyTriggerSweep].toInt();
+
+    pwCondInd       = obj[keyPWCond].toInt();
+    pulseWidUnit    = obj[keyPulseWidUn].toInt();
+    pulseWidVal     = obj[keyPulseWidVal].toInt();
 }
 
 QJsonObject _HT_CONTROL_DATA::toJsonObject(){

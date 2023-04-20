@@ -74,4 +74,4 @@ private slots:
 
 #endif // DISPLAY_H
 
- // FIXME: ? progress bar (color + other)
+ // FIXME: ? progress bar (color + other...)

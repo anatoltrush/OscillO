@@ -35,10 +35,12 @@ private slots:
     void slotTrigSweep(int ind){extraConfig->m_nTriggerSweep = ind;}
     void slotTrigSrc(int ind){controlData->nTriggerSource = ind;}
     void slotTrigSlope(int ind){controlData->nTriggerSlope = ind;}
+
+    void slotPWCond(int ind){extraConfig->pwCondInd = ind;}
+    void slotPulseUnit(int ind){extraConfig->pulseWidUnit = ind;}
+    void slotInpPulseWid(const QString& txt){extraConfig->pulseWidVal = txt.toInt();}
 };
 
 #endif // CONFIG_H
 
-// TODO: PW cond & Pulse where to store
-// TODO: us + ...
-// BUG: 1) load HTrig, work VTrig
+// BUG: 1) load HTrig, work VTrig, VLevel2,3,4

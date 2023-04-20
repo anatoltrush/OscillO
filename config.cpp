@@ -11,7 +11,7 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
 
     valPulseWid = new QIntValidator(0, 999, this);
-    valPulseWid->setRange(0, 999);
+    valPulseWid->setRange(0, 999999);
     ui->lEPulseWid->setValidator(valPulseWid);
 
     // --- connections ---
@@ -21,6 +21,10 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
     connect(ui->cBTrigSweep, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSweep(int)));
     connect(ui->cBTrigSrc, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSrc(int)));
     connect(ui->cBPulsePolar, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSlope(int)));
+
+    connect(ui->cBPwCond, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPWCond(int)));
+    connect(ui->cBPulseUnit, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPulseUnit(int)));
+    connect(ui->lEPulseWid, SIGNAL(textChanged(QString)), this, SLOT(slotInpPulseWid(QString)));
 }
 
 Config::~Config(){
@@ -40,6 +44,9 @@ void Config::updUIAfterModel(){
     ui->cBTrigSweep->setCurrentIndex(extraConfig->m_nTriggerSweep);
     ui->cBTrigSrc->setCurrentIndex(controlData->nTriggerSource);        
     ui->cBPulsePolar->setCurrentIndex(controlData->nTriggerSlope);
+    ui->cBPwCond->setCurrentIndex(extraConfig->pwCondInd);
+    ui->cBPulseUnit->setCurrentIndex(extraConfig->pulseWidUnit);
+    ui->lEPulseWid->setText(QString::number(extraConfig->pulseWidVal));
     emit ui->cBTrigMode->currentIndexChanged(extraConfig->m_nTriggerMode);
 }
 
@@ -53,7 +60,7 @@ void Config::uiLockUnLock(bool isLogging){
         QLayoutItem *loutWidget = ui->vLTDiv->itemAt(i);
         if(loutWidget){
             QWidget *w = static_cast<QWidget*>(loutWidget->widget());
-            w->setEnabled(!isLogging);
+            if(w) w->setEnabled(!isLogging);
         }
     }
     // ---
@@ -62,7 +69,7 @@ void Config::uiLockUnLock(bool isLogging){
             QLayoutItem *loutWidget = ui->gLTrigger->itemAtPosition(j, i);
             if(loutWidget){
                 QWidget *w = static_cast<QWidget*>(loutWidget->widget());
-                w->setEnabled(!isLogging);
+                if(w) w->setEnabled(!isLogging);
             }
         }
     }

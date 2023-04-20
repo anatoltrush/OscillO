@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>184</width>
+    <width>200</width>
     <height>356</height>
    </rect>
   </property>
@@ -535,7 +535,7 @@
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>40</width>
+                 <width>50</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -550,7 +550,7 @@
               <widget class="QComboBox" name="cBPulseUnit">
                <property name="maximumSize">
                 <size>
-                 <width>40</width>
+                 <width>50</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -561,7 +561,22 @@
                </property>
                <item>
                 <property name="text">
+                 <string>ns</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
                  <string>us</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ms</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>s</string>
                 </property>
                </item>
               </widget>

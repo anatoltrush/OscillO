@@ -49,4 +49,4 @@ private:
 #endif // MAINWINDOW_H
 
 // FIXME: ? Player
-// BUG: overlap
+// BUG: (HOME) overlap

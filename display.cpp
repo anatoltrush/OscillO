@@ -86,7 +86,7 @@ void Display::slotUpdateUiChannel(){
 }
 
 void Display::updateUiLinear(float perc){
-    linerPos = payLoadSize * perc;
+    linerPos = extraConfig->lastPLSize * perc;
 }
 
 void Display::slotChannOnOff(bool isOn){
@@ -123,13 +123,16 @@ void Display::slotTrigVert(int val){
 void Display::slotTrigHor(int val){
     if(!controlData) return;
     pseudoHTPos = val;
-    controlData->nHTriggerPos = (uint8_t)((val / (float)payLoadSize) * 100);
+    controlData->nHTriggerPos = (uint8_t)((val / (float)extraConfig->lastPLSize) * 100);
     emit signChannelStateChanged();
 }
 
 void Display::showInChart(const Frame &frame){
-    payLoadSize = frame.payload.size() - IND_TO_NUM;
-    ui->hSTrigHor->setMaximum(payLoadSize);
+    payLoadSize = frame.payload.size();
+    if(extraConfig && payLoadSize != 0){
+        ui->hSTrigHor->setMaximum(payLoadSize);
+        extraConfig->lastPLSize = payLoadSize;
+    }
 
     // --- axis X ---
     QValueAxis *axisX = new QValueAxis;
@@ -218,13 +221,15 @@ void Display::uiFromJson(const QJsonObject &jUi){
         QMessageBox::critical(this, "Error", "Bad json input data. NofEstims != 3");
         return;
     }
-    // ---
+    // ---===---
     ui->cBChannel->setCurrentIndex(0);
     ui->cBChannel->setCurrentIndex(1);
     ui->cBChannel->setCurrentIndex(jUi[keyCurrCh].toInt());
     // ---
     for(uint8_t i = 0; i < ESTIM_NUM; i++)
         estims[i]->uiFromJson(jArrEstims[i].toObject());
+    // --- pay load ---
+    payLoadSize = extraConfig->lastPLSize;
 }
 
 void Display::uiLockUnLock(bool isLogging){
@@ -250,4 +255,8 @@ void Display::uiLockUnLock(bool isLogging){
         ui->cBOnOff->setEnabled(true);
         emit signChannelStateChanged();
     }
+}
+
+void Display::calcHTrigOnStart(ushort hTrPos, int plSz){
+    pseudoHTPos = (hTrPos / 100.0f) * plSz;
 }

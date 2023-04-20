@@ -43,4 +43,4 @@ private slots:
 
 #endif // CONFIG_H
 
-// BUG: 1) load HTrig, work VTrig, VLevel2,3,4
+// BUG: 1) work VTrig, VLevel2,3,4

@@ -46,6 +46,8 @@ QJsonObject EXTRACONFIG::toJsonObject(){
     extraConfig[keyPulseWidUn]  = pulseWidUnit;
     extraConfig[keyPulseWidVal] = pulseWidVal;
 
+    extraConfig[keyLastPLSize]  = lastPLSize;
+
     return extraConfig;
 }
 
@@ -67,6 +69,8 @@ void EXTRACONFIG::fromJson(const QJsonObject &obj){
     pwCondInd       = obj[keyPWCond].toInt();
     pulseWidUnit    = obj[keyPulseWidUn].toInt();
     pulseWidVal     = obj[keyPulseWidVal].toInt();
+
+    lastPLSize      = obj[keyLastPLSize].toInt();
 }
 
 QJsonObject _HT_CONTROL_DATA::toJsonObject(){

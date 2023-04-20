@@ -31,8 +31,7 @@ public:
     Estim* estims[ESTIM_NUM];
 
     uint8_t currChannInd = 0;
-    uint16_t linerPos = 0;
-    uint16_t payLoadSize = 0;
+    uint16_t linerPos = 0;    
 
     void updateUiLinear(float perc);
     void chooseChannel(uint8_t ch);
@@ -40,16 +39,16 @@ public:
 
     QJsonObject toJsonObject();
     void uiFromJson(const QJsonObject& jUi);
-
     void uiLockUnLock(bool isLogging);
+    static void calcHTrigOnStart(ushort hTrPos, int plSz);
 
 private:
     Ui::Display *ui;
+    static int pseudoHTPos;
+    int payLoadSize = 0;
 
     QChart *chart           = nullptr;
-    QChartView *chartView   = nullptr;
-
-    static int pseudoHTPos;
+    QChartView *chartView   = nullptr;    
 
     QColor estimColor;
     const QString keyCurrCh = "channel_show";

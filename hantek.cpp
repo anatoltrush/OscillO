@@ -31,11 +31,7 @@ Hantek::Hantek(QWidget *parent) : QWidget(parent){
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         connect(displays[i], SIGNAL(signChannelStateChanged()), this, SLOT(slotUpdAllChannels()));
 
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotUpdAllLinear(int)));
-
-    // --- final actions ---
-    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
-        displays[i]->chooseChannel(i);
+    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotUpdAllRulers(int)));
 }
 
 Hantek::~Hantek(){}
@@ -75,6 +71,7 @@ void Hantek::uiFromJson(const QJsonObject &jHantek){
     // --- load model ---
     loadModel(jHantek);
     // --- load UI ---
+    Display::calcHTrigOnStart(controlData.nHTriggerPos, extraConfig.lastPLSize);
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         displays[i]->uiFromJson(jArrDisps[i].toObject());
     config->updUIAfterModel();
@@ -102,7 +99,7 @@ void Hantek::slotUpdAllChannels(){
         displays[i]->slotUpdateUiChannel();
 }
 
-void Hantek::slotUpdAllLinear(int pos){
+void Hantek::slotUpdAllRulers(int pos){
     float perc = pos / (float)slider->maximum();
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         displays[i]->updateUiLinear(perc);

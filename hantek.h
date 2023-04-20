@@ -28,7 +28,6 @@ public:
 
     QJsonObject toJsonObject();
     void uiFromJson(const QJsonObject& jHantek);
-
     void uiLockUnLock(bool isLogging);
 
 private:
@@ -43,7 +42,7 @@ private:
 
 private slots:
     void slotUpdAllChannels();
-    void slotUpdAllLinear(int pos);
+    void slotUpdAllRulers(int pos);
 };
 
 #endif // HANTEK_H

@@ -4,14 +4,14 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "2048",
+                "bufferLen": "0",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 47,
+                "hTriggerPos": 44,
                 "lastAddress": "0",
-                "readDataLen": "2048",
+                "readDataLen": "0",
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,
@@ -24,14 +24,14 @@
                         {
                             "is_active": true,
                             "mult": "0",
-                            "ref": "2,54",
+                            "ref": "2",
                             "suffix": 4,
                             "type": 0
                         },
                         {
                             "is_active": true,
                             "mult": "0",
-                            "ref": "2,54",
+                            "ref": "2.54",
                             "suffix": 2,
                             "type": 1
                         },
@@ -83,7 +83,7 @@
                         {
                             "is_active": true,
                             "mult": "0",
-                            "ref": "6",
+                            "ref": "6.32",
                             "suffix": 2,
                             "type": 2
                         },

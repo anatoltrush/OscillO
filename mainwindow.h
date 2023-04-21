@@ -50,6 +50,6 @@ private:
 
 // TODO: HANTEK: VTrig, BufLen (reinitialize data size)
 // TODO: (HOME) BufLen (load), Move trigLev tgthr w levPos
-// TODO: (HOME) Koeff save/load
+// TODO: (HOME) Koeff save/load/block in UI
 // FIXME: ? Player
 // BUG: (HOME) overlap

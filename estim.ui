@@ -60,6 +60,9 @@
          </widget>
         </item>
         <item>
+         <widget class="QLineEdit" name="lEKoeff"/>
+        </item>
+        <item>
          <widget class="QComboBox" name="cBEstType">
           <property name="maximumSize">
            <size>

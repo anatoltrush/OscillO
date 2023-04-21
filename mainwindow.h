@@ -48,7 +48,7 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// TODO: HANTEK: TrigerMode, BufLen, Format
+// TODO: HANTEK: VTrig, BufLen
 // TODO: (HOME) BufLen
 // FIXME: ? Player
 // BUG: (HOME) overlap

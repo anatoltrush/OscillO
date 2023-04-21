@@ -100,7 +100,6 @@ void Estim::slotParamChanged(int ind){
 }
 
 void Estim::slotSuffChanged(int ind){
-    // FIXME: ? void Estim::slotSuffChanged(int ind)
 }
 
 void Estim::slotInputChanged(const QString &newTxt){

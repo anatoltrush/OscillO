@@ -15,7 +15,7 @@
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 186
+                "vTriggerPos": 195
             },
             "displays": [
                 {
@@ -45,14 +45,14 @@
                     ]
                 },
                 {
-                    "channel_show": 2,
+                    "channel_show": 1,
                     "estimations": [
                         {
                             "is_active": true,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
-                            "type": 1
+                            "type": 0
                         },
                         {
                             "is_active": false,
@@ -129,14 +129,14 @@
                 "deviceNum": 0,
                 "lastPLSize": 2048,
                 "leverPos": [
-                    139,
-                    111,
-                    64,
-                    95
+                    156,
+                    127,
+                    84,
+                    49
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 0,
-                "triggerMode": 0,
+                "triggerMode": 1,
                 "triggerSweep": 0,
                 "yTFormat": 0
             },
@@ -306,15 +306,15 @@
                 "lastPLSize": 2048,
                 "leverPos": [
                     112,
-                    59,
-                    55,
-                    51
+                    76,
+                    87,
+                    81
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 987654,
-                "triggerMode": 0,
-                "triggerSweep": 0,
-                "yTFormat": 1
+                "triggerMode": 1,
+                "triggerSweep": 1,
+                "yTFormat": 0
             },
             "relayControl": {
                 "aLT": 0,

@@ -5,7 +5,7 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
     ui->setupUi(this);
 
     ui->dialTimDiv->setMaximum(ui->cBTimDiv->count() - 1);
-    ui->dialTimDiv->setStyleSheet("background-color: rgb(240, 240, 0)");
+    ui->dialTimDiv->setStyleSheet("background-color: rgb(0, 0, 40)");
 
     for (uint8_t i = 0; i < MAX_CH_NUM; i++)
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
@@ -13,6 +13,8 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
     valPulseWid = new QIntValidator(0, 999, this);
     valPulseWid->setRange(0, 999999);
     ui->lEPulseWid->setValidator(valPulseWid);
+
+    ui->cBBufLen->setCurrentIndex(1); // FIXME: temp, delete
 
     // --- connections ---
     connect(ui->cBFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(slotFormat(int)));

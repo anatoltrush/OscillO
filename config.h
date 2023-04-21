@@ -42,5 +42,3 @@ private slots:
 };
 
 #endif // CONFIG_H
-
-// BUG: 1) work VTrig, VLevel2,3,4

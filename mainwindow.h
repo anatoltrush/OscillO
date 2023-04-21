@@ -48,7 +48,8 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// TODO: HANTEK: VTrig, BufLen
-// TODO: (HOME) BufLen
+// TODO: HANTEK: VTrig, BufLen (reinitialize data size)
+// TODO: (HOME) BufLen (load), Move trigLev tgthr w levPos
+// TODO: (HOME) Koeff save/load
 // FIXME: ? Player
 // BUG: (HOME) overlap

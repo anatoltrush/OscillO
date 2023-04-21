@@ -35,6 +35,7 @@ private slots:
     void slotTrigSweep(int ind){extraConfig->m_nTriggerSweep = ind;}
     void slotTrigSrc(int ind){controlData->nTriggerSource = ind;}
     void slotTrigSlope(int ind){controlData->nTriggerSlope = ind;}
+    void slotBufLen(const QString& strLen);
 
     void slotPWCond(int ind){extraConfig->pwCondInd = ind;}
     void slotPulseUnit(int ind){extraConfig->pulseWidUnit = ind;}

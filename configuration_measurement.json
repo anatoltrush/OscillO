@@ -4,18 +4,18 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "0",
+                "bufferLen": "2048",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 50,
+                "hTriggerPos": 47,
                 "lastAddress": "0",
-                "readDataLen": "0",
+                "readDataLen": "2048",
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 195
+                "vTriggerPos": 168
             },
             "displays": [
                 {
@@ -129,14 +129,14 @@
                 "deviceNum": 0,
                 "lastPLSize": 2048,
                 "leverPos": [
-                    156,
-                    127,
+                    128,
+                    89,
                     84,
                     49
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 0,
-                "triggerMode": 1,
+                "triggerMode": 0,
                 "triggerSweep": 0,
                 "yTFormat": 0
             },
@@ -312,7 +312,7 @@
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 987654,
-                "triggerMode": 1,
+                "triggerMode": 0,
                 "triggerSweep": 1,
                 "yTFormat": 0
             },

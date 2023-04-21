@@ -14,8 +14,6 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
     valPulseWid->setRange(0, 999999);
     ui->lEPulseWid->setValidator(valPulseWid);
 
-    ui->cBBufLen->setCurrentIndex(1); // FIXME: temp, delete
-
     // --- connections ---
     connect(ui->cBFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(slotFormat(int)));
     connect(ui->cBTimDiv, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTimDiv(int)));
@@ -23,15 +21,15 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
     connect(ui->cBTrigSweep, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSweep(int)));
     connect(ui->cBTrigSrc, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSrc(int)));
     connect(ui->cBPulsePolar, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTrigSlope(int)));
+    connect(ui->cBBufLen, SIGNAL(currentTextChanged(QString)), this, SLOT(slotBufLen(QString)));
 
     connect(ui->cBPwCond, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPWCond(int)));
     connect(ui->cBPulseUnit, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPulseUnit(int)));
-    connect(ui->lEPulseWid, SIGNAL(textChanged(QString)), this, SLOT(slotInpPulseWid(QString)));
+    connect(ui->lEPulseWid, SIGNAL(textChanged(QString)), this, SLOT(slotInpPulseWid(QString)));    
 }
 
 Config::~Config(){
     delete valPulseWid;
-
     delete ui;
 }
 
@@ -50,6 +48,8 @@ void Config::updUIAfterModel(){
     ui->cBPulseUnit->setCurrentIndex(extraConfig->pulseWidUnit);
     ui->lEPulseWid->setText(QString::number(extraConfig->pulseWidVal));
     emit ui->cBTrigMode->currentIndexChanged(extraConfig->m_nTriggerMode);
+    // ---
+    // TODO: BufLen
 }
 
 void Config::uiLockUnLock(bool isLogging){
@@ -93,4 +93,17 @@ void Config::slotTrigMode(int ind){
         ui->lEPulseWid->hide();
         ui->cBPulseUnit->hide();
     }
+}
+
+void Config::slotBufLen(const QString &strLen){
+    QList<QString> lst = strLen.split("->");
+    if(lst.size() != 2){
+        QMessageBox::critical(this, "Error", "Bad buffer length parse");
+        return;
+    }
+    // ---
+    QString strLong = lst.front().replace(" ", "");
+    ulong resUlong = strLong.toULong();
+    if(resUlong < 2050) // FIXME: delete later
+        controlData->nBufferLen = controlData->nReadDataLen = resUlong;
 }

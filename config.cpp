@@ -25,7 +25,7 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
 
     connect(ui->cBPwCond, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPWCond(int)));
     connect(ui->cBPulseUnit, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPulseUnit(int)));
-    connect(ui->lEPulseWid, SIGNAL(textChanged(QString)), this, SLOT(slotInpPulseWid(QString)));    
+    connect(ui->lEPulseWid, SIGNAL(textChanged(QString)), this, SLOT(slotInpPulseWid(QString)));
 }
 
 Config::~Config(){
@@ -49,7 +49,19 @@ void Config::updUIAfterModel(){
     ui->lEPulseWid->setText(QString::number(extraConfig->pulseWidVal));
     emit ui->cBTrigMode->currentIndexChanged(extraConfig->m_nTriggerMode);
     // ---
-    // TODO: BufLen
+    int rightInd = 0;
+    for (int i = 0; i < ui->cBBufLen->count(); i++){
+        QString currTxt = ui->cBBufLen->itemText(i);
+        QList<QString> lst = currTxt.split("->");
+        if(lst.size() != 2) continue;
+        QString strLong = lst.front().replace(" ", "");
+        ulong resUlong = strLong.toULong();
+        if (resUlong == controlData->nBufferLen)
+            rightInd = i;
+    }
+    ui->cBBufLen->setCurrentIndex(0);
+    ui->cBBufLen->setCurrentIndex(1);
+    ui->cBBufLen->setCurrentIndex(rightInd);
 }
 
 void Config::uiLockUnLock(bool isLogging){

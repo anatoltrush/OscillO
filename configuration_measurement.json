@@ -4,14 +4,14 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "0",
+                "bufferLen": "2048",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 44,
+                "hTriggerPos": 50,
                 "lastAddress": "0",
-                "readDataLen": "0",
+                "readDataLen": "2048",
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,
@@ -23,6 +23,7 @@
                     "estimations": [
                         {
                             "is_active": true,
+                            "koeff": 99,
                             "mult": "0",
                             "ref": "2",
                             "suffix": 4,
@@ -30,13 +31,15 @@
                         },
                         {
                             "is_active": true,
+                            "koeff": 1.23,
                             "mult": "0",
-                            "ref": "2.54",
+                            "ref": "2",
                             "suffix": 2,
                             "type": 1
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -49,6 +52,15 @@
                     "estimations": [
                         {
                             "is_active": true,
+                            "koeff": 2.3,
+                            "mult": "0",
+                            "ref": "0",
+                            "suffix": 4,
+                            "type": 1
+                        },
+                        {
+                            "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -56,13 +68,7 @@
                         },
                         {
                             "is_active": false,
-                            "mult": "0",
-                            "ref": "0",
-                            "suffix": 4,
-                            "type": 0
-                        },
-                        {
-                            "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -75,6 +81,7 @@
                     "estimations": [
                         {
                             "is_active": true,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 7,
@@ -82,13 +89,15 @@
                         },
                         {
                             "is_active": true,
+                            "koeff": 0,
                             "mult": "0",
-                            "ref": "6.32",
+                            "ref": "6",
                             "suffix": 2,
                             "type": 2
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -101,6 +110,7 @@
                     "estimations": [
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -108,6 +118,7 @@
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -115,6 +126,7 @@
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -136,7 +148,7 @@
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 0,
-                "triggerMode": 0,
+                "triggerMode": 1,
                 "triggerSweep": 0,
                 "yTFormat": 0
             },
@@ -180,14 +192,14 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "0",
+                "bufferLen": "2048",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
                 "hTriggerPos": 50,
                 "lastAddress": "0",
-                "readDataLen": "0",
+                "readDataLen": "2048",
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,
@@ -198,14 +210,16 @@
                     "channel_show": 0,
                     "estimations": [
                         {
-                            "is_active": false,
-                            "mult": "999",
+                            "is_active": true,
+                            "koeff": 0,
+                            "mult": "999.99",
                             "ref": "0",
                             "suffix": 4,
                             "type": 0
                         },
                         {
                             "is_active": true,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 6,
@@ -213,6 +227,7 @@
                         },
                         {
                             "is_active": true,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -225,6 +240,7 @@
                     "estimations": [
                         {
                             "is_active": true,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -232,6 +248,7 @@
                         },
                         {
                             "is_active": true,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 0,
@@ -239,6 +256,7 @@
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -251,6 +269,7 @@
                     "estimations": [
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -258,6 +277,7 @@
                         },
                         {
                             "is_active": true,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -265,6 +285,7 @@
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "32",
                             "ref": "0",
                             "suffix": 4,
@@ -277,6 +298,7 @@
                     "estimations": [
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -284,6 +306,7 @@
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -291,6 +314,7 @@
                         },
                         {
                             "is_active": false,
+                            "koeff": 0,
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
@@ -305,7 +329,7 @@
                 "deviceNum": 0,
                 "lastPLSize": 2048,
                 "leverPos": [
-                    112,
+                    97,
                     76,
                     87,
                     81
@@ -355,9 +379,9 @@
     ],
     "Logger": {
         "comment": "test2_ !@#$%^&*() ыважывоапжывпо",
-        "conduct": "333",
-        "humid": "91",
-        "temp_env": "78",
-        "temp_room": "7"
+        "conduct": "333.55",
+        "humid": "91.5",
+        "temp_env": "78.5",
+        "temp_room": "7.5"
     }
 }

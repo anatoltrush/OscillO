@@ -32,9 +32,11 @@ private:
     const QString keyMult   = "mult";
     const QString keyRef    = "ref";
     const QString keySuff   = "suffix";
+    const QString keyKoeff  = "koeff";
 
     QDoubleValidator* valMult = nullptr;
     QDoubleValidator* valRef = nullptr;
+    QDoubleValidator* valKoeff = nullptr;
 
 private slots:
     void slotIsActive(bool isAct);

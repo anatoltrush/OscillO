@@ -3,9 +3,10 @@
 uint8_t Hantek::countNum = 1;
 
 Hantek::Hantek(QWidget *parent) : QWidget(parent){
+    this->setGeometry(0, 0, 1, 1);
+
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
-
     lLinPerc = new QLabel(this);
     lLinPerc->setText("   percent: 0%   ");
 

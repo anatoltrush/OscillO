@@ -25,20 +25,25 @@ Logger::Logger(QWidget *parent) : QDialog(parent), ui(new Ui::Logger){
     thrLog = std::thread(&TechLogger::dropData, &tLogger, &condVar);
 
     // --- validators ---
+    QLocale locale(QLocale::English);
     valTroom = new QDoubleValidator(1, 2, 1, this);
     valTroom->setRange(0, 60, 1);
+    valTroom->setLocale(locale);
     ui->lELogTempRoom->setValidator(valTroom);
 
     valHum = new QDoubleValidator(1, 3, 1, this);
     valHum->setRange(0, 100, 1);
+    valHum->setLocale(locale);
     ui->lELogHumid->setValidator(valHum);
 
     valTenv = new QDoubleValidator(1, 3, 1, this);
     valTenv->setRange(0, 100, 1);
+    valTenv->setLocale(locale);
     ui->lELogTempEnv->setValidator(valTenv);
 
     valCond = new QDoubleValidator(1, 5, 2, this);
     valCond->setRange(0, 50000, 2);
+    valCond->setLocale(locale);
     ui->lELogCondEnv->setValidator(valCond);
 }
 

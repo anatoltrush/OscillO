@@ -104,13 +104,13 @@ void _HT_CONTROL_DATA::fromJson(const QJsonObject &obj){
     nHTriggerPos    = obj[keyHTriggerPos].toInt();
     nVTriggerPos    = obj[keyVTriggerPos].toInt();
     nTriggerSlope   = obj[keyTriggerSlope].toInt();
-    nBufferLen      = obj[keyBufferLen].toInt();
-    nReadDataLen    = obj[keyReadDataLen].toInt();
-    nAlreadyReadLen = obj[keyAlreadyReadLen].toInt();
+    nBufferLen      = obj[keyBufferLen].toString().toInt();
+    nReadDataLen    = obj[keyReadDataLen].toString().toInt();
+    nAlreadyReadLen = obj[keyAlreadyReadLen].toString().toInt();
     nALT            = obj[keyALT].toInt();
     nETSOpen        = obj[keyETSOpen].toInt();
     nDriverCode     = obj[keyDriverCode].toInt();
-    nLastAddress    = obj[keyLastAddress].toInt();
+    nLastAddress    = obj[keyLastAddress].toString().toInt();
     nFPGAVersion    = obj[keyFPGAVersion].toInt();
 }
 

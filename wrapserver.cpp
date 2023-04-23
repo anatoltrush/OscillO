@@ -1,6 +1,8 @@
 #include "wrapserver.h"
 
 WrapServer::WrapServer(QWidget *parent) : QWidget(parent){
+    this->setGeometry(0, 0, 1, 1);
+
     tcpServer = new QTcpServer;
 }
 

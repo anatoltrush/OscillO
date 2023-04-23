@@ -1,6 +1,8 @@
 #include "wrapjson.h"
 
 WrapJson::WrapJson(QWidget *parent) : QWidget(parent){
+    this->setGeometry(0, 0, 1, 1);
+
     loadConnect();
     loadMeasure();
 }

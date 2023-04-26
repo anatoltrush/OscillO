@@ -33,7 +33,7 @@
                             "is_active": true,
                             "koeff": 1.23,
                             "mult": "0",
-                            "ref": "2",
+                            "ref": "2.37",
                             "suffix": 2,
                             "type": 1
                         },
@@ -147,7 +147,7 @@
                     49
                 ],
                 "pulseWUnit": 0,
-                "pulseWValue": 0,
+                "pulseWValue": 456789,
                 "triggerMode": 1,
                 "triggerSweep": 0,
                 "yTFormat": 0
@@ -336,7 +336,7 @@
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 987654,
-                "triggerMode": 0,
+                "triggerMode": 1,
                 "triggerSweep": 1,
                 "yTFormat": 0
             },

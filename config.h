@@ -39,7 +39,7 @@ private slots:
 
     void slotPWCond(int ind){extraConfig->pwCondInd = ind;}
     void slotPulseUnit(int ind){extraConfig->pulseWidUnit = ind;}
-    void slotInpPulseWid(const QString& txt){extraConfig->pulseWidVal = txt.toInt();}
+    void slotInpPulseWid();
 };
 
 #endif // CONFIG_H

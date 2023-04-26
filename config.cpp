@@ -10,8 +10,10 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
     for (uint8_t i = 0; i < MAX_CH_NUM; i++)
         ui->cBTrigSrc->addItem("CH" + QString::number(i + IND_TO_NUM));
 
+    QLocale locale(QLocale::English);
     valPulseWid = new QIntValidator(0, 999, this);
     valPulseWid->setRange(0, 999999);
+    valPulseWid->setLocale(locale);
     ui->lEPulseWid->setValidator(valPulseWid);
 
     // --- connections ---
@@ -25,7 +27,7 @@ Config::Config(QWidget *parent) : QWidget(parent), ui(new Ui::Config){
 
     connect(ui->cBPwCond, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPWCond(int)));
     connect(ui->cBPulseUnit, SIGNAL(currentIndexChanged(int)), this, SLOT(slotPulseUnit(int)));
-    connect(ui->lEPulseWid, SIGNAL(textChanged(QString)), this, SLOT(slotInpPulseWid(QString)));
+    connect(ui->lEPulseWid, SIGNAL(textChanged(QString)), this, SLOT(slotInpPulseWid()));
 }
 
 Config::~Config(){
@@ -118,4 +120,14 @@ void Config::slotBufLen(const QString &strLen){
     ulong resUlong = strLong.toULong();
     if(resUlong < 2050) // FIXME: delete later
         controlData->nBufferLen = controlData->nReadDataLen = resUlong;
+}
+
+void Config::slotInpPulseWid(){
+    QLineEdit *LEdit = qobject_cast<QLineEdit*>(sender());
+    QString tmpLEdit = LEdit->text();
+    if(tmpLEdit.contains(".")) tmpLEdit.replace(".", "");
+    if(tmpLEdit.contains(",")) tmpLEdit.replace(",", "");
+
+    extraConfig->pulseWidVal = tmpLEdit.toInt();
+    LEdit->setText(tmpLEdit);
 }

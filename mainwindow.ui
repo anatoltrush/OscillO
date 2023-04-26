@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Twins</string>
+   <string>OscillO</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -83,6 +83,7 @@
             </property>
             <property name="font">
              <font>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -107,6 +108,7 @@
             </property>
             <property name="font">
              <font>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -131,6 +133,7 @@
             </property>
             <property name="font">
              <font>
+              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -163,6 +166,7 @@
           </property>
           <property name="font">
            <font>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>

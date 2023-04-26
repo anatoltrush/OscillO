@@ -31,7 +31,8 @@ void WrapServer::parseAndSendData(QByteArray &array){
     // ---
     uint32_t tempLen = partLen - 1;
     if(tempLen % DATA_SIZE_STEP != 0){
-        emit signStringMessage(">>>--- WARNING: Bad size of data detected ---<<<");
+        emit signStringMessage(">>>--- WARNING: Bad size of data detected ---<<< (" +
+                               QString::number(array.size() + 2) + " bytes)");
         return;
     }
     // ---
@@ -82,7 +83,7 @@ void WrapServer::slotReadyRead(){
     QString gotStr = "[" + QString::number(rcvCounter) + "] " +
             socket->localAddress().toString() + " | " +
             time.toString() + " | Received data size: " +
-            QString::number(readAll.size()) + "bytes | " +
+            QString::number(readAll.size()) + " bytes | " +
             QString::number(diffMs) + "ms";
     emit signStringMessage(gotStr);
     rcvCounter++;

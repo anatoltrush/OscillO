@@ -118,7 +118,7 @@ void Config::slotBufLen(const QString &strLen){
     // ---
     QString strLong = lst.front().replace(" ", "");
     ulong resUlong = strLong.toULong();
-    if(resUlong < 2050) // FIXME: delete later
+    if(resUlong < 5000) // FIXME: delete later
         controlData->nBufferLen = controlData->nReadDataLen = resUlong;
 }
 

@@ -48,5 +48,5 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// TODO: HANTEK: VTrig, BufLen (reinitialize data size)
+// TODO: HANTEK: BufLen (reinitialize data size)
 // FIXME: ? Player

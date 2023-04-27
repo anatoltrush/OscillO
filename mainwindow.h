@@ -48,5 +48,4 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// TODO: HANTEK: BufLen (reinitialize data size)
 // FIXME: ? Player

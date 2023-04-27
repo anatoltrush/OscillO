@@ -25,8 +25,10 @@ public:
 
 private:
     Ui::Config *ui;
-
     QIntValidator* valPulseWid = nullptr;
+
+signals:
+    signLenChanged(uint64_t bufLen);
 
 private slots:
     void slotFormat(int ind){extraConfig->m_nYTFormat = ind;}

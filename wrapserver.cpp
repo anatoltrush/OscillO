@@ -2,7 +2,6 @@
 
 WrapServer::WrapServer(QWidget *parent) : QWidget(parent){
     this->setGeometry(0, 0, 1, 1);
-
     tcpServer = new QTcpServer;
 }
 
@@ -59,6 +58,12 @@ void WrapServer::parseAndSendData(QByteArray &array){
     emit signFrameMessage(locFrames);
 }
 
+bool WrapServer::isAccumulated(const QByteArray &array){
+    buffArray.append(array);
+    // qDebug() << buffArray.size();
+    return (uint64_t)buffArray.size() != 65536;
+}
+
 void WrapServer::slotNewConnection(){
     tcpSocket = tcpServer->nextPendingConnection();
     if(!tcpSocket) return;
@@ -88,7 +93,17 @@ void WrapServer::slotReadyRead(){
     emit signStringMessage(gotStr);
     rcvCounter++;
     // ---
-    parseAndSendData(readAll);
+    if(waitSize == (uint64_t)readAll.size()){
+        buffArray.clear();
+        parseAndSendData(readAll);
+    }
+    else{
+        bool isEnough = isAccumulated(readAll);
+        if (isEnough){
+            parseAndSendData(buffArray);
+            buffArray.clear();
+        }
+    }
 }
 
 void WrapServer::slotClientDisconnected(){

@@ -117,9 +117,11 @@ void Config::slotBufLen(const QString &strLen){
     }
     // ---
     QString strLong = lst.front().replace(" ", "");
-    ulong resUlong = strLong.toULong();
-    if(resUlong < 5000) // FIXME: delete later
+    uint64_t resUlong = strLong.toULong();
+    if(resUlong < 5000)
         controlData->nBufferLen = controlData->nReadDataLen = resUlong;
+    //controlData->nBufferLen = controlData->nReadDataLen = resUlong;
+    emit signLenChanged(resUlong);
 }
 
 void Config::slotInpPulseWid(){

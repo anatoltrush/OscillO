@@ -4,18 +4,18 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "4096",
+                "bufferLen": "1024",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
                 "hTriggerPos": 25,
                 "lastAddress": "0",
-                "readDataLen": "4096",
-                "timeDIV": 17,
+                "readDataLen": "1024",
+                "timeDIV": 16,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 166
+                "vTriggerPos": 148
             },
             "displays": [
                 {
@@ -141,7 +141,7 @@
                 "deviceNum": 0,
                 "lastPLSize": 4096,
                 "leverPos": [
-                    142,
+                    138,
                     107,
                     84,
                     49
@@ -192,18 +192,18 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "2048",
+                "bufferLen": "10240",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 25,
+                "hTriggerPos": 98,
                 "lastAddress": "0",
-                "readDataLen": "2048",
+                "readDataLen": "10240",
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 156
+                "vTriggerPos": 147
             },
             "displays": [
                 {
@@ -327,9 +327,9 @@
                 "PWCondition": 0,
                 "deviceIndex": 1,
                 "deviceNum": 0,
-                "lastPLSize": 2048,
+                "lastPLSize": 10240,
                 "leverPos": [
-                    107,
+                    119,
                     89,
                     60,
                     41

@@ -23,9 +23,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     float aspRatPanels = 0.02f; // NOTE: config side panel width
     ui->splitter->setSizes({(int)(win_wid * (1.0f - aspRatPanels)), (int)(win_wid * aspRatPanels)});
 
-    for (uint8_t i = 0; i < HANTEK_NUM; i++){ // Insert configs
+    for (uint8_t i = 0; i < HANTEK_NUM; i++){ // Insert configs + bufLen
         hanteks[i] = new Hantek(this);
         ui->vLayout->insertWidget(ui->vLayout->count() - 1, hanteks[i]->config);
+        connect(hanteks[i]->config, &Config::signLenChanged, wrapServer, &WrapServer::slotCalcWaitSize);
     }
 
     for (uint8_t i = 0; i < HANTEK_NUM; i++){ // Insert slider, displays

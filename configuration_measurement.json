@@ -24,7 +24,7 @@
                         {
                             "is_active": true,
                             "koeff": 99,
-                            "mult": "0",
+                            "mult": "46156",
                             "ref": "2",
                             "suffix": 4,
                             "type": 0
@@ -192,14 +192,14 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "10240",
+                "bufferLen": "2048",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 98,
+                "hTriggerPos": 95,
                 "lastAddress": "0",
-                "readDataLen": "10240",
+                "readDataLen": "2048",
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,

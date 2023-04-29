@@ -44,7 +44,7 @@ private:
     void loadUiState(const QJsonObject jFull);
     QJsonObject collectJson();
     void saveUiState(){wrapJson->saveMeasConfig(collectJson());}
-    void drawChart(const std::vector<Frame>& frames);
+    void analyzeAndDraw(const std::vector<Frame>& frames);
 };
 #endif // MAINWINDOW_H
 

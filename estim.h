@@ -21,8 +21,8 @@ public:
 
     QJsonObject toJsonObject();
     void uiFromJson(const QJsonObject& jUi);
-
     void uiLockUnLock(bool isLogging);
+    double getRefVal();
 
 private:
     Ui::Estim *ui;

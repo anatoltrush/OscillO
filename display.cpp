@@ -85,10 +85,6 @@ void Display::slotUpdateUiChannel(){
     ui->vSVertPos->setValue(extraConfig->m_nLeverPos[currChannInd]);
 }
 
-void Display::updateUiLinear(float perc){
-    linerPos = extraConfig->lastPLSize * perc;
-}
-
 void Display::slotChannOnOff(bool isOn){
     relayControl->bCHEnable[ui->cBChannel->currentIndex()] = isOn;
     emit signChannelStateChanged();
@@ -197,6 +193,16 @@ void Display::showInChart(const Frame &frame){
     serHorTrig->attachAxis(axisY);
 }
 
+void Display::analyze(const Frame &frame){
+    uint8_t amplit = Analyzer::calcAmplitude(frame.payload, extraConfig->m_nLeverPos[currChannInd]);
+    // ampl to Volt
+    double amplVolt = 1.0;
+    // ---
+    double perc[ESTIM_NUM];
+    /*for(uint8_t i = 0; i < ESTIM_NUM; i++)
+        perc[i] = amplVolt / estims[i]->getRefVal();*/
+}
+
 QJsonObject Display::toJsonObject(){
     QJsonObject jDisplay;
 
@@ -255,8 +261,4 @@ void Display::uiLockUnLock(bool isLogging){
         ui->cBOnOff->setEnabled(true);
         emit signChannelStateChanged();
     }
-}
-
-void Display::calcHTrigOnStart(ushort hTrPos, int plSz){
-    pseudoHTPos = (hTrPos / 100.0f) * plSz;
 }

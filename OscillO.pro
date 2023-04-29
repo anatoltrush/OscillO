@@ -3,6 +3,7 @@ QT       += core gui widgets network charts
 CONFIG += c++17
 
 SOURCES += \
+    analyzer.cpp \
     config.cpp \
     display.cpp \
     entity.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
     wrapserver.cpp
 
 HEADERS += \
+    analyzer.h \
     config.h \
     display.h \
     entity.h \

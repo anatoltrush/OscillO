@@ -8,6 +8,7 @@
 
 #include "entity.h"
 #include "estim.h"
+#include "analyzer.h"
 
 #include <qmath.h>
 
@@ -33,14 +34,15 @@ public:
     uint8_t currChannInd = 0;
     uint16_t linerPos = 0;    
 
-    void updateUiLinear(float perc);
+    void updateUiLinear(float perc){linerPos = extraConfig->lastPLSize * perc;}
     void chooseChannel(uint8_t ch);
     void showInChart(const Frame& frame);
+    void analyze(const Frame& frame);
 
     QJsonObject toJsonObject();
     void uiFromJson(const QJsonObject& jUi);
     void uiLockUnLock(bool isLogging);
-    static void calcHTrigOnStart(ushort hTrPos, int plSz);
+    static void calcHTrigOnStart(ushort hTrPos, int plSz){pseudoHTPos = (hTrPos / 100.0f) * plSz;}
 
 private:
     Ui::Display *ui;

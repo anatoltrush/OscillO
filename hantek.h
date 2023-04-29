@@ -25,6 +25,7 @@ public:
     Display* displays[MAX_CH_NUM];
 
     void rcvAndDraw(const Frame& frame);
+    void rcvAndAnalyze(const Frame& frame);
 
     QJsonObject toJsonObject();
     void uiFromJson(const QJsonObject& jHantek);

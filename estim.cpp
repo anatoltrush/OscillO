@@ -79,6 +79,10 @@ void Estim::uiLockUnLock(bool isLogging){
     }
 }
 
+double Estim::getRefVal(){
+    return  ui->lERef->text().toDouble();
+}
+
 void Estim::slotIsActive(bool isAct){
     ui->lEKoeff->setEnabled(isAct);
     ui->cBEstType->setEnabled(isAct);    

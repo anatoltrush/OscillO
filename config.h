@@ -28,7 +28,7 @@ private:
     QIntValidator* valPulseWid = nullptr;
 
 signals:
-    signLenChanged(uint64_t bufLen);
+    void signLenChanged(uint64_t bufLen);
 
 private slots:
     void slotFormat(int ind){extraConfig->m_nYTFormat = ind;}

@@ -81,8 +81,8 @@ void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
     else{
         isCollectedJson = false;
     }
-    // ---
-    drawChart(frames);
+    // --- analyze & draw ---
+    analyzeAndDraw(frames);
 }
 
 void MainWindow::slotUiLockUnLock(bool isLogging){
@@ -123,9 +123,11 @@ QJsonObject MainWindow::collectJson(){
     return jFull;
 }
 
-void MainWindow::drawChart(const std::vector<Frame> &frames){
+void MainWindow::analyzeAndDraw(const std::vector<Frame> &frames){
     for(const auto& frame : frames)
         for(uint8_t i = 0; i < MAX_CH_NUM; i++)
-            if(frame.deviceIndex == i)
+            if(frame.deviceIndex == i){
+                hanteks[i]->rcvAndAnalyze(frame);
                 hanteks[i]->rcvAndDraw(frame);
+            }
 }

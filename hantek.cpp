@@ -43,6 +43,12 @@ void Hantek::rcvAndDraw(const Frame &frame){
             displays[i]->showInChart(frame);
 }
 
+void Hantek::rcvAndAnalyze(const Frame &frame){
+    for(uint8_t i = 0; i < MAX_CH_NUM; i++)
+        if(displays[i]->currChannInd == frame.channelNum && relayControl.bCHEnable[frame.channelNum])
+            displays[i]->analyze(frame);
+}
+
 QJsonObject Hantek::toJsonObject(){
     QJsonObject jHantek;
 

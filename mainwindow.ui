@@ -63,7 +63,7 @@
          <enum>QLayout::SetMaximumSize</enum>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="hLButtons">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -178,6 +178,13 @@
        </layout>
       </widget>
      </widget>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="hLPlayer">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+     </layout>
     </item>
    </layout>
   </widget>

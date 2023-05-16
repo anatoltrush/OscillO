@@ -42,7 +42,34 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
 
     // --- put player ---
-    //QVBoxLayout *vPlayerLayout = new QVBoxLayout;
+    plider = new QSlider(this);
+    plider->setOrientation(Qt::Horizontal);
+    // ---
+    for (uint8_t i = 0; i < 4; i++){
+        lPlFrms[i] = new QLabel("0");
+        QFont font = lPlFrms[i]->font();
+        font.setPointSize(9); // font size
+        lPlFrms[i]->setFont(font);
+    }
+    lPlFrms[2]->setText("/");
+    // ---
+    for (uint8_t i = 0; i < 4; i++){
+        pBPlBtns[i] = new QPushButton("||");
+        pBPlBtns[i]->setMaximumSize(60, 20);
+    }
+    pBPlBtns[0]->setText("|<");
+    pBPlBtns[2]->setText(">");
+    pBPlBtns[3]->setText(">|");
+    // ---
+    ui->hLPlayer->addWidget(lPlFrms[0]);
+    ui->hLPlayer->addWidget(plider);
+    ui->hLPlayer->addWidget(lPlFrms[1]);
+    ui->hLPlayer->addWidget(lPlFrms[2]);
+    ui->hLPlayer->addWidget(lPlFrms[3]);
+    ui->hLPlayer->addWidget(pBPlBtns[0]);
+    ui->hLPlayer->addWidget(pBPlBtns[1]);
+    ui->hLPlayer->addWidget(pBPlBtns[2]);
+    ui->hLPlayer->addWidget(pBPlBtns[3]);
 
     // --- connections ---    
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
@@ -51,6 +78,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(wLogger, SIGNAL(signLoggerWork(bool)), this, SLOT(slotUiLockUnLock(bool)));
 
     connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show()));
+    connect(pBPlBtns[0], SIGNAL(clicked()), wPlayer, SLOT(slotOneBack()));
+    connect(pBPlBtns[1], SIGNAL(clicked()), wPlayer, SLOT(slotPause()));
+    connect(pBPlBtns[2], SIGNAL(clicked()), wPlayer, SLOT(slotPlay()));
+    connect(pBPlBtns[3], SIGNAL(clicked()), wPlayer, SLOT(slotOneForw()));
 
     // --- load state ---
     loadUiState(wrapJson->getMeasConfig());

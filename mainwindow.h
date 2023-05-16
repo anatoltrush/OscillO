@@ -40,6 +40,11 @@ private:
     Logger* wLogger = nullptr;
     Player* wPlayer = nullptr;
 
+    // --- player ---
+    QSlider* plider = nullptr;
+    QLabel* lPlFrms[4];
+    QPushButton* pBPlBtns[4];
+
     bool isCollectedJson = false;
     void loadUiState(const QJsonObject jFull);
     QJsonObject collectJson();

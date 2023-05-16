@@ -197,7 +197,7 @@
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 95,
+                "hTriggerPos": 100,
                 "lastAddress": "0",
                 "readDataLen": "2048",
                 "timeDIV": 17,

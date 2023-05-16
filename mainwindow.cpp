@@ -23,12 +23,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     float aspRatPanels = 0.02f; // NOTE: config side panel width
     ui->splitter->setSizes({(int)(win_wid * (1.0f - aspRatPanels)), (int)(win_wid * aspRatPanels)});
 
+    // --- put config ---
     for (uint8_t i = 0; i < HANTEK_NUM; i++){ // Insert configs + bufLen
         hanteks[i] = new Hantek(this);
         ui->vLayout->insertWidget(ui->vLayout->count() - 1, hanteks[i]->config);
         connect(hanteks[i]->config, &Config::signLenChanged, wrapServer, &WrapServer::slotCalcWaitSize);
     }
 
+    // --- put displays ---
     for (uint8_t i = 0; i < HANTEK_NUM; i++){ // Insert slider, displays
         QHBoxLayout *hHantekLayout = new QHBoxLayout;
         hHantekLayout->addWidget(hanteks[i]->slider);
@@ -39,10 +41,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             ui->gLHantek->addWidget(hanteks[i]->displays[j], j + 1, i);
     }
 
+    // --- put player ---
+    //QVBoxLayout *vPlayerLayout = new QVBoxLayout;
+
     // --- connections ---    
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
+
     connect(ui->pBLogger, SIGNAL(clicked()), wLogger, SLOT(show()));
     connect(wLogger, SIGNAL(signLoggerWork(bool)), this, SLOT(slotUiLockUnLock(bool)));
+
     connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show()));
 
     // --- load state ---

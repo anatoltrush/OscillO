@@ -14,6 +14,10 @@ public:
 
 private:
     Ui::Player *ui;
+
+private slots:
+    void slotChooseFile();
+    void slotLoadFile();
 };
 
 #endif // PLAYER_H

@@ -28,6 +28,13 @@ QString Frame::getOneQstrLine() const{
     return resLine;
 }
 
+void Frame::clear(){
+    this->deviceIndex = 0;
+    this->channelNum = 0;
+    this->timeStamp = 0.0;
+    this->payload.clear();
+}
+
 QJsonObject EXTRACONFIG::toJsonObject(){
     QJsonObject extraConfig;
 

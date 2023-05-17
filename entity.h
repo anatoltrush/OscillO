@@ -25,6 +25,7 @@ struct Frame{
     static uint8_t getHeaderSize(){return 3;} // deviceIndex, channelNum, timeStamp
     std::string getOneStdLine() const;
     QString getOneQstrLine() const;
+    void clear();
 };
 
 struct EXTRACONFIG{

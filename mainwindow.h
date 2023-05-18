@@ -24,6 +24,7 @@ private slots:
     void slotTimerTick();
     void slotRcvFrame(const std::vector<Frame>& frames);
     void slotUiLockUnLock(bool isLogging);
+    void slotState(const QJsonObject& jState){loadUiState(jState);}
 
 private:
     Ui::MainWindow *ui;
@@ -53,4 +54,6 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// FIXME: ? Player
+// TODO: Block UI part
+// TODO: Send player status
+// TODO: Make marker

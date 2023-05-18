@@ -78,6 +78,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(wLogger, SIGNAL(signLoggerWork(bool)), this, SLOT(slotUiLockUnLock(bool)));
 
     connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show()));
+    connect(wPlayer, SIGNAL(signState(QJsonObject)), this, SLOT(slotState(QJsonObject)));
+    connect(wPlayer, &Player::signFrameMessage, this, &MainWindow::slotRcvFrame);
     connect(pBPlBtns[0], SIGNAL(clicked()), wPlayer, SLOT(slotOneBack()));
     connect(pBPlBtns[1], SIGNAL(clicked()), wPlayer, SLOT(slotPause()));
     connect(pBPlBtns[2], SIGNAL(clicked()), wPlayer, SLOT(slotPlay()));
@@ -126,7 +128,7 @@ void MainWindow::slotRcvFrame(const std::vector<Frame> &frames){
 void MainWindow::slotUiLockUnLock(bool isLogging){
     ui->pBPlayer->setEnabled(!isLogging);
     for (uint8_t i = 0; i < HANTEK_NUM; i++)
-            hanteks[i]->uiLockUnLock(isLogging);
+        hanteks[i]->uiLockUnLock(isLogging);
 }
 
 void MainWindow::loadUiState(const QJsonObject jFull){

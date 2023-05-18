@@ -47,7 +47,24 @@ void Player::slotOneBack(){
 }
 
 void Player::slotPlay(){
-    //int a = 5;
+    if(frames.empty()) return;
+    double diffTime = GET_CUR_TIME_MICRO - frames[currFrameIndex].timeStamp;
+
+    while (true) {
+        if(isPaused) break;
+        std::this_thread::sleep_for(std::chrono::microseconds(3));
+        if(GET_CUR_TIME_MICRO >= (frames[currFrameIndex].timeStamp + diffTime)){
+            // --- send to displ ---
+            std::vector<Frame> locVec = {frames[currFrameIndex]};
+            emit signFrameMessage(locVec);
+            // ---
+            currFrameIndex++;
+            if(currFrameIndex >= frames.size()){
+                // stop
+                break;
+            }
+        }
+    }
 }
 
 void Player::slotOneForw(){
@@ -83,7 +100,10 @@ void Player::makeFrames(const std::vector<QString> &strings){
     QJsonDocument jDoc = QJsonDocument::fromJson(strings.at(0).toUtf8());
     QJsonObject jObj;
     if(!jDoc.isNull()){
-        if(jDoc.isObject()) jObj = jDoc.object();
+        if(jDoc.isObject()){
+            jObj = jDoc.object();
+            emit signState(jObj);
+        }
         else{
             ui->pBLoadFile->setStyleSheet("background-color: red");
             QMessageBox::critical(this, "Error","Json document is not an object");
@@ -95,9 +115,9 @@ void Player::makeFrames(const std::vector<QString> &strings){
         QMessageBox::critical(this, "Error","Invalid JSON (json is null)");
         return;
     }
-    // TODO: send to MainWindow
 
     // --- all data ---
+    currFrameIndex = 0;
     frames.clear();
     uint8_t gap = 2;
     std::vector<QString> vecTemp(strings.size() - gap);

@@ -4,18 +4,18 @@
             "controlData": {
                 "aLT": 0,
                 "alreadyReadLen": "0",
-                "bufferLen": "1024",
+                "bufferLen": "2048",
                 "cHSet": 0,
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
                 "hTriggerPos": 25,
                 "lastAddress": "0",
-                "readDataLen": "1024",
-                "timeDIV": 16,
-                "trigSource": 0,
+                "readDataLen": "2048",
+                "timeDIV": 8,
+                "trigSource": 1,
                 "triggerSlope": 0,
-                "vTriggerPos": 148
+                "vTriggerPos": 133
             },
             "displays": [
                 {
@@ -24,10 +24,10 @@
                         {
                             "is_active": true,
                             "koeff": 99,
-                            "mult": "46156",
+                            "mult": "0",
                             "ref": "2",
                             "suffix": 4,
-                            "type": 0
+                            "type": 3
                         },
                         {
                             "is_active": true,
@@ -56,7 +56,7 @@
                             "mult": "0",
                             "ref": "0",
                             "suffix": 4,
-                            "type": 2
+                            "type": 0
                         },
                         {
                             "is_active": false,
@@ -139,12 +139,12 @@
                 "PWCondition": 0,
                 "deviceIndex": 0,
                 "deviceNum": 0,
-                "lastPLSize": 4096,
+                "lastPLSize": 2048,
                 "leverPos": [
-                    138,
-                    107,
-                    84,
-                    49
+                    96,
+                    92,
+                    95,
+                    109
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 456789,
@@ -170,7 +170,7 @@
                     true,
                     true,
                     true,
-                    true
+                    false
                 ],
                 "cHMultiplier": [
                     0,
@@ -180,9 +180,9 @@
                 ],
                 "cHVoltDIV": [
                     9,
-                    9,
-                    4,
-                    9
+                    8,
+                    7,
+                    6
                 ],
                 "trigFilt": false,
                 "trigSource": 0
@@ -197,13 +197,13 @@
                 "driverCode": 0,
                 "eTSOpen": 0,
                 "fPGAVersion": 0,
-                "hTriggerPos": 100,
+                "hTriggerPos": 25,
                 "lastAddress": "0",
                 "readDataLen": "2048",
                 "timeDIV": 17,
                 "trigSource": 0,
                 "triggerSlope": 0,
-                "vTriggerPos": 147
+                "vTriggerPos": 132
             },
             "displays": [
                 {
@@ -327,12 +327,12 @@
                 "PWCondition": 0,
                 "deviceIndex": 1,
                 "deviceNum": 0,
-                "lastPLSize": 10240,
+                "lastPLSize": 2048,
                 "leverPos": [
-                    119,
+                    118,
                     89,
                     60,
-                    41
+                    56
                 ],
                 "pulseWUnit": 0,
                 "pulseWValue": 987654,
@@ -367,10 +367,10 @@
                     0
                 ],
                 "cHVoltDIV": [
+                    7,
+                    8,
                     9,
-                    9,
-                    9,
-                    9
+                    10
                 ],
                 "trigFilt": false,
                 "trigSource": 0
@@ -382,6 +382,6 @@
         "conduct": "333.55",
         "humid": "91.5",
         "temp_env": "78.5",
-        "temp_room": "7.5"
+        "temp_room": "27.5"
     }
 }

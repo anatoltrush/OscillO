@@ -6,6 +6,7 @@
 #include <QTextStream>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QMetaType>
 
 #include <fstream>
 #include <thread>
@@ -14,6 +15,8 @@
 
 namespace Ui {class Player;}
 
+Q_DECLARE_METATYPE(std::vector<Frame>)
+
 class Player : public QDialog{
     Q_OBJECT
 
@@ -21,25 +24,35 @@ public:
     explicit Player(QWidget *parent = nullptr);
     ~Player();
 
+    bool isAppStopped   = false;
+    uint16_t bigLoopMs  = 50;
+
 private:
     Ui::Player *ui;
 
+    bool isPlay         = false;
+
+    uint16_t smallLoopMcs = 0;
+
     QString pathFileLog;
-    bool isPaused = false;
+    std::thread thrPlayFile;
+
     uint64_t currFrameIndex = 0;
     std::vector<Frame> frames;
 
     std::vector<QString> readStrings(QFile &file, int linesAmount);
     void makeFrames(const std::vector<QString>& strings);
+    void playLogFile();
 
-signals:
-    void signState(const QJsonObject& jState);
+signals:    
     void signFrameMessage(const std::vector<Frame>& frames);
+    void signStateMain(const QJsonObject& jState);
+    void signStatePlay(int param, int val);
 
 public slots:
     void slotOneBack();
-    void slotPause(){isPaused = !isPaused;}
-    void slotPlay();
+    void slotPause();
+    void slotPlay(){isPlay = true;}
     void slotOneForw();
 
 private slots:

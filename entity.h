@@ -16,6 +16,14 @@
 #define GET_CUR_TIME_MILLI (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 #define GET_CUR_TIME_MICRO (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 
+enum PlSt{
+    Back    = 0,
+    Pause   = 1,
+    Play    = 2,
+    Forw    = 3,
+    Start   = 4
+};
+
 struct Frame{
     uint8_t deviceIndex = 0;
     uint8_t channelNum  = 0;

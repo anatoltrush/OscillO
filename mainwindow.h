@@ -24,7 +24,8 @@ private slots:
     void slotTimerTick();
     void slotRcvFrame(const std::vector<Frame>& frames);
     void slotUiLockUnLock(bool isLogging);
-    void slotState(const QJsonObject& jState){loadUiState(jState);}
+    void slotStateMain(const QJsonObject& jState){loadUiState(jState);}
+    void slotStatePlay(int param, int val);
 
 private:
     Ui::MainWindow *ui;
@@ -55,5 +56,5 @@ private:
 #endif // MAINWINDOW_H
 
 // TODO: Block UI part
-// TODO: Send player status
-// TODO: Make marker
+// TODO: Rough rewind
+// TODO: Make marker (if vec size == 1)

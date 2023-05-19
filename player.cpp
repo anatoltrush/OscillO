@@ -4,12 +4,18 @@
 Player::Player(QWidget *parent) : QDialog(parent), ui(new Ui::Player){
     ui->setupUi(this);
 
+    qRegisterMetaType<std::vector<Frame>>();
+
+    thrPlayFile = std::thread(&Player::playLogFile, this);
+
     connect(ui->pBChooseFile, &QPushButton::clicked, this, &Player::slotChooseFile);
     connect(ui->pBLoadFile, &QPushButton::clicked, this, &Player::slotLoadFile);
     connect(ui->lEInpFile, &QLineEdit::textChanged, this, &Player::slotPathChanged);
 }
 
 Player::~Player(){
+    if (thrPlayFile.joinable()) thrPlayFile.join();
+
     delete ui;
 }
 
@@ -43,32 +49,22 @@ void Player::slotLoadFile(){
 }
 
 void Player::slotOneBack(){
-    //int a = 5;
+    (currFrameIndex <= 0) ? currFrameIndex = frames.size() - IND_TO_NUM: currFrameIndex--;
+    std::vector<Frame> locVec = {frames[currFrameIndex]};
+    emit signFrameMessage(locVec);
+    emit signStatePlay(PlSt::Back, currFrameIndex);
 }
 
-void Player::slotPlay(){
-    if(frames.empty()) return;
-    double diffTime = GET_CUR_TIME_MICRO - frames[currFrameIndex].timeStamp;
-
-    while (true) {
-        if(isPaused) break;
-        std::this_thread::sleep_for(std::chrono::microseconds(3));
-        if(GET_CUR_TIME_MICRO >= (frames[currFrameIndex].timeStamp + diffTime)){
-            // --- send to displ ---
-            std::vector<Frame> locVec = {frames[currFrameIndex]};
-            emit signFrameMessage(locVec);
-            // ---
-            currFrameIndex++;
-            if(currFrameIndex >= frames.size()){
-                // stop
-                break;
-            }
-        }
-    }
+void Player::slotPause(){
+    isPlay = false;
+    emit signStatePlay(PlSt::Pause, -1);
 }
 
-void Player::slotOneForw(){
-    //int a = 5;
+void Player::slotOneForw(){    
+    std::vector<Frame> locVec = {frames[currFrameIndex]};
+    emit signFrameMessage(locVec);
+    emit signStatePlay(PlSt::Forw, currFrameIndex);
+    (currFrameIndex >= frames.size() - IND_TO_NUM) ? currFrameIndex = 0 : currFrameIndex++;
 }
 
 std::vector<QString> Player::readStrings(QFile &file, int linesAmount){
@@ -81,7 +77,7 @@ std::vector<QString> Player::readStrings(QFile &file, int linesAmount){
         QString line = in.readLine();
         vecStrings.push_back(line);
         percent = (vecStrings.size() / (float)linesAmount) * 100;
-        if(percent != tempPer){
+        if(percent != tempPer && percent % 5 == 0){
             ui->pBarLoad->setValue(percent);
             tempPer = percent;
         }
@@ -102,7 +98,7 @@ void Player::makeFrames(const std::vector<QString> &strings){
     if(!jDoc.isNull()){
         if(jDoc.isObject()){
             jObj = jDoc.object();
-            emit signState(jObj);
+            emit signStateMain(jObj);
         }
         else{
             ui->pBLoadFile->setStyleSheet("background-color: red");
@@ -144,7 +140,38 @@ void Player::makeFrames(const std::vector<QString> &strings){
             frames.push_back(locFrame);
         }
     }
-
     // ---
     ui->pBLoadFile->setStyleSheet("background-color: green");
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    emit signStatePlay(PlSt::Start, frames.size());
+    this->hide();
+}
+
+void Player::playLogFile(){
+    while(!isAppStopped){
+        std::this_thread::sleep_for(std::chrono::milliseconds(bigLoopMs));
+        if(isPlay){
+            if(frames.empty()) continue;
+            double diffTime = GET_CUR_TIME_MICRO - frames[currFrameIndex].timeStamp;
+            while (isPlay) {
+                if(isAppStopped) break;
+                std::this_thread::sleep_for(std::chrono::microseconds(3));
+                if(GET_CUR_TIME_MICRO >= (frames[currFrameIndex].timeStamp + diffTime)){
+                    // --- send to displ ---
+                    std::vector<Frame> locVec = {frames[currFrameIndex]};
+                    emit signFrameMessage(locVec);
+                    emit signStatePlay(PlSt::Play, currFrameIndex);
+                    // ---
+                    currFrameIndex++;
+                    if(currFrameIndex >= frames.size()){
+                        // --- stop ---
+                        currFrameIndex = 0;
+                        isPlay = false;
+                        emit signStatePlay(PlSt::Pause, -1);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }

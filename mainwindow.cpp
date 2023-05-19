@@ -71,19 +71,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->hLPlayer->addWidget(pBPlBtns[2]);
     ui->hLPlayer->addWidget(pBPlBtns[3]);
 
-    // --- connections ---    
+    // --- connections ---
     connect(ui->pBInfo, SIGNAL(clicked()), wInfo, SLOT(show()));
 
     connect(ui->pBLogger, SIGNAL(clicked()), wLogger, SLOT(show()));
     connect(wLogger, SIGNAL(signLoggerWork(bool)), this, SLOT(slotUiLockUnLock(bool)));
 
-    connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show()));
-    connect(wPlayer, SIGNAL(signState(QJsonObject)), this, SLOT(slotState(QJsonObject)));
-    connect(wPlayer, &Player::signFrameMessage, this, &MainWindow::slotRcvFrame);
-    connect(pBPlBtns[0], SIGNAL(clicked()), wPlayer, SLOT(slotOneBack()));
-    connect(pBPlBtns[1], SIGNAL(clicked()), wPlayer, SLOT(slotPause()));
-    connect(pBPlBtns[2], SIGNAL(clicked()), wPlayer, SLOT(slotPlay()));
-    connect(pBPlBtns[3], SIGNAL(clicked()), wPlayer, SLOT(slotOneForw()));
+    connect(ui->pBPlayer, SIGNAL(clicked()), wPlayer, SLOT(show())); // ->
+    connect(pBPlBtns[0], SIGNAL(clicked()), wPlayer, SLOT(slotOneBack())); // ->
+    connect(pBPlBtns[1], SIGNAL(clicked()), wPlayer, SLOT(slotPause())); // ->
+    connect(pBPlBtns[2], SIGNAL(clicked()), wPlayer, SLOT(slotPlay())); // ->
+    connect(pBPlBtns[3], SIGNAL(clicked()), wPlayer, SLOT(slotOneForw())); // ->
+
+    connect(wPlayer, &Player::signFrameMessage, this, &MainWindow::slotRcvFrame); // <-
+    connect(wPlayer, &Player::signStateMain, this, &MainWindow::slotStateMain); // <-
+    connect(wPlayer, &Player::signStatePlay, this, &MainWindow::slotStatePlay); // <-
+
 
     // --- load state ---
     loadUiState(wrapJson->getMeasConfig());
@@ -91,6 +94,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow(){
     saveUiState();
+
+    wPlayer->isAppStopped = true;
+    std::this_thread::sleep_for(std::chrono::milliseconds(wPlayer->bigLoopMs + 3));
 
     delete wInfo;
     delete wLogger;
@@ -129,6 +135,42 @@ void MainWindow::slotUiLockUnLock(bool isLogging){
     ui->pBPlayer->setEnabled(!isLogging);
     for (uint8_t i = 0; i < HANTEK_NUM; i++)
         hanteks[i]->uiLockUnLock(isLogging);
+}
+
+void MainWindow::slotStatePlay(int param, int val){
+    if(param == PlSt::Start){
+        lPlFrms[0]->setText(QString::number(0));
+        lPlFrms[1]->setText(QString::number(val));
+        lPlFrms[3]->setText(QString::number(val));
+        plider->setValue(0);
+        plider->setMaximum(val);
+        // --- ui ---
+        pBPlBtns[0]->setEnabled(true);
+        pBPlBtns[1]->setEnabled(false);
+        pBPlBtns[2]->setEnabled(true);
+        pBPlBtns[3]->setEnabled(true);
+    }
+    if(param == PlSt::Back || param == PlSt::Forw){
+        lPlFrms[0]->setText(QString::number(val + IND_TO_NUM));
+        lPlFrms[1]->setText(QString::number(lPlFrms[3]->text().toInt() - lPlFrms[0]->text().toInt()));
+        plider->setValue(val + IND_TO_NUM);
+    }
+    if(param == PlSt::Pause){
+        pBPlBtns[0]->setEnabled(true);
+        pBPlBtns[1]->setEnabled(false);
+        pBPlBtns[2]->setEnabled(true);
+        pBPlBtns[3]->setEnabled(true);
+    }
+    if(param == PlSt::Play){
+        lPlFrms[0]->setText(QString::number(val + IND_TO_NUM));
+        lPlFrms[1]->setText(QString::number(lPlFrms[3]->text().toInt() - lPlFrms[0]->text().toInt()));
+        plider->setValue(val + IND_TO_NUM);
+        // --- ui ---
+        pBPlBtns[0]->setEnabled(false);
+        pBPlBtns[1]->setEnabled(true);
+        pBPlBtns[2]->setEnabled(false);
+        pBPlBtns[3]->setEnabled(false);
+    }
 }
 
 void MainWindow::loadUiState(const QJsonObject jFull){

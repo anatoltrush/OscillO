@@ -44,7 +44,7 @@ Display::Display(QWidget *parent) : QWidget(parent), ui(new Ui::Display){
 
     // --- final actions ---
     Frame locFrm;
-    showInChart(locFrm);
+    showInChart(locFrm, false);
 }
 
 Display::~Display(){
@@ -123,13 +123,23 @@ void Display::slotTrigHor(int val){
     emit signChannelStateChanged();
 }
 
-void Display::showInChart(const Frame &frame){
+void Display::slotTimerTick(){
+    if(ui->lMarker->text() == "+")
+        ui->lMarker->setText("x");
+    else
+        ui->lMarker->setText("+");
+}
+
+void Display::showInChart(const Frame &frame, bool isOne){
     payLoadSize = frame.payload.size();
     if(extraConfig && payLoadSize != 0){
         ui->hSTrigHor->setMaximum(payLoadSize);
         extraConfig->lastPLSize = payLoadSize;
     }
-
+    // --- isOne ---
+    if(isOne){
+        slotTimerTick();
+    }
     // --- axis X ---
     QValueAxis *axisX = new QValueAxis;
     axisX->setRange(0, frame.payload.size() - IND_TO_NUM);

@@ -37,10 +37,10 @@ Hantek::Hantek(QWidget *parent) : QWidget(parent){
 
 Hantek::~Hantek(){}
 
-void Hantek::rcvAndDraw(const Frame &frame){
+void Hantek::rcvAndDraw(const Frame &frame, bool isOne){
     for(uint8_t i = 0; i < MAX_CH_NUM; i++)
         if(displays[i]->currChannInd == frame.channelNum && relayControl.bCHEnable[frame.channelNum])
-            displays[i]->showInChart(frame);
+            displays[i]->showInChart(frame, isOne);
 }
 
 void Hantek::rcvAndAnalyze(const Frame &frame){

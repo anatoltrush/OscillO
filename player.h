@@ -30,8 +30,7 @@ public:
 private:
     Ui::Player *ui;
 
-    bool isPlay         = false;
-
+    bool isPlay = false;
     uint16_t smallLoopMcs = 0;
 
     QString pathFileLog;
@@ -54,6 +53,7 @@ public slots:
     void slotPause();
     void slotPlay(){isPlay = true;}
     void slotOneForw();
+    void slotRoughRewind(int val);
 
 private slots:
     void slotChooseFile();

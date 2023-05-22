@@ -44,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // --- put player ---
     plider = new QSlider(this);
     plider->setOrientation(Qt::Horizontal);
+    plider->setMinimum(0);
+    plider->setMaximum(0);
     // ---
     for (uint8_t i = 0; i < 4; i++){
         lPlFrms[i] = new QLabel("0");
@@ -82,6 +84,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(pBPlBtns[1], SIGNAL(clicked()), wPlayer, SLOT(slotPause())); // ->
     connect(pBPlBtns[2], SIGNAL(clicked()), wPlayer, SLOT(slotPlay())); // ->
     connect(pBPlBtns[3], SIGNAL(clicked()), wPlayer, SLOT(slotOneForw())); // ->
+    connect(plider, SIGNAL(valueChanged(int)), wPlayer, SLOT(slotRoughRewind(int))); // ->
 
     connect(wPlayer, &Player::signFrameMessage, this, &MainWindow::slotRcvFrame); // <-
     connect(wPlayer, &Player::signStateMain, this, &MainWindow::slotStateMain); // <-
@@ -151,25 +154,29 @@ void MainWindow::slotStatePlay(int param, int val){
         pBPlBtns[3]->setEnabled(true);
     }
     if(param == PlSt::Back || param == PlSt::Forw){
-        lPlFrms[0]->setText(QString::number(val + IND_TO_NUM));
+        lPlFrms[0]->setText(QString::number(val));
         lPlFrms[1]->setText(QString::number(lPlFrms[3]->text().toInt() - lPlFrms[0]->text().toInt()));
-        plider->setValue(val + IND_TO_NUM);
+        plider->setValue(val);
     }
     if(param == PlSt::Pause){
         pBPlBtns[0]->setEnabled(true);
         pBPlBtns[1]->setEnabled(false);
         pBPlBtns[2]->setEnabled(true);
         pBPlBtns[3]->setEnabled(true);
+        plider->setEnabled(true);
+        lPlFrms[0]->setText(QString::number(val));
+        lPlFrms[1]->setText(QString::number(lPlFrms[3]->text().toInt() - lPlFrms[0]->text().toInt()));
     }
     if(param == PlSt::Play){
-        lPlFrms[0]->setText(QString::number(val + IND_TO_NUM));
+        lPlFrms[0]->setText(QString::number(val));
         lPlFrms[1]->setText(QString::number(lPlFrms[3]->text().toInt() - lPlFrms[0]->text().toInt()));
-        plider->setValue(val + IND_TO_NUM);
+        plider->setValue(val);
         // --- ui ---
         pBPlBtns[0]->setEnabled(false);
         pBPlBtns[1]->setEnabled(true);
         pBPlBtns[2]->setEnabled(false);
         pBPlBtns[3]->setEnabled(false);
+        plider->setEnabled(false);
     }
 }
 
@@ -206,10 +213,11 @@ QJsonObject MainWindow::collectJson(){
 }
 
 void MainWindow::analyzeAndDraw(const std::vector<Frame> &frames){
+    bool isOne = frames.size() == 1;
     for(const auto& frame : frames)
         for(uint8_t i = 0; i < MAX_CH_NUM; i++)
             if(frame.deviceIndex == i){
                 hanteks[i]->rcvAndAnalyze(frame);
-                hanteks[i]->rcvAndDraw(frame);
+                hanteks[i]->rcvAndDraw(frame, isOne);
             }
 }

@@ -24,7 +24,7 @@ public:
     Config* config = nullptr;
     Display* displays[MAX_CH_NUM];
 
-    void rcvAndDraw(const Frame& frame);
+    void rcvAndDraw(const Frame& frame, bool isOne = false);
     void rcvAndAnalyze(const Frame& frame);
 
     QJsonObject toJsonObject();

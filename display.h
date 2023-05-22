@@ -36,7 +36,7 @@ public:
 
     void updateUiLinear(float perc){linerPos = extraConfig->lastPLSize * perc;}
     void chooseChannel(uint8_t ch);
-    void showInChart(const Frame& frame);
+    void showInChart(const Frame& frame, bool isOne);
     void analyze(const Frame& frame);
 
     QJsonObject toJsonObject();
@@ -71,6 +71,8 @@ private slots:
     void slotLevelPos(int val);
     void slotTrigVert(int val);
     void slotTrigHor(int val);
+
+    void slotTimerTick();
 };
 
 #endif // DISPLAY_H

@@ -55,6 +55,4 @@ private:
 };
 #endif // MAINWINDOW_H
 
-// TODO: Block UI part
-// TODO: Rough rewind
-// TODO: Make marker (if vec size == 1)
+// TODO: ? Marker

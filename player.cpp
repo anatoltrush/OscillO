@@ -49,7 +49,7 @@ void Player::slotLoadFile(){
 }
 
 void Player::slotOneBack(){
-    (currFrameIndex <= 0) ? currFrameIndex = frames.size() - IND_TO_NUM: currFrameIndex--;
+    (currFrameIndex <= 0) ? currFrameIndex = frames.size() - 1 : currFrameIndex--;
     std::vector<Frame> locVec = {frames[currFrameIndex]};
     emit signFrameMessage(locVec);
     emit signStatePlay(PlSt::Back, currFrameIndex);
@@ -57,14 +57,22 @@ void Player::slotOneBack(){
 
 void Player::slotPause(){
     isPlay = false;
-    emit signStatePlay(PlSt::Pause, -1);
+    emit signStatePlay(PlSt::Pause, currFrameIndex);
 }
 
-void Player::slotOneForw(){    
+void Player::slotOneForw(){
+    (currFrameIndex >= frames.size() - 1) ? currFrameIndex = 0 : currFrameIndex++;
     std::vector<Frame> locVec = {frames[currFrameIndex]};
     emit signFrameMessage(locVec);
-    emit signStatePlay(PlSt::Forw, currFrameIndex);
-    (currFrameIndex >= frames.size() - IND_TO_NUM) ? currFrameIndex = 0 : currFrameIndex++;
+    emit signStatePlay(PlSt::Forw, currFrameIndex);    
+}
+
+void Player::slotRoughRewind(int val){
+    if(val < 0 || val >= (int)frames.size()) return;
+    if(!isPlay){
+        currFrameIndex = val;
+        emit signStatePlay(PlSt::Pause, currFrameIndex);
+    }
 }
 
 std::vector<QString> Player::readStrings(QFile &file, int linesAmount){
@@ -82,7 +90,6 @@ std::vector<QString> Player::readStrings(QFile &file, int linesAmount){
             tempPer = percent;
         }
     }
-
     return vecStrings;
 }
 
@@ -167,7 +174,7 @@ void Player::playLogFile(){
                         // --- stop ---
                         currFrameIndex = 0;
                         isPlay = false;
-                        emit signStatePlay(PlSt::Pause, -1);
+                        emit signStatePlay(PlSt::Pause, currFrameIndex);
                         break;
                     }
                 }

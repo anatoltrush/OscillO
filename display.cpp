@@ -123,11 +123,8 @@ void Display::slotTrigHor(int val){
     emit signChannelStateChanged();
 }
 
-void Display::slotTimerTick(){
-    if(ui->lMarker->text() == "+")
-        ui->lMarker->setText("x");
-    else
-        ui->lMarker->setText("+");
+void Display::markerChange(){
+    (ui->lMarker->text() == "+") ? ui->lMarker->setText("x") : ui->lMarker->setText("+");
 }
 
 void Display::showInChart(const Frame &frame, bool isOne){
@@ -137,9 +134,8 @@ void Display::showInChart(const Frame &frame, bool isOne){
         extraConfig->lastPLSize = payLoadSize;
     }
     // --- isOne ---
-    if(isOne){
-        slotTimerTick();
-    }
+    if(isOne) markerChange();
+
     // --- axis X ---
     QValueAxis *axisX = new QValueAxis;
     axisX->setRange(0, frame.payload.size() - IND_TO_NUM);

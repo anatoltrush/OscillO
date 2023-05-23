@@ -71,6 +71,9 @@ void Player::slotRoughRewind(int val){
     if(val < 0 || val >= (int)frames.size()) return;
     if(!isPlay){
         currFrameIndex = val;
+        // --- NO! ---
+        //std::vector<Frame> locVec = {frames[currFrameIndex]};
+        //emit signFrameMessage(locVec);
         emit signStatePlay(PlSt::Pause, currFrameIndex);
     }
 }

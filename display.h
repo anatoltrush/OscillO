@@ -56,6 +56,8 @@ private:
     const QString keyCurrCh = "channel_show";
     const QString keyEstims = "estimations";
 
+    void markerChange();
+
 signals:
     void signChannelStateChanged();
 
@@ -71,8 +73,6 @@ private slots:
     void slotLevelPos(int val);
     void slotTrigVert(int val);
     void slotTrigHor(int val);
-
-    void slotTimerTick();
 };
 
 #endif // DISPLAY_H

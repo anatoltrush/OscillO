@@ -9,6 +9,9 @@ namespace Ui {
 class Estim;
 }
 
+/**
+ * @brief Estim class. Should analyze incoming data
+ */
 class Estim : public QWidget
 {
     Q_OBJECT

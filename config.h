@@ -8,6 +8,10 @@
 
 namespace Ui {class Config;}
 
+/**
+ * @brief Another visual part of Hantek class
+ * @details Contains some hantek configs
+ */
 class Config : public QWidget{
     Q_OBJECT
 

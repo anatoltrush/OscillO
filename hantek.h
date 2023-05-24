@@ -7,6 +7,12 @@
 #include "display.h"
 #include "config.h"
 
+/**
+ * @brief Main device-class
+ * @details Each Hantek contains:
+ * - 4 Display entity. Every Display contains 3 Estim entity
+ * - 1 Config entity
+ */
 class Hantek : public QWidget{
     Q_OBJECT
 

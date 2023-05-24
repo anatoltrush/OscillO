@@ -16,6 +16,9 @@
 #define GET_CUR_TIME_MILLI (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 #define GET_CUR_TIME_MICRO (std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count())
 
+/**
+ * @brief States of player work
+ */
 enum PlSt{
     Back    = 0,
     Pause   = 1,
@@ -24,6 +27,9 @@ enum PlSt{
     Start   = 4
 };
 
+/**
+ * @brief All information for one picture in one channel
+ */
 struct Frame{
     uint8_t deviceIndex = 0;
     uint8_t channelNum  = 0;
@@ -36,6 +42,9 @@ struct Frame{
     void clear();
 };
 
+/**
+ * @brief Additional config structure
+ */
 struct EXTRACONFIG{
 private:
     const QString keyDeviceIndex    = "deviceIndex";

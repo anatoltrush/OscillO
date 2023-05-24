@@ -18,6 +18,11 @@ namespace Ui {class Display;}
 using namespace QtCharts;
 #endif
 
+/**
+ * @brief Another visual part of Hantek class
+ * @details Contains 1 chart and 3 Estim.
+ * Can change some hantek configs
+ */
 class Display : public QWidget{
     Q_OBJECT
 

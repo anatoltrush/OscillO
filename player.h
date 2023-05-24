@@ -17,6 +17,10 @@ namespace Ui {class Player;}
 
 Q_DECLARE_METATYPE(std::vector<Frame>)
 
+/**
+ * @brief Player class. Opens in another window
+ * @details Playing logged data
+ */
 class Player : public QDialog{
     Q_OBJECT
 

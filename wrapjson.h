@@ -10,6 +10,9 @@
 
 #include "entity.h"
 
+/**
+ * @brief Load/save few json data
+ */
 class WrapJson : public QWidget{
     Q_OBJECT
 

@@ -5,6 +5,10 @@
 
 namespace Ui {class Info;}
 
+/**
+ * @brief Info class. Opens in another window
+ * @details Shows how many messages came from server
+ */
 class Info : public QDialog{
     Q_OBJECT
 

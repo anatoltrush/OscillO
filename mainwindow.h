@@ -9,10 +9,17 @@
 #include "logger.h"
 #include "player.h"
 
+//! @author Anatoly Trush @link https://www.linkedin.com/in/anatol-trush-1703b0133/
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/**
+ * @brief The MainWindow class. Main class =)
+ * @details Receives frames from server and player
+ * Further sends them to show in UI (and in logger if needed)
+ */
 class MainWindow : public QMainWindow{
     Q_OBJECT
 
@@ -36,16 +43,16 @@ private:
 
     const QString keyHanteks = "HANTEKS";
     const QString keyLogger = "Logger";
-    Hantek* hanteks[HANTEK_NUM];    
+    Hantek* hanteks[HANTEK_NUM]; //! 2 Hanteks
 
-    Info* wInfo = nullptr;
-    Logger* wLogger = nullptr;
-    Player* wPlayer = nullptr;
+    Info* wInfo = nullptr; //! window-Info
+    Logger* wLogger = nullptr; //! window-Logger
+    Player* wPlayer = nullptr; //! window-Player
 
     // --- player ---
     QSlider* plider = nullptr;
-    QLabel* lPlFrms[4];
-    QPushButton* pBPlBtns[4];
+    QLabel* lPlFrms[4]; //! Data about frames in Player (0-shown, 1-left, 2-sep"/", 3-all)
+    QPushButton* pBPlBtns[4]; //! Player buttons (0-1back, 1-pause, 2-play, 3-1forw)
 
     bool isCollectedJson = false;
     void loadUiState(const QJsonObject jFull);

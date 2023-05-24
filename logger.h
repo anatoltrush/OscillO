@@ -10,6 +10,10 @@
 
 namespace Ui {class Logger;}
 
+/**
+ * @brief Logger class. Opens in another window
+ * @details Wrapper for TechLogger class
+ */
 class Logger : public QDialog{
     Q_OBJECT
 

@@ -15,6 +15,10 @@
 #include <thread>
 #include <condition_variable>
 
+/**
+ * @brief Logging all data (all frames) and programm state on hard disk
+ * @details Working in separate thread
+ */
 class TechLogger{
 public:
     QString strDirPath;

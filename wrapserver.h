@@ -8,6 +8,9 @@
 
 #include "entity.h"
 
+/**
+ * @brief Receives raw data via network, parse it and throw upper to MainWindow
+ */
 class WrapServer : public QWidget{
     Q_OBJECT
 
@@ -31,7 +34,9 @@ private:
     bool isAccumulated(const QByteArray& array);
 
 signals:
+    //! @details Signal that sends messages to Info-window
     void signStringMessage(QString mess);
+    //! @details Important signal that sends parsed frames to MainWindow
     void signFrameMessage(const std::vector<Frame>& frames);
 
 public slots:

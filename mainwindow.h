@@ -40,6 +40,7 @@ private:
 
     WrapServer* wrapServer = nullptr;
     WrapJson* wrapJson = nullptr;
+    QJsonObject currState;
 
     const QString keyHanteks = "HANTEKS";
     const QString keyLogger = "Logger";
@@ -57,7 +58,7 @@ private:
     bool isCollectedJson = false;
     void loadUiState(const QJsonObject jFull);
     QJsonObject collectJson();
-    void saveUiState(){wrapJson->saveMeasConfig(collectJson());}
+    void saveUiState();
     void analyzeAndDraw(const std::vector<Frame>& frames);
 };
 #endif // MAINWINDOW_H

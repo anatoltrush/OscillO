@@ -212,6 +212,14 @@ QJsonObject MainWindow::collectJson(){
     return jFull;
 }
 
+void MainWindow::saveUiState(){
+    QJsonObject newState = collectJson();
+    if(newState != currState){
+        wrapJson->saveMeasConfig(newState);
+        currState = newState;
+    }
+}
+
 void MainWindow::analyzeAndDraw(const std::vector<Frame> &frames){
     bool isOne = frames.size() == 1;
     for(const auto& frame : frames)
